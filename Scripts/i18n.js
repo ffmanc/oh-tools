@@ -91,10 +91,11 @@ function applyi18n() {
   // Update HTML lang attribute
   document.documentElement.lang = currentLang;
 
-  // Sync language select input
-  const langSelect = document.getElementById('langSelect');
-  if (langSelect) {
-    langSelect.value = currentLang;
+  // Sync custom language selector label
+  const labelEl = document.getElementById('currentLangLabel');
+  if (labelEl) {
+    const labels = { en: 'EN', pt: 'BR', es: 'ES', fr: 'FR', zh: 'CN' };
+    labelEl.textContent = labels[currentLang] || currentLang.toUpperCase();
   }
 }
 
@@ -112,4 +113,13 @@ async function changeLanguage(lang) {
   if (typeof generatePlan === 'function') generatePlan();
   if (typeof renderSelectedTraits === 'function') renderSelectedTraits();
   if (typeof auditData === 'function') auditData();
+}
+
+function getSuggestBtnHtml(key, type) {
+  if (typeof onlineTranslationsMetadata === 'undefined') return '';
+  const isDef = onlineTranslationsMetadata[key] && onlineTranslationsMetadata[key][currentLang] && onlineTranslationsMetadata[key][currentLang].definitive;
+  if (isDef) {
+    return '';
+  }
+  return `<span class="suggest-btn" style="cursor:pointer; opacity:0.6; font-size:0.9rem;" title="Suggest translation" onclick="openSuggestTranslation('${key.replace(/'/g, "\\'")}', '${type}')">🌐</span>`;
 }

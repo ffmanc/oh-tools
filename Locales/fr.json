@@ -1143,13 +1143,14 @@
       "copyCode": "Copier le code",
       "approveBulk": "Approuver les sélectionnés",
       "declineBulk": "Décliner les sélectionnés",
-      "saveCloud": "Enregistrer sur le Cloud",
+      "saveCloud": "Sauvegarder",
       "recoverPass": "Récupérer le mot de passe",
       "submitTranslation": "Suggérer une traduction",
       "submit": "Envoyer",
       "close": "Fermer",
       "cancel": "Annuler",
-      "btnArenaShops": "Boutiques d'Arène"
+      "btnArenaShops": "Boutiques d'Arène",
+      "add": "Ajouter"
     },
     "fields": {
       "email": "E-mail",
@@ -1169,7 +1170,23 @@
       "recoverSuccess": "E-mail de récupération de mot de passe envoyé avec succès !",
       "translationSubmitted": "Merci ! Votre suggestion de traduction a été soumise pour modération.",
       "adminOnly": "Accès réservé aux administrateurs.",
-      "noPendingProposals": "Aucune suggestion de traduction en attente pour cette langue."
+      "noPendingProposals": "Aucune suggestion de traduction en attente pour cette langue.",
+      "fillAll": "Veuillez remplir tous les champs obligatoires (*) !",
+      "fillCredentials": "Veuillez saisir votre e-mail et votre mot de passe !",
+      "enterEmail": "Veuillez saisir votre adresse e-mail !",
+      "enterTranslation": "Veuillez saisir une traduction !",
+      "loading": "Chargement...",
+      "errorProposals": "Erreur lors du chargement des propositions :",
+      "selectProposal": "Veuillez sélectionner au moins une proposition !",
+      "confirmModeration": "Voulez-vous vraiment {status} {count} traductions ?",
+      "moderationSuccess": "Éléments sélectionnés définis sur {status} avec succès !",
+      "moderationError": "Erreur de modération :",
+      "loginToSave": "Veuillez vous connecter pour enregistrer des plans dans le cloud !",
+      "enterPlanName": "Entrez un nom pour votre plan :",
+      "buildEmpty": "Le plan est vide !",
+      "planSaved": "Plan enregistré avec succès dans le cloud !",
+      "confirmDeletePlan": "Voulez-vous vraiment supprimer ce plan ?",
+      "traitNotFound": "Trait introuvable dans la base de données."
     },
     "nav": {
       "title": "OH Tools",
@@ -1238,6 +1255,29 @@
       "showIsolation": "Afficher le Vérificateur d'Isolation",
       "showTechSearch": "Afficher la Recherche de Techniques",
       "showDevSearch": "Afficher la Recherche de Déviations"
+    },
+    "profile": {
+      "loggedAs": "Connecté en tant que :",
+      "noPlans": "Aucun plan enregistré dans le cloud pour le moment.",
+      "cloudPlans": "Plans dans le Cloud",
+      "loadingPlans": "Chargement des plans..."
+    },
+    "filters": {
+      "speciesCode": "Code d'Espèce",
+      "skillMutagen": "Mutagène de Compétence",
+      "combat": "Combat",
+      "crafting": "Fabrication",
+      "territory": "Territoire",
+      "global": "Global",
+      "animal": "Animal",
+      "furniture": "Meuble",
+      "variations": "Variations"
+    },
+    "moderation": {
+      "keyEn": "Clé (EN)",
+      "type": "Type",
+      "proposed": "Traduction Proposée",
+      "submittedBy": "Soumis Par"
     }
   }
 }

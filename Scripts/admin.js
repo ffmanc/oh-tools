@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
 // Authentications Flows
 async function handleRegister(username, email, password, contact) {
   if (!username || !email || !password) {
-    alert("Please fill all required fields (*)!");
+    alert(t("ui.messages.fillAll"));
     return;
   }
   try {
@@ -77,7 +77,7 @@ async function handleRegister(username, email, password, contact) {
       createdAt: firebase.firestore.FieldValue.serverTimestamp()
     });
 
-    alert(t("messages.registerSuccess"));
+    alert(t("ui.messages.registerSuccess"));
     closeAuthModal();
   } catch (err) {
     alert("Register Error: " + err.message);
@@ -86,12 +86,12 @@ async function handleRegister(username, email, password, contact) {
 
 async function handleLogin(email, password) {
   if (!email || !password) {
-    alert("Please fill in both email and password!");
+    alert(t("ui.messages.fillCredentials"));
     return;
   }
   try {
     await auth.signInWithEmailAndPassword(email, password);
-    alert(t("messages.loginSuccess"));
+    alert(t("ui.messages.loginSuccess"));
     closeAuthModal();
   } catch (err) {
     alert("Login Error: " + err.message);
@@ -100,12 +100,12 @@ async function handleLogin(email, password) {
 
 async function handlePasswordRecovery(email) {
   if (!email) {
-    alert("Please enter your email!");
+    alert(t("ui.messages.enterEmail"));
     return;
   }
   try {
     await auth.sendPasswordResetEmail(email);
-    alert(t("messages.recoverSuccess"));
+    alert(t("ui.messages.recoverSuccess"));
     showAuthView('login');
   } catch (err) {
     alert("Password Recovery Error: " + err.message);
@@ -271,14 +271,27 @@ async function handleBulkModeration(status) {
 async function fetchOnlineTranslations() {
   if (typeof db === 'undefined') return;
   try {
-    const snapshot = await db.collection("translations")
-      .where("lang", "==", currentLang)
-      .get();
+    const snapshot = await db.collection("translations").get();
 
     onlineTranslations = {};
+    onlineTranslationsMetadata = {};
+    
     snapshot.forEach(doc => {
       const data = doc.data();
-      onlineTranslations[data.termKey] = data.approvedText;
+      const termKey = data.termKey;
+      const lang = data.lang;
+      
+      if (!onlineTranslationsMetadata[termKey]) {
+        onlineTranslationsMetadata[termKey] = {};
+      }
+      onlineTranslationsMetadata[termKey][lang] = {
+        approvedText: data.approvedText,
+        definitive: !!data.definitive
+      };
+
+      if (lang === currentLang) {
+        onlineTranslations[termKey] = data.approvedText;
+      }
     });
 
     // Merge online approved translations into active localeData
@@ -339,13 +352,15 @@ async function openProfileModal() {
 
   const container = document.getElementById("profileDetailsContainer");
   if (currentUser) {
+    const labelLogged = typeof t === "function" ? t("ui.profile.loggedAs") : "Logged as:";
+    const labelLoading = typeof t === "function" ? t("ui.profile.loadingPlans") : "Loading cloud plans...";
     container.innerHTML = `
       <div style="margin-bottom:15px;">
-        <label style="color:#aaa; font-size:0.8rem;">Logged as:</label>
+        <label style="color:#aaa; font-size:0.8rem;">${labelLogged}</label>
         <div style="color:white; font-size:1.1rem; font-weight:bold;">${currentUser.displayName || 'User'}</div>
         <div style="color:#888; font-size:0.9rem;">${currentUser.email}</div>
       </div>
-      <div id="profileSavedPlans">Loading cloud plans...</div>
+      <div id="profileSavedPlans">${labelLoading}</div>
     `;
     loadCloudPlans();
   }
@@ -365,12 +380,14 @@ async function loadCloudPlans() {
     snapshot.forEach(doc => plans.push({ id: doc.id, ...doc.data() }));
 
     if (plans.length === 0) {
-      plansContainer.innerHTML = "<div style='opacity:0.5; font-size:0.9rem; margin-top:15px;'>No cloud saved plans yet.</div>";
+      const labelNoPlans = typeof t === "function" ? t("ui.profile.noPlans") : "No cloud saved plans yet.";
+      plansContainer.innerHTML = `<div style='opacity:0.5; font-size:0.9rem; margin-top:15px;'>${labelNoPlans}</div>`;
       return;
     }
 
+    const labelCloudPlans = typeof t === "function" ? t("ui.profile.cloudPlans") : "Cloud Plans";
     plansContainer.innerHTML = `
-      <h4 style="margin:15px 0 10px 0; color:var(--accent);">Cloud Plans</h4>
+      <h4 style="margin:15px 0 10px 0; color:var(--accent);">${labelCloudPlans}</h4>
       <div style="max-height: 200px; overflow-y:auto; border:1px solid #333; border-radius:4px; padding:5px;">
         ${plans.map(p => `
           <div style="display:flex; justify-content:space-between; align-items:center; padding:8px; border-bottom:1px solid #222;">
@@ -449,4 +466,141 @@ function openSuggestTranslation(key, type) {
 function closeTranslationModal() {
   const modal = document.getElementById("suggestTranslationModal");
   if (modal) modal.classList.add("hidden");
+}
+
+// Metadata map for translation states
+let onlineTranslationsMetadata = {};
+
+async function loadAllOnlineTranslations() {
+  if (!isAdmin) return;
+  const tableBody = document.getElementById("adminConsoleTableBody");
+  if (tableBody) tableBody.innerHTML = `<tr><td colspan="7" class="loading-spinner">Loading...</td></tr>`;
+
+  try {
+    const snapshot = await db.collection("translations").get();
+    onlineTranslationsMetadata = {};
+    snapshot.forEach(doc => {
+      const data = doc.data();
+      const termKey = data.termKey;
+      const lang = data.lang;
+      if (!onlineTranslationsMetadata[termKey]) {
+        onlineTranslationsMetadata[termKey] = {};
+      }
+      onlineTranslationsMetadata[termKey][lang] = {
+        approvedText: data.approvedText,
+        definitive: !!data.definitive
+      };
+    });
+
+    renderTranslationConsoleTable();
+  } catch (err) {
+    if (tableBody) tableBody.innerHTML = `<tr><td colspan="7" class="error-msg">Error: ${err.message}</td></tr>`;
+  }
+}
+
+function renderTranslationConsoleTable() {
+  const tableBody = document.getElementById("adminConsoleTableBody");
+  if (!tableBody) return;
+
+  const searchQuery = document.getElementById("adminConsoleSearch").value.toUpperCase();
+  const typeFilter = document.getElementById("adminConsoleTypeFilter").value;
+
+  let termsList = [];
+  
+  if (typeFilter === 'All' || typeFilter === 'deviation') {
+    deviations.forEach(d => termsList.push({ key: d.name, type: 'deviation' }));
+  }
+  if (typeFilter === 'All' || typeFilter === 'technique') {
+    const uniqTechs = new Set();
+    deviations.forEach(d => d.techniques.forEach(tech => uniqTechs.add(tech)));
+    uniqTechs.forEach(tech => termsList.push({ key: tech, type: 'technique' }));
+  }
+  if (typeFilter === 'All' || typeFilter === 'trait') {
+    traits.forEach(t => termsList.push({ key: t.name, type: 'trait' }));
+  }
+
+  if (searchQuery) {
+    termsList = termsList.filter(t => t.key.toUpperCase().includes(searchQuery));
+  }
+
+  termsList.sort((a, b) => a.key.localeCompare(b.key));
+
+  const langs = ['pt', 'es', 'fr', 'zh'];
+
+  tableBody.innerHTML = termsList.map(t => {
+    const meta = onlineTranslationsMetadata[t.key] || {};
+    
+    return `
+      <tr>
+        <td><strong>${t.key}</strong></td>
+        <td><span class="badge">${t.type}</span></td>
+        ${langs.map(lang => {
+          const langData = meta[lang] || { approvedText: "", definitive: false };
+          return `
+            <td>
+              <input type="text" 
+                     id="console-trans-${t.key.replace(/'/g, "&apos;")}-${lang}" 
+                     value="${langData.approvedText || ''}" 
+                     placeholder="Translate..."
+                     style="margin-bottom:4px; font-size:0.8rem; padding:4px;">
+              <label style="font-size:0.7rem; display:flex; align-items:center; gap:3px;">
+                <input type="checkbox" 
+                       id="console-def-${t.key.replace(/'/g, "&apos;")}-${lang}" 
+                       ${langData.definitive ? 'checked' : ''} 
+                       style="width:auto; margin:0;">
+                Definitive
+              </label>
+            </td>
+          `;
+        }).join('')}
+        <td>
+          <button onclick="saveConsoleTranslation('${t.key.replace(/'/g, "\\'")}', '${t.type}')" 
+                  style="padding:6px 10px; font-size:0.75rem;">
+            Save
+          </button>
+        </td>
+      </tr>
+    `;
+  }).join('');
+}
+
+async function saveConsoleTranslation(termKey, type) {
+  if (!isAdmin) return;
+  const langs = ['pt', 'es', 'fr', 'zh'];
+  const batch = db.batch();
+
+  try {
+    for (const lang of langs) {
+      const transId = `${termKey}_${lang}`;
+      const textVal = document.getElementById(`console-trans-${termKey}-${lang}`).value.trim();
+      const defChecked = document.getElementById(`console-def-${termKey}-${lang}`).checked;
+      const transRef = db.collection("translations").doc(transId);
+
+      if (textVal) {
+        batch.set(transRef, {
+          termKey: termKey,
+          lang: lang,
+          type: type,
+          approvedText: textVal,
+          definitive: defChecked,
+          moderatedBy: currentUser.uid,
+          updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+        });
+
+        if (!onlineTranslationsMetadata[termKey]) onlineTranslationsMetadata[termKey] = {};
+        onlineTranslationsMetadata[termKey][lang] = { approvedText: textVal, definitive: defChecked };
+      } else {
+        batch.delete(transRef);
+        if (onlineTranslationsMetadata[termKey]) {
+          delete onlineTranslationsMetadata[termKey][lang];
+        }
+      }
+    }
+
+    await batch.commit();
+    alert("Translations updated successfully!");
+    await fetchOnlineTranslations();
+  } catch (err) {
+    alert("Error saving translation: " + err.message);
+  }
 }

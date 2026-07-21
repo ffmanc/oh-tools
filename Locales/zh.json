@@ -1143,13 +1143,14 @@
       "copyCode": "复制代码",
       "approveBulk": "批准选中项",
       "declineBulk": "拒绝选中项",
-      "saveCloud": "保存到云端",
+      "saveCloud": "保存",
       "recoverPass": "找回密码",
       "submitTranslation": "建议翻译",
       "submit": "提交",
       "close": "关闭",
       "cancel": "取消",
-      "btnArenaShops": "竞技场商店"
+      "btnArenaShops": "竞技场商店",
+      "add": "添加"
     },
     "fields": {
       "email": "电子邮箱",
@@ -1169,7 +1170,23 @@
       "recoverSuccess": "密码重置邮件已成功发送！",
       "translationSubmitted": "谢谢！您的翻译建议已提交审核。",
       "adminOnly": "仅限管理员访问。",
-      "noPendingProposals": "该语言没有待审核的翻译建议。"
+      "noPendingProposals": "该语言没有待审核的翻译建议。",
+      "fillAll": "请填写所有必填字段（*）！",
+      "fillCredentials": "请填写邮箱和密码！",
+      "enterEmail": "请输入您的邮箱！",
+      "enterTranslation": "请输入翻译内容！",
+      "loading": "加载中...",
+      "errorProposals": "加载待审核翻译出错：",
+      "selectProposal": "请至少选择一项！",
+      "confirmModeration": "您确定要 {status} {count} 条翻译吗？",
+      "moderationSuccess": "成功 {status} 选中的词条！",
+      "moderationError": "审核出错：",
+      "loginToSave": "请登录以将规划保存到云端！",
+      "enterPlanName": "请输入您的规划名称：",
+      "buildEmpty": "规划为空！",
+      "planSaved": "规划已成功保存至云端！",
+      "confirmDeletePlan": "您确定要删除此规划吗？",
+      "traitNotFound": "未在数据库中找到该特质。"
     },
     "nav": {
       "title": "OH Tools",
@@ -1238,6 +1255,29 @@
       "showIsolation": "显示隔离检查器",
       "showTechSearch": "显示技能搜索",
       "showDevSearch": "显示异常搜索"
+    },
+    "profile": {
+      "loggedAs": "已登录为：",
+      "noPlans": "目前没有云端保存的规划。",
+      "cloudPlans": "云端规划",
+      "loadingPlans": "正在加载云端规划..."
+    },
+    "filters": {
+      "speciesCode": "物种编码",
+      "skillMutagen": "技能突变物",
+      "combat": "战斗",
+      "crafting": "手艺",
+      "territory": "领地",
+      "global": "全局",
+      "animal": "动物",
+      "furniture": "家具",
+      "variations": "变体"
+    },
+    "moderation": {
+      "keyEn": "原始词条 (EN)",
+      "type": "类型",
+      "proposed": "建议的翻译",
+      "submittedBy": "提交人"
     }
   }
 }

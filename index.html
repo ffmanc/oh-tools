@@ -181,15 +181,20 @@
     <aside class="sidebar">
         <!-- Header: Language & Auth -->
         <div class="sidebar-header">
-            <div style="display:flex; justify-content:space-between; align-items:center; gap:8px;">
-                <!-- Language Select -->
-                <select id="langSelect" onchange="changeLanguage(this.value)">
-                    <option value="en">English</option>
-                    <option value="pt">Português</option>
-                    <option value="es">Español</option>
-                    <option value="fr">Français</option>
-                    <option value="zh">简体中文</option>
-                </select>
+            <div style="display:flex; justify-content:space-between; align-items:center; gap:8px; position:relative;">
+                <!-- Custom Language Dropdown -->
+                <div class="lang-dropdown-wrapper">
+                    <button class="lang-dropdown-trigger" onclick="toggleLangDropdown(event)">
+                        <span>🌐</span> <span id="currentLangLabel">EN</span>
+                    </button>
+                    <div id="langDropdownMenu" class="lang-dropdown-menu hidden">
+                        <div onclick="changeLanguage('en')">EN</div>
+                        <div onclick="changeLanguage('pt')">BR</div>
+                        <div onclick="changeLanguage('es')">ES</div>
+                        <div onclick="changeLanguage('fr')">FR</div>
+                        <div onclick="changeLanguage('zh')">CN</div>
+                    </div>
+                </div>
 
                 <!-- Auth Buttons -->
                 <button class="secondary" id="tab-login" onclick="openAuthModal()" data-i18n="tabs.login" style="padding:6px 12px; font-size:0.8rem;">Login</button>
@@ -244,14 +249,54 @@
         
         <!-- Admin Moderation Panel (Global alert position) -->
         <div id="adminPanel" class="tool-panel hidden" style="border-top-color: var(--danger); margin-bottom: 20px;">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
-                <h3 data-i18n="tabs.moderation">Moderation</h3>
-                <div style="display:flex; gap:10px;">
-                    <button onclick="handleBulkModeration('approved')" class="secondary" style="border-color:var(--success); color:var(--success);" data-i18n="buttons.approveBulk">Approve Selected</button>
-                    <button onclick="handleBulkModeration('declined')" class="secondary" style="border-color:var(--danger); color:var(--danger);" data-i18n="buttons.declineBulk">Decline Selected</button>
+            <div class="tabs-header" style="display:flex; gap:10px; border-bottom:1px solid #333; padding-bottom:10px; margin-bottom:15px;">
+                <button class="tab-link active" onclick="switchAdminTab('tab-mod-proposals', this)">Proposals</button>
+                <button class="tab-link" onclick="switchAdminTab('tab-mod-console', this)">Translation Console</button>
+            </div>
+
+            <!-- Proposals Tab Content -->
+            <div id="tab-mod-proposals" class="admin-tab-content">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
+                    <h3 data-i18n="tabs.moderation">Moderation</h3>
+                    <div style="display:flex; gap:10px;">
+                        <button onclick="handleBulkModeration('approved')" class="secondary" style="border-color:var(--success); color:var(--success);" data-i18n="buttons.approveBulk">Approve Selected</button>
+                        <button onclick="handleBulkModeration('declined')" class="secondary" style="border-color:var(--danger); color:var(--danger);" data-i18n="buttons.declineBulk">Decline Selected</button>
+                    </div>
+                </div>
+                <div id="adminProposalsList"></div>
+            </div>
+
+            <!-- Translation Console Tab Content -->
+            <div id="tab-mod-console" class="admin-tab-content hidden">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px; flex-wrap:wrap; gap:10px;">
+                    <h3>Translation Database Editor</h3>
+                    <div style="display:flex; gap:10px; align-items:center;">
+                        <input type="text" id="adminConsoleSearch" placeholder="Search keys..." onkeyup="renderTranslationConsoleTable()" style="max-width:250px; margin-bottom:0;">
+                        <select id="adminConsoleTypeFilter" onchange="renderTranslationConsoleTable()" style="width:130px; padding:8px; background:var(--bg-input); border:1px solid var(--border); color:white; border-radius:var(--radius);">
+                            <option value="All">All Types</option>
+                            <option value="deviation">Deviations</option>
+                            <option value="technique">Techniques</option>
+                            <option value="trait">Traits</option>
+                        </select>
+                    </div>
+                </div>
+                <div style="overflow-x:auto; max-height: 500px; border:1px solid var(--border);">
+                    <table class="admin-table" style="min-width: 900px;">
+                        <thead>
+                            <tr>
+                                <th width="20%">Key (EN)</th>
+                                <th width="10%">Type</th>
+                                <th width="15%">Portuguese (PT)</th>
+                                <th width="15%">Spanish (ES)</th>
+                                <th width="15%">French (FR)</th>
+                                <th width="15%">Chinese (ZH)</th>
+                                <th width="10%">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="adminConsoleTableBody"></tbody>
+                    </table>
                 </div>
             </div>
-            <div id="adminProposalsList"></div>
         </div>
 
         <!-- Under Construction View (Generic placeholder) -->
@@ -276,7 +321,10 @@
                         
                         <div class="form-group" style="margin-bottom: 15px;">
                             <label data-i18n="ui.planner.targetDeviant">Target Deviation</label>
-                            <select id="builderDevSelect"><option>Loading...</option></select>
+                            <div style="display:flex; gap:10px;">
+                                <select id="builderDevSelect" style="flex:1;"><option>Loading...</option></select>
+                                <button id="btnSuggestTargetDev" class="secondary" style="padding:0 12px; height:42px; display:flex; align-items:center; justify-content:center;" title="Suggest translation" onclick="suggestCurrentTargetDeviant()">🌐</button>
+                            </div>
                         </div>
                         
                         <div class="form-group" style="margin-bottom: 15px;">
@@ -516,12 +564,36 @@ function switchModule(moduleName, menuItem) {
 
 // Helper Tabbed Library inside planner
 function switchLibraryTab(tabId, button) {
-    document.querySelectorAll('.tabs-header .tab-link').forEach(btn => btn.classList.remove('active'));
-    button.classList.add('active');
-    
     document.querySelectorAll('.lib-tab-content').forEach(tab => tab.classList.add('hidden'));
     document.getElementById(tabId).classList.remove('hidden');
+    button.parentElement.querySelectorAll('.tab-link').forEach(btn => btn.classList.remove('active'));
+    button.classList.add('active');
 }
+
+// Admin panel tabs switcher
+function switchAdminTab(tabId, button) {
+    const adminPanel = document.getElementById('adminPanel');
+    adminPanel.querySelectorAll('.admin-tab-content').forEach(tab => tab.classList.add('hidden'));
+    document.getElementById(tabId).classList.remove('hidden');
+    button.parentElement.querySelectorAll('.tab-link').forEach(btn => btn.classList.remove('active'));
+    button.classList.add('active');
+
+    if (tabId === 'tab-mod-console') {
+        loadAllOnlineTranslations();
+    } else if (tabId === 'tab-mod-proposals') {
+        loadPendingProposalsList();
+    }
+}
+
+// Toggle language custom dropdown
+function toggleLangDropdown(event) {
+    event.stopPropagation();
+    document.getElementById('langDropdownMenu').classList.toggle('hidden');
+}
+document.addEventListener('click', function() {
+    const langMenu = document.getElementById('langDropdownMenu');
+    if (langMenu) langMenu.classList.add('hidden');
+});
 </script>
 
 </body>

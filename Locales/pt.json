@@ -1143,13 +1143,14 @@
       "copyCode": "Copiar Código",
       "approveBulk": "Aprovar Selecionados",
       "declineBulk": "Recusar Selecionados",
-      "saveCloud": "Salvar na Nuvem",
+      "saveCloud": "Salvar",
       "recoverPass": "Recuperar Senha",
       "submitTranslation": "Sugerir Tradução",
       "submit": "Enviar",
       "close": "Fechar",
       "cancel": "Cancelar",
-      "btnArenaShops": "Lojas da Arena"
+      "btnArenaShops": "Lojas da Arena",
+      "add": "Adicionar"
     },
     "fields": {
       "email": "E-mail",
@@ -1169,7 +1170,23 @@
       "recoverSuccess": "E-mail de recuperação de senha enviado com sucesso!",
       "translationSubmitted": "Obrigado! Sua sugestão de tradução foi enviada para moderação.",
       "adminOnly": "Acesso restrito ao administrador.",
-      "noPendingProposals": "Nenhuma tradução pendente para este idioma."
+      "noPendingProposals": "Nenhuma tradução pendente para este idioma.",
+      "fillAll": "Por favor, preencha todos os campos obrigatórios (*)!",
+      "fillCredentials": "Por favor, preencha o e-mail e a senha!",
+      "enterEmail": "Por favor, insira o seu e-mail!",
+      "enterTranslation": "Por favor, insira uma tradução!",
+      "loading": "Carregando...",
+      "errorProposals": "Erro ao carregar propostas:",
+      "selectProposal": "Selecione pelo menos uma proposta!",
+      "confirmModeration": "Tem certeza de que deseja {status} {count} traduções?",
+      "moderationSuccess": "Itens selecionados definidos como {status} com sucesso!",
+      "moderationError": "Erro na moderação:",
+      "loginToSave": "Por favor, logue para salvar planos na nuvem!",
+      "enterPlanName": "Digite um nome para o seu plano:",
+      "buildEmpty": "O planejamento está vazio!",
+      "planSaved": "Plano salvo com sucesso na nuvem!",
+      "confirmDeletePlan": "Tem certeza de que deseja excluir este plano?",
+      "traitNotFound": "Traço não encontrado no banco de dados."
     },
     "nav": {
       "title": "OH Tools",
@@ -1238,6 +1255,29 @@
       "showIsolation": "Mostrar Verificador de Isolamento",
       "showTechSearch": "Mostrar Busca de Técnicas",
       "showDevSearch": "Mostrar Busca de Desvios"
+    },
+    "profile": {
+      "loggedAs": "Logado como:",
+      "noPlans": "Nenhum plano salvo na nuvem.",
+      "cloudPlans": "Planos na Nuvem",
+      "loadingPlans": "Carregando planos..."
+    },
+    "filters": {
+      "speciesCode": "Código de Espécie",
+      "skillMutagen": "Mutagênico de Habilidade",
+      "combat": "Combate",
+      "crafting": "Fabricação",
+      "territory": "Território",
+      "global": "Global",
+      "animal": "Animal",
+      "furniture": "Mobiliário",
+      "variations": "Variações"
+    },
+    "moderation": {
+      "keyEn": "Termo Original (EN)",
+      "type": "Tipo",
+      "proposed": "Tradução Proposta",
+      "submittedBy": "Enviado por"
     }
   }
 }

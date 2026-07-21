@@ -1143,13 +1143,14 @@
       "copyCode": "Copy Code",
       "approveBulk": "Approve Selected",
       "declineBulk": "Decline Selected",
-      "saveCloud": "Save to Cloud",
+      "saveCloud": "Save",
       "recoverPass": "Recover Password",
       "submitTranslation": "Suggest Translation",
       "submit": "Submit",
       "close": "Close",
       "cancel": "Cancel",
-      "btnArenaShops": "Arena Shops"
+      "btnArenaShops": "Arena Shops",
+      "add": "Add"
     },
     "fields": {
       "email": "Email",
@@ -1169,7 +1170,23 @@
       "recoverSuccess": "Password recovery email sent successfully!",
       "translationSubmitted": "Thank you! Your translation suggestion has been submitted for moderation.",
       "adminOnly": "Access restricted to administrators.",
-      "noPendingProposals": "No pending translations for this language."
+      "noPendingProposals": "No pending translations for this language.",
+      "fillAll": "Please fill all required fields (*)!",
+      "fillCredentials": "Please fill in both email and password!",
+      "enterEmail": "Please enter your email!",
+      "enterTranslation": "Please enter translation!",
+      "loading": "Loading...",
+      "errorProposals": "Error loading proposals:",
+      "selectProposal": "Please select at least one proposal!",
+      "confirmModeration": "Are you sure you want to {status} {count} translations?",
+      "moderationSuccess": "Successfully {status} selected items!",
+      "moderationError": "Error moderating:",
+      "loginToSave": "Please log in to save plans to the cloud!",
+      "enterPlanName": "Enter a name for your plan:",
+      "buildEmpty": "Build is empty!",
+      "planSaved": "Plan successfully saved to cloud!",
+      "confirmDeletePlan": "Are you sure you want to delete this plan?",
+      "traitNotFound": "Trait not found in database."
     },
     "nav": {
       "title": "OH Tools",
@@ -1238,6 +1255,29 @@
       "showIsolation": "Show Isolation Checker",
       "showTechSearch": "Show Technique Search",
       "showDevSearch": "Show Deviation Search"
+    },
+    "profile": {
+      "loggedAs": "Logged as:",
+      "noPlans": "No cloud saved plans yet.",
+      "cloudPlans": "Cloud Plans",
+      "loadingPlans": "Loading cloud plans..."
+    },
+    "filters": {
+      "speciesCode": "Species Code",
+      "skillMutagen": "Skill Mutagen",
+      "combat": "Combat",
+      "crafting": "Crafting",
+      "territory": "Territory",
+      "global": "Global",
+      "animal": "Animal",
+      "furniture": "Furniture",
+      "variations": "Variations"
+    },
+    "moderation": {
+      "keyEn": "Key (EN)",
+      "type": "Type",
+      "proposed": "Proposed Translation",
+      "submittedBy": "Submitted By"
     }
   }
 }

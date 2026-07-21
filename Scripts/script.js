@@ -416,17 +416,17 @@ function buildTechniquesTable() {
         return `<tr>
             <td style="font-weight:bold; color:#e0e0e0; display:flex; justify-content:space-between; align-items:center;">
                 <span>${trans.name}</span>
-                <span class="suggest-btn" style="cursor:pointer; opacity:0.6; font-size:0.9rem;" title="Suggest translation" onclick="openSuggestTranslation('${t}', 'technique_name')">🌐</span>
+                ${typeof getSuggestBtnHtml === 'function' ? getSuggestBtnHtml(t, 'technique_name') : ''}
             </td>
             <td style="color:#aaa;">
                 <span>${trans.description}</span>
-                <span class="suggest-btn" style="cursor:pointer; opacity:0.6; font-size:0.9rem; margin-left:5px;" title="Suggest description translation" onclick="openSuggestTranslation('${t}', 'technique_desc')">🌐</span>
+                ${typeof getSuggestBtnHtml === 'function' ? getSuggestBtnHtml(t, 'technique_desc') : ''}
             </td>
         </tr>`; 
     }).join(''); 
 }
 function filterTechniquesLib() { const val = document.getElementById('searchTechniquesLib').value.toUpperCase(); document.querySelectorAll('#techniquesBody tr').forEach(row => { row.style.display = row.innerText.toUpperCase().includes(val) ? "" : "none"; }); }
-
+ 
 function buildTraitsTable() { 
     const tbody = document.getElementById('traitsBody');
     const sortedTraits = [...traits].sort((a, b) => {
@@ -445,14 +445,14 @@ function buildTraitsTable() {
                 <span>${trans.name}</span>
                 <div style="display:flex; align-items:center; gap:5px;">
                     ${slotBadge}
-                    <span class="suggest-btn" style="cursor:pointer; opacity:0.6; font-size:0.9rem;" title="Suggest translation" onclick="openSuggestTranslation('${t.name}', 'trait_name')">🌐</span>
+                    ${typeof getSuggestBtnHtml === 'function' ? getSuggestBtnHtml(t.name, 'trait_name') : ''}
                 </div>
             </td>
             <td>${t.source || '-'}</td>
             <td>${t.category}</td>
             <td>
                 <span>${trans.description}</span>
-                <span class="suggest-btn" style="cursor:pointer; opacity:0.6; font-size:0.9rem; margin-left:5px;" title="Suggest description translation" onclick="openSuggestTranslation('${t.name}', 'trait_desc')">🌐</span>
+                ${typeof getSuggestBtnHtml === 'function' ? getSuggestBtnHtml(t.name, 'trait_desc') : ''}
             </td>
         </tr>
     `}).join('');
@@ -670,9 +670,10 @@ function renderSelectedTraits() {
         const slotBadge = (SHOW_SLOT_DATA && t.slot) ? `<span class="slot-badge mini">S${t.slot}</span>` : '';
         const trans = typeof translateTrait === 'function' ? translateTrait(t.name) : t;
 
+        const suggestBtn = typeof getSuggestBtnHtml === 'function' ? getSuggestBtnHtml(t.name, 'trait_name') : '';
         container.innerHTML += `
             <div class="trait-mini-card">
-                <span>${trans.name}${slotBadge}</span>
+                <span>${trans.name}${slotBadge} ${suggestBtn}</span>
                 <span class="remove-btn" onclick="removeTrait(${idx}); event.stopPropagation();">✕</span>
             </div>`;
     });
@@ -687,10 +688,12 @@ function updateBuilderTechniques() {
         [...dev.techniques].sort().forEach(technique => {
             const techData = typeof translateTechnique === 'function' ? translateTechnique(technique) : { name: technique, description: technique };
             const desc = safeTooltip(techData.description);
+            const suggestBtn = typeof getSuggestBtnHtml === 'function' ? getSuggestBtnHtml(technique, 'technique_name') : '';
             
-            container.innerHTML += `<div class="checkbox-item" onmouseenter="showTooltip(event, '${desc}')" onmouseleave="hideTooltip()" onclick="document.getElementById('chk_${technique.replace(/[^a-zA-Z0-9]/g,'')}').click()"><input type="checkbox" id="chk_${technique.replace(/[^a-zA-Z0-9]/g,'')}" value="${technique}" onclick="event.stopPropagation()"><label>${techData.name}</label></div>`;
+            container.innerHTML += `<div class="checkbox-item" onmouseenter="showTooltip(event, '${desc}')" onmouseleave="hideTooltip()" onclick="document.getElementById('chk_${technique.replace(/[^a-zA-Z0-9]/g,'')}').click()"><input type="checkbox" id="chk_${technique.replace(/[^a-zA-Z0-9]/g,'')}" value="${technique}" onclick="event.stopPropagation()"><label>${techData.name}</label>${suggestBtn}</div>`;
         });
     }
+    if (typeof updateTargetDeviantSuggestBtn === 'function') updateTargetDeviantSuggestBtn();
 }
 
 function generatePlan() {
@@ -887,6 +890,31 @@ function generateShareCode() {
     navigator.clipboard.writeText(base64);
     document.getElementById('shareCodeInput').value = base64;
     document.getElementById('shareStatus').textContent = "Copied!";
+}
+
+function suggestCurrentTargetDeviant() {
+    const val = document.getElementById('builderDevSelect').value;
+    if (val && val !== 'Loading...') {
+        if (typeof openSuggestTranslation === 'function') {
+            openSuggestTranslation(val, 'deviation');
+        }
+    }
+}
+
+function updateTargetDeviantSuggestBtn() {
+    const btn = document.getElementById('btnSuggestTargetDev');
+    if (!btn) return;
+    const val = document.getElementById('builderDevSelect').value;
+    if (!val || val === 'Loading...') {
+        btn.style.display = 'none';
+        return;
+    }
+    if (typeof onlineTranslationsMetadata === 'undefined') {
+        btn.style.display = 'flex';
+        return;
+    }
+    const isDef = onlineTranslationsMetadata[val] && onlineTranslationsMetadata[val][currentLang] && onlineTranslationsMetadata[val][currentLang].definitive;
+    btn.style.display = isDef ? 'none' : 'flex';
 }
 
 init();
