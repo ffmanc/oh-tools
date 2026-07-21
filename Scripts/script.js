@@ -583,7 +583,7 @@ function findPartners() {
     const candidates = deviations.filter(d => d.name !== sName && d.techniques.includes(tTechnique))
         .map(d => ({ name: d.name, overlap: d.techniques.filter(t => unwanted.includes(t)).length, overlapTechniques: d.techniques.filter(t => unwanted.includes(t)) }))
         .sort((a,b) => a.overlap - b.overlap); 
-    if(candidates.length === 0) return resDiv.innerHTML = "<p>No partners found.</p>"; 
+    if(candidates.length === 0) return resDiv.innerHTML = "<p>" + (typeof t === "function" ? t("ui.planner.noDonorsFound") : "No partners found.") + "</p>"; 
     candidates.forEach(c => { 
         let status = 'status-risky'; let label = 'RISKY';
         if (c.overlap === 0) { status = 'status-perfect'; label = 'PERFECT'; }
@@ -595,14 +595,17 @@ function findPartners() {
             return trans.name;
         }).join(', ');
 
+        const labelOverlap = typeof t === "function" ? t("ui.planner.overlap") : "Technique Overlap:";
+        const labelRisk = typeof t === "function" ? t("ui.planner.risk") : "Risk:";
+
         resDiv.innerHTML += `
             <div class="uni-card gradient-card ${status}">
                 <div class="card-header">
                     <span class="card-title">${localCandName}</span>
                     <span class="card-badge">${label}</span>
                 </div>
-                <div class="card-body">Technique Overlap: <strong style="color:white">${c.overlap}</strong></div>
-                ${c.overlap > 0 ? `<div class="card-risk">Risk: ${localOverlaps}</div>` : ''}
+                <div class="card-body">${labelOverlap} <strong style="color:white">${c.overlap}</strong></div>
+                ${c.overlap > 0 ? `<div class="card-risk">${labelRisk} ${localOverlaps}</div>` : ''}
             </div>
         `;
     }); 

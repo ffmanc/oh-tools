@@ -1167,7 +1167,76 @@
       "registerSuccess": "Successfully registered!",
       "recoverSuccess": "Password recovery email sent successfully!",
       "translationSubmitted": "Thank you! Your translation suggestion has been submitted for moderation.",
-      "adminOnly": "Access restricted to administrators."
+      "adminOnly": "Access restricted to administrators.",
+      "noPendingProposals": "No pending translations for this language."
+    },
+    "nav": {
+      "title": "OH Tools",
+      "simulator": "Deviant Fusion Simulator",
+      "buildPlanner": "Build Planner",
+      "map": "Resources Map",
+      "calibrations": "Calibrations & Mods",
+      "underConstruction": "Under Construction",
+      "underConstructionMsg": "This module is currently under development. Stay tuned!"
+    },
+    "planner": {
+      "targetDeviant": "Target Deviation",
+      "desiredTechs": "Desired Techniques",
+      "desiredTraits": "Desired Passive Traits",
+      "searchTraits": "Search traits (e.g. Moonlight)...",
+      "genStrategy": "Generate Strategy",
+      "reset": "Reset",
+      "selectDeviantFirst": "Select a deviation above first.",
+      "teamBuilder": "Squad Builder",
+      "create": "Create",
+      "shareCode": "Share Code...",
+      "load": "Load",
+      "copy": "Copy",
+      "copied": "Copied!",
+      "loaded": "Loaded!",
+      "noSelectionWarning": "Please select at least one technique or trait.",
+      "techDonors": "TECHNIQUE DONORS",
+      "traitSources": "PASSIVE TRAIT SOURCES",
+      "overlap": "Technique Overlap:",
+      "risk": "Risk:",
+      "source": "Source:",
+      "warningDuplicate": "Warning: Duplicate Slot",
+      "foundInShop": "Found in Shop",
+      "noDonorsFound": "No donors found"
+    },
+    "isolation": {
+      "title": "Technique Isolation Checker",
+      "source": "Source",
+      "target": "Target",
+      "search": "Search",
+      "selectSourceFirst": "Select Source first"
+    },
+    "techSearch": {
+      "title": "Technique Search",
+      "search": "Search",
+      "noResults": "No results."
+    },
+    "devSearch": {
+      "title": "Deviation Search",
+      "searchName": "Search name...",
+      "compare": "Compare"
+    },
+    "compare": {
+      "title": "Comparison Tool",
+      "vs": "VS",
+      "selectA": "Select A",
+      "selectB": "Select B",
+      "shared": "Shared",
+      "none": "None"
+    },
+    "settings": {
+      "title": "View Settings",
+      "showSlots": "Show Slot Data",
+      "showSlotsSub": "Slot data is a work in progress and may not be accurate",
+      "showBuilder": "Show Custom Build Planner",
+      "showIsolation": "Show Isolation Checker",
+      "showTechSearch": "Show Technique Search",
+      "showDevSearch": "Show Deviation Search"
     }
   }
 }

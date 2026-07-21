@@ -1167,7 +1167,76 @@
       "registerSuccess": "Inscription réussie !",
       "recoverSuccess": "E-mail de récupération de mot de passe envoyé avec succès !",
       "translationSubmitted": "Merci ! Votre suggestion de traduction a été soumise pour modération.",
-      "adminOnly": "Accès réservé aux administrateurs."
+      "adminOnly": "Accès réservé aux administrateurs.",
+      "noPendingProposals": "Aucune suggestion de traduction en attente pour cette langue."
+    },
+    "nav": {
+      "title": "OH Tools",
+      "simulator": "Simulateur de Fusion de Déviations",
+      "buildPlanner": "Planificateur de Builds",
+      "map": "Carte des Ressources",
+      "calibrations": "Calibrations & Mods",
+      "underConstruction": "En Construction",
+      "underConstructionMsg": "Ce module est actuellement en cours de développement. Restez à l'écoute !"
+    },
+    "planner": {
+      "targetDeviant": "Déviation Cible",
+      "desiredTechs": "Techniques Souhaitées",
+      "desiredTraits": "Traits Passifs Souhaités",
+      "searchTraits": "Rechercher des traits (ex: Clair de Lune)...",
+      "genStrategy": "Générer la Stratégie",
+      "reset": "Réinitialiser",
+      "selectDeviantFirst": "Sélectionnez d'abord une déviation ci-dessus.",
+      "teamBuilder": "Constructeur d'Escouade",
+      "create": "Créer",
+      "shareCode": "Code de Partage...",
+      "load": "Charger",
+      "copy": "Copier",
+      "copied": "Copié !",
+      "loaded": "Chargé !",
+      "noSelectionWarning": "Veuillez sélectionner au moins une technique ou un trait.",
+      "techDonors": "DONNEURS DE TECHNIQUES",
+      "traitSources": "SOURCES DE TRAITS PASSIFS",
+      "overlap": "Superposition de Techniques :",
+      "risk": "Risque :",
+      "source": "Source :",
+      "warningDuplicate": "Avertissement : Emplacement en double",
+      "foundInShop": "Trouvé en Boutique",
+      "noDonorsFound": "Aucun donneur trouvé"
+    },
+    "isolation": {
+      "title": "Vérificateur d'Isolation de Techniques",
+      "source": "Source",
+      "target": "Cible",
+      "search": "Rechercher",
+      "selectSourceFirst": "Sélectionnez d'abord la source"
+    },
+    "techSearch": {
+      "title": "Recherche de Techniques",
+      "search": "Rechercher",
+      "noResults": "Aucun résultat."
+    },
+    "devSearch": {
+      "title": "Recherche de Déviations",
+      "searchName": "Rechercher un nom...",
+      "compare": "Comparer"
+    },
+    "compare": {
+      "title": "Outil de Comparaison",
+      "vs": "VS",
+      "selectA": "Sélectionner A",
+      "selectB": "Sélectionner B",
+      "shared": "Partagé",
+      "none": "Aucun"
+    },
+    "settings": {
+      "title": "Paramètres de Vue",
+      "showSlots": "Afficher les Données d'Emplacement",
+      "showSlotsSub": "Les données d'emplacement sont en cours de développement et peuvent être inexactes",
+      "showBuilder": "Afficher le Planificateur de Builds",
+      "showIsolation": "Afficher le Vérificateur d'Isolation",
+      "showTechSearch": "Afficher la Recherche de Techniques",
+      "showDevSearch": "Afficher la Recherche de Déviations"
     }
   }
 }

@@ -1167,7 +1167,76 @@
       "registerSuccess": "Cadastro efetuado com sucesso!",
       "recoverSuccess": "E-mail de recuperação de senha enviado com sucesso!",
       "translationSubmitted": "Obrigado! Sua sugestão de tradução foi enviada para moderação.",
-      "adminOnly": "Acesso restrito ao administrador."
+      "adminOnly": "Acesso restrito ao administrador.",
+      "noPendingProposals": "Nenhuma tradução pendente para este idioma."
+    },
+    "nav": {
+      "title": "OH Tools",
+      "simulator": "Simulador de Fusão",
+      "buildPlanner": "Planejador de Builds",
+      "map": "Mapa de Recursos",
+      "calibrations": "Calibrações e Mods",
+      "underConstruction": "Em Construção",
+      "underConstructionMsg": "Este módulo está em desenvolvimento. Volte em breve!"
+    },
+    "planner": {
+      "targetDeviant": "Desvio Alvo",
+      "desiredTechs": "Técnicas Desejadas",
+      "desiredTraits": "Traços Passivos Desejados",
+      "searchTraits": "Pesquisar traços (ex: Vantagem)...",
+      "genStrategy": "Gerar Estratégia",
+      "reset": "Redefinir",
+      "selectDeviantFirst": "Selecione um desvio acima primeiro.",
+      "teamBuilder": "Construtor de Esquadrão",
+      "create": "Criar",
+      "shareCode": "Código de Compartilhamento...",
+      "load": "Carregar",
+      "copy": "Copiar",
+      "copied": "Copiado!",
+      "loaded": "Carregado!",
+      "noSelectionWarning": "Selecione pelo menos uma técnica ou traço.",
+      "techDonors": "DOADORES DE TÉCNICAS",
+      "traitSources": "FONTES DE TRAÇOS PASSIVOS",
+      "overlap": "Sobreposição de Técnicas:",
+      "risk": "Risco:",
+      "source": "Fonte:",
+      "warningDuplicate": "Aviso: Slot Duplicado",
+      "foundInShop": "Disponível na Loja",
+      "noDonorsFound": "Nenhum doador encontrado"
+    },
+    "isolation": {
+      "title": "Verificador de Isolamento de Técnicas",
+      "source": "Origem",
+      "target": "Alvo",
+      "search": "Pesquisar",
+      "selectSourceFirst": "Selecione a Origem primeiro"
+    },
+    "techSearch": {
+      "title": "Busca de Técnicas",
+      "search": "Buscar",
+      "noResults": "Nenhum resultado encontrado."
+    },
+    "devSearch": {
+      "title": "Busca de Desvios",
+      "searchName": "Buscar nome...",
+      "compare": "Comparar"
+    },
+    "compare": {
+      "title": "Ferramenta de Comparação",
+      "vs": "VS",
+      "selectA": "Selecionar A",
+      "selectB": "Selecionar B",
+      "shared": "Compartilhado",
+      "none": "Nenhum"
+    },
+    "settings": {
+      "title": "Configurações de Exibição",
+      "showSlots": "Mostrar Dados de Slots",
+      "showSlotsSub": "Dados de slots são experimentais e podem não ser totalmente precisos",
+      "showBuilder": "Mostrar Planejador de Builds",
+      "showIsolation": "Mostrar Verificador de Isolamento",
+      "showTechSearch": "Mostrar Busca de Técnicas",
+      "showDevSearch": "Mostrar Busca de Desvios"
     }
   }
 }

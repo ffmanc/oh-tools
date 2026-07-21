@@ -1167,7 +1167,76 @@
       "registerSuccess": "¡Registro completado con éxito!",
       "recoverSuccess": "¡Correo de recuperación de contraseña enviado con éxito!",
       "translationSubmitted": "¡Gracias! Tu sugerencia de traducción ha sido enviada para moderación.",
-      "adminOnly": "Acceso restringido a administradores."
+      "adminOnly": "Acceso restringido a administradores.",
+      "noPendingProposals": "No hay traducciones pendientes para este idioma."
+    },
+    "nav": {
+      "title": "OH Tools",
+      "simulator": "Simulador de Fusión de Desviación",
+      "buildPlanner": "Planificador de Builds",
+      "map": "Mapa de Recursos",
+      "calibrations": "Calibraciones y Mods",
+      "underConstruction": "En Construcción",
+      "underConstructionMsg": "Este módulo está actualmente en desarrollo. ¡Manténgase al tanto!"
+    },
+    "planner": {
+      "targetDeviant": "Desviación Objetivo",
+      "desiredTechs": "Técnicas Deseadas",
+      "desiredTraits": "Rasgos Pasivos Deseados",
+      "searchTraits": "Buscar rasgos (ej: Luz de Luna)...",
+      "genStrategy": "Generar Estrategia",
+      "reset": "Restablecer",
+      "selectDeviantFirst": "Seleccione una desviación arriba primero.",
+      "teamBuilder": "Constructor de Escuadrón",
+      "create": "Crear",
+      "shareCode": "Código de Compartir...",
+      "load": "Cargar",
+      "copy": "Copiar",
+      "copied": "¡Copiado!",
+      "loaded": "¡Cargado!",
+      "noSelectionWarning": "Por favor seleccione al menos una técnica o rasgo.",
+      "techDonors": "DONANTES DE TÉCNICAS",
+      "traitSources": "FUENTES DE RASGOS PASIVOS",
+      "overlap": "Superposición de Técnicas:",
+      "risk": "Riesgo:",
+      "source": "Fuente:",
+      "warningDuplicate": "Advertencia: Ranura Duplicada",
+      "foundInShop": "Encontrado en Tienda",
+      "noDonorsFound": "No se encontraron donantes"
+    },
+    "isolation": {
+      "title": "Verificador de Aislamiento de Técnicas",
+      "source": "Origen",
+      "target": "Objetivo",
+      "search": "Buscar",
+      "selectSourceFirst": "Seleccione Origen primero"
+    },
+    "techSearch": {
+      "title": "Búsqueda de Técnicas",
+      "search": "Buscar",
+      "noResults": "Sin resultados."
+    },
+    "devSearch": {
+      "title": "Búsqueda de Desviación",
+      "searchName": "Buscar nombre...",
+      "compare": "Comparar"
+    },
+    "compare": {
+      "title": "Herramienta de Comparación",
+      "vs": "VS",
+      "selectA": "Seleccionar A",
+      "selectB": "Seleccionar B",
+      "shared": "Compartido",
+      "none": "Ninguno"
+    },
+    "settings": {
+      "title": "Ajustes de Vista",
+      "showSlots": "Mostrar Datos de Ranuras",
+      "showSlotsSub": "Los datos de las ranuras son un trabajo en progreso y pueden no ser exactos",
+      "showBuilder": "Mostrar Planificador de Builds",
+      "showIsolation": "Mostrar Verificador de Aislamiento",
+      "showTechSearch": "Mostrar Búsqueda de Técnicas",
+      "showDevSearch": "Mostrar Búsqueda de Desviaciones"
     }
   }
 }

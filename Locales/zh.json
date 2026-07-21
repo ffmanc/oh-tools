@@ -1167,7 +1167,76 @@
       "registerSuccess": "注册成功！",
       "recoverSuccess": "密码重置邮件已成功发送！",
       "translationSubmitted": "谢谢！您的翻译建议已提交审核。",
-      "adminOnly": "仅限管理员访问。"
+      "adminOnly": "仅限管理员访问。",
+      "noPendingProposals": "该语言没有待审核的翻译建议。"
+    },
+    "nav": {
+      "title": "OH Tools",
+      "simulator": "异常融合模拟器",
+      "buildPlanner": "配装规划器",
+      "map": "资源地图",
+      "calibrations": "校准与模组",
+      "underConstruction": "建设中",
+      "underConstructionMsg": "该模块目前正在开发中，敬请期待！"
+    },
+    "planner": {
+      "targetDeviant": "目标异常",
+      "desiredTechs": "目标技能",
+      "desiredTraits": "目标被动特质",
+      "searchTraits": "搜索特质（例如：月光）...",
+      "genStrategy": "生成策略",
+      "reset": "重置",
+      "selectDeviantFirst": "请先选择上方的异常。",
+      "teamBuilder": "小队规划器",
+      "create": "创建",
+      "shareCode": "共享代码...",
+      "load": "加载",
+      "copy": "复制",
+      "copied": "已复制！",
+      "loaded": "已加载！",
+      "noSelectionWarning": "请至少选择一个技能或特质。",
+      "techDonors": "技能提供方",
+      "traitSources": "被动特质来源",
+      "overlap": "技能重叠度：",
+      "risk": "冲突项：",
+      "source": "来源：",
+      "warningDuplicate": "警告：槽位重复",
+      "foundInShop": "商店可兑换",
+      "noDonorsFound": "未找到合适的技能提供方"
+    },
+    "isolation": {
+      "title": "技能隔离检查器",
+      "source": "源头",
+      "target": "目标",
+      "search": "搜索",
+      "selectSourceFirst": "请先选择源头"
+    },
+    "techSearch": {
+      "title": "技能搜索",
+      "search": "搜索",
+      "noResults": "无结果。"
+    },
+    "devSearch": {
+      "title": "异常搜索",
+      "searchName": "搜索名字...",
+      "compare": "对比"
+    },
+    "compare": {
+      "title": "对比工具",
+      "vs": "VS",
+      "selectA": "选择 A",
+      "selectB": "选择 B",
+      "shared": "共享技能",
+      "none": "无"
+    },
+    "settings": {
+      "title": "显示设置",
+      "showSlots": "显示槽位信息",
+      "showSlotsSub": "槽位数据正在开发中，可能不完全准确",
+      "showBuilder": "显示配装规划器",
+      "showIsolation": "显示隔离检查器",
+      "showTechSearch": "显示技能搜索",
+      "showDevSearch": "显示异常搜索"
     }
   }
 }

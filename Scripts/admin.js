@@ -179,7 +179,7 @@ async function loadPendingProposalsList() {
 function renderAdminProposals() {
   const listContainer = document.getElementById("adminProposalsList");
   if (pendingProposals.length === 0) {
-    listContainer.innerHTML = "<div style='text-align:center; padding: 20px; opacity: 0.5;'>No pending translations for this language.</div>";
+    listContainer.innerHTML = "<div style='text-align:center; padding: 20px; opacity: 0.5;'>" + (typeof t === "function" ? t("messages.noPendingProposals") : "No pending translations for this language.") + "</div>";
     return;
   }
 
