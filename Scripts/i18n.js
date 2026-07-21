@@ -29,7 +29,11 @@ async function loadLocale(lang) {
 
 // Translate dotted path keys in UI dictionary
 function t(path) {
-  const parts = path.split('.');
+  let cleanPath = path;
+  if (path.startsWith("ui.")) {
+    cleanPath = path.substring(3);
+  }
+  const parts = cleanPath.split('.');
   let currentObj = localeData.ui;
   let fallbackObj = defaultEnglishData.ui;
 
