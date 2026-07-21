@@ -1132,7 +1132,8 @@
       "login": "登录",
       "register": "注册",
       "profile": "个人资料",
-      "logout": "登出"
+      "logout": "登出",
+      "deviants": "异常列表"
     },
     "buttons": {
       "approve": "批准",
@@ -1271,7 +1272,8 @@
       "global": "全局",
       "animal": "动物",
       "furniture": "家具",
-      "variations": "变体"
+      "variations": "变体",
+      "all": "全部"
     },
     "moderation": {
       "keyEn": "原始词条 (EN)",

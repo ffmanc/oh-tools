@@ -324,6 +324,7 @@ function applyOnlineTranslations() {
   if (typeof buildTraitsTable === 'function') buildTraitsTable();
   if (typeof buildArenaShops === 'function') buildArenaShops();
   if (typeof buildTechniquesTable === 'function') buildTechniquesTable();
+  if (typeof buildDeviantsLibTable === 'function') buildDeviantsLibTable();
   if (typeof populateUI === 'function') populateUI();
   if (typeof renderDeviants === 'function') renderDeviants();
 }

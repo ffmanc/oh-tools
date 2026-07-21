@@ -1132,7 +1132,8 @@
       "login": "Connexion",
       "register": "S'inscrire",
       "profile": "Profil",
-      "logout": "Déconnexion"
+      "logout": "Déconnexion",
+      "deviants": "Liste des Déviations"
     },
     "buttons": {
       "approve": "Approuver",
@@ -1271,7 +1272,8 @@
       "global": "Global",
       "animal": "Animal",
       "furniture": "Meuble",
-      "variations": "Variations"
+      "variations": "Variations",
+      "all": "Tous"
     },
     "moderation": {
       "keyEn": "Clé (EN)",

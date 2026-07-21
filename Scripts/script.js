@@ -369,7 +369,7 @@ function populateUI() {
         opt.textContent = trans.name; 
         searchTechniqueSelect.appendChild(opt);
     });
-    buildTechniquesTable(); buildTraitsTable(); buildArenaShops();
+    buildTechniquesTable(); buildTraitsTable(); buildArenaShops(); buildDeviantsLibTable();
     sourceSelect.onchange = updateTechniques; builderDevSelect.onchange = updateBuilderTechniques;
     updateTechniques(); updateBuilderTechniques();
 
@@ -414,18 +414,52 @@ function buildTechniquesTable() {
     document.getElementById('techniquesBody').innerHTML = allUniqueTechniques.map(t => { 
         const trans = typeof translateTechnique === 'function' ? translateTechnique(t) : { name: t, description: 'Data needed' };
         return `<tr>
-            <td style="font-weight:bold; color:#e0e0e0; display:flex; justify-content:space-between; align-items:center;">
-                <span>${trans.name}</span>
-                ${typeof getSuggestBtnHtml === 'function' ? getSuggestBtnHtml(t, 'technique_name') : ''}
+            <td style="font-weight:bold; color:#e0e0e0; vertical-align:middle; padding:12px;">
+                <div style="display:flex; justify-content:space-between; align-items:center; gap:8px;">
+                    <span>${trans.name}</span>
+                    ${typeof getSuggestBtnHtml === 'function' ? getSuggestBtnHtml(t, 'technique_name') : ''}
+                </div>
             </td>
-            <td style="color:#aaa;">
-                <span>${trans.description}</span>
-                ${typeof getSuggestBtnHtml === 'function' ? getSuggestBtnHtml(t, 'technique_desc') : ''}
+            <td style="color:#aaa; vertical-align:middle; padding:12px;">
+                <div style="display:flex; justify-content:space-between; align-items:center; gap:8px;">
+                    <span>${trans.description}</span>
+                    ${typeof getSuggestBtnHtml === 'function' ? getSuggestBtnHtml(t, 'technique_desc') : ''}
+                </div>
             </td>
         </tr>`; 
     }).join(''); 
 }
 function filterTechniquesLib() { const val = document.getElementById('searchTechniquesLib').value.toUpperCase(); document.querySelectorAll('#techniquesBody tr').forEach(row => { row.style.display = row.innerText.toUpperCase().includes(val) ? "" : "none"; }); }
+
+function buildDeviantsLibTable() {
+    const tbody = document.getElementById('deviantsLibBody');
+    if (!tbody) return;
+    const sortedDevs = [...deviations].sort((a, b) => {
+        const nameA = typeof translateDeviationName === 'function' ? translateDeviationName(a.name) : a.name;
+        const nameB = typeof translateDeviationName === 'function' ? translateDeviationName(b.name) : b.name;
+        return nameA.localeCompare(nameB);
+    });
+
+    tbody.innerHTML = sortedDevs.map(d => {
+        const localName = typeof translateDeviationName === 'function' ? translateDeviationName(d.name) : d.name;
+        const suggestBtn = typeof getSuggestBtnHtml === 'function' ? getSuggestBtnHtml(d.name, 'deviation') : '';
+        return `<tr>
+            <td style="font-weight:bold; color:#e0e0e0; vertical-align:middle; padding:12px;">
+                <div style="display:flex; justify-content:space-between; align-items:center; gap:8px;">
+                    <span>${d.name}</span>
+                    ${suggestBtn}
+                </div>
+            </td>
+            <td style="color:#aaa; vertical-align:middle; padding:12px;">${localName}</td>
+        </tr>`;
+    }).join('');
+}
+function filterDeviantsLib() {
+    const val = document.getElementById('searchDeviantsLibInput').value.toUpperCase();
+    document.querySelectorAll('#deviantsLibBody tr').forEach(row => {
+        row.style.display = row.innerText.toUpperCase().includes(val) ? "" : "none";
+    });
+}
  
 function buildTraitsTable() { 
     const tbody = document.getElementById('traitsBody');
@@ -441,18 +475,22 @@ function buildTraitsTable() {
 
         return `
         <tr data-category="${t.category}" data-slot="${t.slot || 'none'}">
-            <td style="font-weight:600; color:#e0e0e0; display:flex; justify-content:space-between; align-items:center;">
-                <span>${trans.name}</span>
-                <div style="display:flex; align-items:center; gap:5px;">
-                    ${slotBadge}
-                    ${typeof getSuggestBtnHtml === 'function' ? getSuggestBtnHtml(t.name, 'trait_name') : ''}
+            <td style="font-weight:600; color:#e0e0e0; vertical-align:middle; padding:12px;">
+                <div style="display:flex; justify-content:space-between; align-items:center; gap:8px;">
+                    <span>${trans.name}</span>
+                    <div style="display:flex; align-items:center; gap:5px;">
+                        ${slotBadge}
+                        ${typeof getSuggestBtnHtml === 'function' ? getSuggestBtnHtml(t.name, 'trait_name') : ''}
+                    </div>
                 </div>
             </td>
-            <td>${t.source || '-'}</td>
-            <td>${t.category}</td>
-            <td>
-                <span>${trans.description}</span>
-                ${typeof getSuggestBtnHtml === 'function' ? getSuggestBtnHtml(t.name, 'trait_desc') : ''}
+            <td style="vertical-align:middle; padding:12px;">${t.source || '-'}</td>
+            <td style="vertical-align:middle; padding:12px;">${t.category}</td>
+            <td style="color:#aaa; vertical-align:middle; padding:12px;">
+                <div style="display:flex; justify-content:space-between; align-items:center; gap:8px;">
+                    <span>${trans.description}</span>
+                    ${typeof getSuggestBtnHtml === 'function' ? getSuggestBtnHtml(t.name, 'trait_desc') : ''}
+                </div>
             </td>
         </tr>
     `}).join('');
@@ -710,12 +748,12 @@ function generatePlan() {
     const selected = Array.from(document.querySelectorAll('#builderCheckboxes input:checked')).map(cb => cb.value);
     const results = document.getElementById('builderResults');
     
-    if (selected.length === 0 && userSelectedTraits.length === 0) return results.innerHTML = "<p style='color:var(--warning)'>Please select at least one technique or trait.</p>";
+    if (selected.length === 0 && userSelectedTraits.length === 0) return results.innerHTML = "<p style='color:var(--warning)'>" + (typeof t === "function" ? t("ui.planner.noSelectionWarning") : "Please select at least one technique or trait.") + "</p>";
     
     let html = ``;
     
     if (selected.length > 0) {
-        html += `<div style="grid-column:1/-1; margin-bottom:10px; border-bottom:1px solid #333; padding-bottom:5px; color:white; font-weight:bold;">TECHNIQUE DONORS</div>`;
+        html += `<div style="grid-column:1/-1; margin-bottom:10px; border-bottom:1px solid #333; padding-bottom:5px; color:white; font-weight:bold;">${typeof t === "function" ? t("ui.planner.techDonors") : "TECHNIQUE DONORS"}</div>`;
         selected.forEach((technique, index) => {
             const unwanted = sourceDev.techniques.filter(t => t !== technique);
             
@@ -780,7 +818,7 @@ function generatePlan() {
     }
 
     if (userSelectedTraits.length > 0) {
-        html += `<div style="grid-column:1/-1; margin:15px 0 10px 0; border-bottom:1px solid #333; padding-bottom:5px; color:white; font-weight:bold;">PASSIVE TRAIT SOURCES</div>`;
+        html += `<div style="grid-column:1/-1; margin:15px 0 10px 0; border-bottom:1px solid #333; padding-bottom:5px; color:white; font-weight:bold;">${typeof t === "function" ? t("ui.planner.traitSources") : "PASSIVE TRAIT SOURCES"}</div>`;
         
         const slotCounts = {};
         userSelectedTraits.forEach(t => {

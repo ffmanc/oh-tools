@@ -1132,7 +1132,8 @@
       "login": "Login",
       "register": "Register",
       "profile": "Profile",
-      "logout": "Logout"
+      "logout": "Logout",
+      "deviants": "Deviants List"
     },
     "buttons": {
       "approve": "Approve",
@@ -1271,7 +1272,8 @@
       "global": "Global",
       "animal": "Animal",
       "furniture": "Furniture",
-      "variations": "Variations"
+      "variations": "Variations",
+      "all": "All"
     },
     "moderation": {
       "keyEn": "Key (EN)",

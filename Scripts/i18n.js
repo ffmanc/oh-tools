@@ -103,10 +103,10 @@ async function changeLanguage(lang) {
   await loadLocale(lang);
   applyi18n();
 
-  // If script.js functions exist, trigger re-renders of the database-driven tables in the new language
   if (typeof buildTraitsTable === 'function') buildTraitsTable();
   if (typeof buildArenaShops === 'function') buildArenaShops();
   if (typeof buildTechniquesTable === 'function') buildTechniquesTable();
+  if (typeof buildDeviantsLibTable === 'function') buildDeviantsLibTable();
   if (typeof populateUI === 'function') populateUI();
   if (typeof renderDeviants === 'function') renderDeviants();
   if (typeof updateComparison === 'function') updateComparison();

@@ -389,15 +389,16 @@
                     <button class="tab-link active" onclick="switchLibraryTab('tab-shops', this)" data-i18n="buttons.btnArenaShops">Arena Shops</button>
                     <button class="tab-link" onclick="switchLibraryTab('tab-techniques', this)" data-i18n="tabs.techniques">Techniques Library</button>
                     <button class="tab-link" onclick="switchLibraryTab('tab-traits', this)" data-i18n="tabs.traits">Traits Library</button>
+                    <button class="tab-link" onclick="switchLibraryTab('tab-deviants-lib', this)" data-i18n="tabs.deviants">Deviants List</button>
                 </div>
 
                 <!-- Arena Shops Tab Content -->
                 <div id="tab-shops" class="lib-tab-content">
                     <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:15px;">
                         <div id="shop-filters" style="display:flex; gap:5px; flex-wrap:wrap;">
-                            <button class="filter-btn active" onclick="applyShopFilter('All', this)">All</button>
-                            <button class="filter-btn" onclick="applyShopFilter('Species Code', this)">Species Code</button>
-                            <button class="filter-btn" onclick="applyShopFilter('Skill Mutagen', this)">Skill Mutagen</button>
+                            <button class="filter-btn active" onclick="applyShopFilter('All', this)" data-i18n="ui.filters.all">All</button>
+                            <button class="filter-btn" onclick="applyShopFilter('Species Code', this)" data-i18n="ui.filters.speciesCode">Species Code</button>
+                            <button class="filter-btn" onclick="applyShopFilter('Skill Mutagen', this)" data-i18n="ui.filters.skillMutagen">Skill Mutagen</button>
                         </div>
                         <input type="text" id="searchArenaShop" data-i18n-placeholder="fields.searchDeviant" placeholder="Search..." onkeyup="buildArenaShops()" style="max-width: 200px;">
                     </div>
@@ -422,18 +423,18 @@
                 <div id="tab-traits" class="lib-tab-content hidden">
                     <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:15px;">
                         <div style="display:flex; gap:5px; flex-wrap:wrap; align-items:center;">
-                            <button class="filter-btn active" onclick="applyFilter('All', this)">All</button>
-                            <button class="filter-btn" onclick="applyFilter('Global', this)">Global</button>
-                            <button class="filter-btn" onclick="applyFilter('Combat', this)">Combat</button>
-                            <button class="filter-btn" onclick="applyFilter('Territory', this)">Territory</button>
-                            <button class="filter-btn" onclick="applyFilter('Crafting', this)">Crafting</button>
-                            <button class="filter-btn" onclick="applyFilter('Animal', this)">Animal</button>
-                            <button class="filter-btn" onclick="applyFilter('Furniture', this)">Furniture</button>
-                            <button class="filter-btn" onclick="applyFilter('Variation', this)">Variations</button>
+                            <button class="filter-btn active" onclick="applyFilter('All', this)" data-i18n="ui.filters.all">All</button>
+                            <button class="filter-btn" onclick="applyFilter('Global', this)" data-i18n="ui.filters.global">Global</button>
+                            <button class="filter-btn" onclick="applyFilter('Combat', this)" data-i18n="ui.filters.combat">Combat</button>
+                            <button class="filter-btn" onclick="applyFilter('Territory', this)" data-i18n="ui.filters.territory">Territory</button>
+                            <button class="filter-btn" onclick="applyFilter('Crafting', this)" data-i18n="ui.filters.crafting">Crafting</button>
+                            <button class="filter-btn" onclick="applyFilter('Animal', this)" data-i18n="ui.filters.animal">Animal</button>
+                            <button class="filter-btn" onclick="applyFilter('Furniture', this)" data-i18n="ui.filters.furniture">Furniture</button>
+                            <button class="filter-btn" onclick="applyFilter('Variation', this)" data-i18n="ui.filters.variations">Variations</button>
                             
                             <span id="slotFilterSep" style="color:#555; font-size:1.2rem; margin:0 5px; user-select:none; font-weight:300;">|</span>
 
-                            <button class="filter-btn slot-btn active" onclick="applySlotFilter('All', this)">Slots</button>
+                            <button class="filter-btn slot-btn active" onclick="applySlotFilter('All', this)" data-i18n="ui.filters.all">Slots</button>
                             <button class="filter-btn slot-btn" onclick="applySlotFilter(1, this)">1</button>
                             <button class="filter-btn slot-btn" onclick="applySlotFilter(2, this)">2</button>
                             <button class="filter-btn slot-btn" onclick="applySlotFilter(3, this)">3</button>
@@ -445,6 +446,25 @@
                         <table id="traitsTable">
                             <thead><tr><th width="20%">Name</th><th width="15%">Source</th><th width="15%">Category</th><th>Description</th></tr></thead>
                             <tbody id="traitsBody"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Deviants List Tab Content -->
+                <div id="tab-deviants-lib" class="lib-tab-content hidden">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+                        <h3 data-i18n="tabs.deviants" style="margin:0;">Deviants List</h3>
+                        <input type="text" id="searchDeviantsLibInput" placeholder="Search..." onkeyup="filterDeviantsLib()" style="max-width: 200px;">
+                    </div>
+                    <div style="overflow-x:auto; max-height:400px; border:1px solid var(--border);">
+                        <table id="deviantsLibTable">
+                            <thead>
+                                <tr>
+                                    <th width="40%">Name (EN)</th>
+                                    <th>Translated Name</th>
+                                </tr>
+                            </thead>
+                            <tbody id="deviantsLibBody"></tbody>
                         </table>
                     </div>
                 </div>

@@ -1132,7 +1132,8 @@
       "login": "Entrar",
       "register": "Cadastrar",
       "profile": "Perfil",
-      "logout": "Sair"
+      "logout": "Sair",
+      "deviants": "Lista de Desvios"
     },
     "buttons": {
       "approve": "Aprovar",
@@ -1271,7 +1272,8 @@
       "global": "Global",
       "animal": "Animal",
       "furniture": "Mobiliário",
-      "variations": "Variações"
+      "variations": "Variações",
+      "all": "Todos"
     },
     "moderation": {
       "keyEn": "Termo Original (EN)",

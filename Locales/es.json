@@ -1132,7 +1132,8 @@
       "login": "Entrar",
       "register": "Registrarse",
       "profile": "Perfil",
-      "logout": "Salir"
+      "logout": "Salir",
+      "deviants": "Lista de Desviaciones"
     },
     "buttons": {
       "approve": "Aprobar",
@@ -1271,7 +1272,8 @@
       "global": "Global",
       "animal": "Animal",
       "furniture": "Muebles",
-      "variations": "Variaciones"
+      "variations": "Variaciones",
+      "all": "Todos"
     },
     "moderation": {
       "keyEn": "Término (EN)",
