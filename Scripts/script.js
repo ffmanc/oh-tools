@@ -85,6 +85,14 @@ function safeTooltip(str) {
 
 async function init() {
     try {
+        // Load i18n locales before anything else
+        if (typeof loadLocale === 'function') {
+            await loadLocale(currentLang);
+            if (typeof fetchOnlineTranslations === 'function') {
+                await fetchOnlineTranslations();
+            }
+        }
+
         let devRes;
         try {
             devRes = await fetch('Databases/deviations.json');
@@ -126,6 +134,9 @@ async function init() {
         renderDeviants(); 
         auditData(); 
         applyVisibilitySettings(); // Ensure defaults are applied on load
+        if (typeof applyi18n === 'function') {
+            applyi18n();
+        }
     } catch (error) {
         console.error("Error loading data:", error);
     }
@@ -196,8 +207,11 @@ function buildArenaShops() {
     
     document.getElementById('arenaShopsContainer').innerHTML = shopsData.map(shop => {
         const filteredItems = shop.items.filter(i => {
+            const localName = i.type === "Species Code" 
+                ? (typeof translateDeviationName === 'function' ? translateDeviationName(i.name) : i.name)
+                : (typeof translateTechnique === 'function' ? translateTechnique(i.name).name : i.name);
             const matchesType = (currentShopFilter === 'All') || (i.type === currentShopFilter);
-            const matchesSearch = i.name.toUpperCase().includes(searchText);
+            const matchesSearch = i.name.toUpperCase().includes(searchText) || localName.toUpperCase().includes(searchText);
             return matchesType && matchesSearch;
         });
 
@@ -212,9 +226,12 @@ function buildArenaShops() {
                         const isChaos = i.name.includes("Chaos");
                         const costColor = isChaos ? "var(--chaos-cost)" : "#ffd700";
                         const displayCost = i.cost !== undefined ? i.cost : '0';
+                        const localItemName = i.type === "Species Code" 
+                            ? (typeof translateDeviationName === 'function' ? translateDeviationName(i.name) : i.name)
+                            : (typeof translateTechnique === 'function' ? translateTechnique(i.name).name : i.name);
                         return `
                         <tr>
-                            <td>${i.name}</td>
+                            <td>${localItemName}</td>
                             <td class="arena-type">${i.type}</td>
                             <td class="arena-cost" style="color:${costColor};">${displayCost}</td>
                         </tr>`;
@@ -234,7 +251,8 @@ function toggleCompareTool() {
         if (selA.options.length <= 1) {
             deviations.forEach(dev => {
                 const opt = document.createElement('option');
-                opt.value = dev.name; opt.textContent = dev.name;
+                opt.value = dev.name; 
+                opt.textContent = typeof translateDeviationName === 'function' ? translateDeviationName(dev.name) : dev.name;
                 selA.appendChild(opt);
                 selB.appendChild(opt.cloneNode(true));
             });
@@ -260,15 +278,18 @@ function updateComparison() {
     const uniqueB = [...skillsB].filter(x => !skillsA.has(x)).sort();
     
     const renderList = (list, isShared) => list.length ? list.map(s => {
-        const tech = techniquesData.find(t => t.name === s);
-        const desc = tech ? safeTooltip(tech.description) : s;
-        return `<div class="skill-item ${isShared?'skill-shared':''}" onmouseenter="showTooltip(event, '${desc}')" onmouseleave="hideTooltip()">${s}</div>`;
+        const techData = typeof translateTechnique === 'function' ? translateTechnique(s) : { name: s, description: s };
+        const desc = safeTooltip(techData.description);
+        return `<div class="skill-item ${isShared?'skill-shared':''}" onmouseenter="showTooltip(event, '${desc}')" onmouseleave="hideTooltip()">${techData.name}</div>`;
     }).join('') : '<div style="opacity:0.5; font-size:0.8rem; text-align:center;">None</div>';
     
+    const localA = typeof translateDeviationName === 'function' ? translateDeviationName(devA.name) : devA.name;
+    const localB = typeof translateDeviationName === 'function' ? translateDeviationName(devB.name) : devB.name;
+
     resultArea.innerHTML = `
-        <div class="compare-col"><div class="col-header">${devA.name}</div>${renderList(uniqueA, false)}</div>
+        <div class="compare-col"><div class="col-header">${localA}</div>${renderList(uniqueA, false)}</div>
         <div class="compare-col" style="border-color:var(--accent)"><div class="col-header" style="color:var(--accent)">Shared</div>${renderList(shared, true)}</div>
-        <div class="compare-col"><div class="col-header">${devB.name}</div>${renderList(uniqueB, false)}</div>
+        <div class="compare-col"><div class="col-header">${localB}</div>${renderList(uniqueB, false)}</div>
     `;
 }
 
@@ -328,7 +349,8 @@ function populateUI() {
     sourceSelect.innerHTML = ""; builderDevSelect.innerHTML = "";
     deviations.forEach(dev => {
         const opt = document.createElement('option');
-        opt.value = dev.name; opt.textContent = dev.name;
+        opt.value = dev.name; 
+        opt.textContent = typeof translateDeviationName === 'function' ? translateDeviationName(dev.name) : dev.name;
         sourceSelect.appendChild(opt);
         builderDevSelect.appendChild(opt.cloneNode(true));
     });
@@ -338,7 +360,10 @@ function populateUI() {
     searchTechniqueSelect.innerHTML = "";
     allUniqueTechniques.forEach(t => {
         const opt = document.createElement('option');
-        opt.value = t; opt.textContent = t; searchTechniqueSelect.appendChild(opt);
+        opt.value = t; 
+        const trans = typeof translateTechnique === 'function' ? translateTechnique(t) : { name: t };
+        opt.textContent = trans.name; 
+        searchTechniqueSelect.appendChild(opt);
     });
     buildTechniquesTable(); buildTraitsTable(); buildArenaShops();
     sourceSelect.onchange = updateTechniques; builderDevSelect.onchange = updateBuilderTechniques;
@@ -381,26 +406,50 @@ function hideTooltip() { tooltip.style.display = 'none'; }
 function moveTooltip(e) { tooltip.style.left = (e.pageX + 15) + 'px'; tooltip.style.top = (e.pageY + 15) + 'px'; }
 document.addEventListener('mousemove', (e) => { if (tooltip.style.display === 'block') moveTooltip(e); });
 
-function buildTechniquesTable() { document.getElementById('techniquesBody').innerHTML = allUniqueTechniques.map(t => { const info = techniquesData.find(x => x.name === t); return `<tr><td style="font-weight:bold; color:#e0e0e0;">${t}</td><td style="color:#aaa;">${info ? info.description : 'Data needed'}</td></tr>`; }).join(''); }
+function buildTechniquesTable() { 
+    document.getElementById('techniquesBody').innerHTML = allUniqueTechniques.map(t => { 
+        const trans = typeof translateTechnique === 'function' ? translateTechnique(t) : { name: t, description: 'Data needed' };
+        return `<tr>
+            <td style="font-weight:bold; color:#e0e0e0; display:flex; justify-content:space-between; align-items:center;">
+                <span>${trans.name}</span>
+                <span class="suggest-btn" style="cursor:pointer; opacity:0.6; font-size:0.9rem;" title="Suggest translation" onclick="openSuggestTranslation('${t}', 'technique_name')">🌐</span>
+            </td>
+            <td style="color:#aaa;">
+                <span>${trans.description}</span>
+                <span class="suggest-btn" style="cursor:pointer; opacity:0.6; font-size:0.9rem; margin-left:5px;" title="Suggest description translation" onclick="openSuggestTranslation('${t}', 'technique_desc')">🌐</span>
+            </td>
+        </tr>`; 
+    }).join(''); 
+}
 function filterTechniquesLib() { const val = document.getElementById('searchTechniquesLib').value.toUpperCase(); document.querySelectorAll('#techniquesBody tr').forEach(row => { row.style.display = row.innerText.toUpperCase().includes(val) ? "" : "none"; }); }
 
 function buildTraitsTable() { 
     const tbody = document.getElementById('traitsBody');
-    const sortedTraits = [...traits].sort((a, b) => a.name.localeCompare(b.name));
+    const sortedTraits = [...traits].sort((a, b) => {
+        const transA = typeof translateTrait === 'function' ? translateTrait(a.name) : a;
+        const transB = typeof translateTrait === 'function' ? translateTrait(b.name) : b;
+        return transA.name.localeCompare(transB.name);
+    });
 
     tbody.innerHTML = sortedTraits.map(t => {
-        // DYNAMIC: Only show badge if enabled
+        const trans = typeof translateTrait === 'function' ? translateTrait(t.name) : t;
         let slotBadge = (SHOW_SLOT_DATA && t.slot) ? `<span class="slot-badge float-right">S${t.slot}</span>` : '';
 
         return `
         <tr data-category="${t.category}" data-slot="${t.slot || 'none'}">
-            <td style="font-weight:600; color:#e0e0e0;">
-                ${t.name}
-                ${slotBadge}
+            <td style="font-weight:600; color:#e0e0e0; display:flex; justify-content:space-between; align-items:center;">
+                <span>${trans.name}</span>
+                <div style="display:flex; align-items:center; gap:5px;">
+                    ${slotBadge}
+                    <span class="suggest-btn" style="cursor:pointer; opacity:0.6; font-size:0.9rem;" title="Suggest translation" onclick="openSuggestTranslation('${t.name}', 'trait_name')">🌐</span>
+                </div>
             </td>
             <td>${t.source || '-'}</td>
             <td>${t.category}</td>
-            <td>${t.description}</td>
+            <td>
+                <span>${trans.description}</span>
+                <span class="suggest-btn" style="cursor:pointer; opacity:0.6; font-size:0.9rem; margin-left:5px;" title="Suggest description translation" onclick="openSuggestTranslation('${t.name}', 'trait_desc')">🌐</span>
+            </td>
         </tr>
     `}).join('');
 }
@@ -457,7 +506,8 @@ function renderDeviants() {
     const container = document.getElementById('deviant-results-area');
     container.innerHTML = "";
     deviations.forEach(dev => {
-        const nameMatch = dev.name.toUpperCase().includes(query);
+        const localDevName = typeof translateDeviationName === 'function' ? translateDeviationName(dev.name) : dev.name;
+        const nameMatch = dev.name.toUpperCase().includes(query) || localDevName.toUpperCase().includes(query);
         const typeMatch = (currentDeviantTypeFilter === 'All') || (dev.type === currentDeviantTypeFilter);
         if (nameMatch && typeMatch) {
             let status = 'status-neutral';
@@ -479,22 +529,33 @@ function renderDeviants() {
             const passStr = (dev.passive && dev.passive !== "Data needed") ? dev.passive.split(':')[0] : "-";
             const stdStr = (dev.standard && dev.standard !== "Data needed") ? dev.standard.split(':')[0] : "-";
 
+            // Localize sub-components where needed
+            const translatedPsi = typeof translateTrait === 'function' ? translateTrait(psiStr) : { name: psiStr };
+            const translatedPass = typeof translateTrait === 'function' ? translateTrait(passStr) : { name: passStr };
+            const translatedStd = typeof translateTrait === 'function' ? translateTrait(stdStr) : { name: stdStr };
+
             container.innerHTML += `
                 <div class="uni-card ${status}">
-                    <div class="card-header"><span class="card-title">${dev.name}</span><span class="card-badge">${dev.type}</span></div>
+                    <div class="card-header" style="display:flex; justify-content:space-between; align-items:center;">
+                        <span class="card-title" style="display:flex; align-items:center;">
+                            ${localDevName}
+                            <span class="suggest-btn" style="cursor:pointer; margin-left:8px; opacity:0.6; font-size:0.9rem;" title="Suggest translation" onclick="openSuggestTranslation('${dev.name}', 'deviation')">🌐</span>
+                        </span>
+                        <span class="card-badge">${dev.type}</span>
+                    </div>
                     <div class="tag-list">${dev.techniques.map(t => {
-                        const techData = techniquesData.find(td => td.name === t);
-                        const techTip = techData ? safeTooltip(techData.description) : t;
-                        return `<span class="uni-tag" onmouseenter="showTooltip(event, '${techTip}')" onmouseleave="hideTooltip()">${t}</span>`;
+                        const techData = typeof translateTechnique === 'function' ? translateTechnique(t) : { name: t, description: t };
+                        const techTip = safeTooltip(techData.description);
+                        return `<span class="uni-tag" onmouseenter="showTooltip(event, '${techTip}')" onmouseleave="hideTooltip()">${techData.name}</span>`;
                     }).join('')}</div>
                     <div class="card-divider"></div>
                     <div class="card-body">
-                        <div style="margin-bottom:4px; cursor:help;" onmouseenter="showTooltip(event, '${safeTooltip(psiDesc)}')" onmouseleave="hideTooltip()"><strong style="color:#aaa;">PSI:</strong> ${psiStr}</div>
-                        <div style="cursor:help;" onmouseenter="showTooltip(event, '${safeTooltip(passDesc)}')" onmouseleave="hideTooltip()"><strong style="color:#aaa;">Passive:</strong> ${passStr}</div>
+                        <div style="margin-bottom:4px; cursor:help;" onmouseenter="showTooltip(event, '${safeTooltip(translatedPsi.description || psiDesc)}')" onmouseleave="hideTooltip()"><strong style="color:#aaa;">PSI:</strong> ${translatedPsi.name}</div>
+                        <div style="cursor:help;" onmouseenter="showTooltip(event, '${safeTooltip(translatedPass.description || passDesc)}')" onmouseleave="hideTooltip()"><strong style="color:#aaa;">Passive:</strong> ${translatedPass.name}</div>
                         
                         <div style="height:1px; background:#3e3e42; margin:6px 0; border-top:1px dashed #555;"></div>
                         
-                        <div style="cursor:help;" onmouseenter="showTooltip(event, '${safeTooltip(stdDesc)}')" onmouseleave="hideTooltip()"><strong style="color:#aaa;">Standard:</strong> ${stdStr}</div>
+                        <div style="cursor:help;" onmouseenter="showTooltip(event, '${safeTooltip(translatedStd.description || stdDesc)}')" onmouseleave="hideTooltip()"><strong style="color:#aaa;">Standard:</strong> ${translatedStd.name}</div>
                     </div>
                 </div>`;
         }
@@ -503,7 +564,14 @@ function renderDeviants() {
 
 function resetTechniqueSearch() { searchTechniqueSelect.selectedIndex = 0; document.getElementById('technique-results-area').innerHTML = ""; document.getElementById('technique-search-description').style.display = 'none'; }
 function resetIsolationChecker() { sourceSelect.selectedIndex = 0; updateTechniques(); document.getElementById('results-area').innerHTML = ""; }
-function updateTechniques() { const dev = deviations.find(d => d.name === sourceSelect.value); techniqueSelect.innerHTML = ""; if(dev) dev.techniques.forEach(t => techniqueSelect.innerHTML += `<option>${t}</option>`); }
+function updateTechniques() { 
+    const dev = deviations.find(d => d.name === sourceSelect.value); 
+    techniqueSelect.innerHTML = ""; 
+    if(dev) dev.techniques.forEach(t => {
+        const trans = typeof translateTechnique === 'function' ? translateTechnique(t) : { name: t };
+        techniqueSelect.innerHTML += `<option value="${t}">${trans.name}</option>`;
+    }); 
+}
 
 function findPartners() { 
     const sName = sourceSelect.value; 
@@ -521,20 +589,40 @@ function findPartners() {
         if (c.overlap === 0) { status = 'status-perfect'; label = 'PERFECT'; }
         else if (c.overlap === 1) { status = 'status-good'; label = 'GOOD'; }
         
+        const localCandName = typeof translateDeviationName === 'function' ? translateDeviationName(c.name) : c.name;
+        const localOverlaps = c.overlapTechniques.map(t => {
+            const trans = typeof translateTechnique === 'function' ? translateTechnique(t) : { name: t };
+            return trans.name;
+        }).join(', ');
+
         resDiv.innerHTML += `
             <div class="uni-card gradient-card ${status}">
                 <div class="card-header">
-                    <span class="card-title">${c.name}</span>
+                    <span class="card-title">${localCandName}</span>
                     <span class="card-badge">${label}</span>
                 </div>
                 <div class="card-body">Technique Overlap: <strong style="color:white">${c.overlap}</strong></div>
-                ${c.overlap > 0 ? `<div class="card-risk">Risk: ${c.overlapTechniques.join(', ')}</div>` : ''}
+                ${c.overlap > 0 ? `<div class="card-risk">Risk: ${localOverlaps}</div>` : ''}
             </div>
         `;
     }); 
 }
 
-function searchByTechnique() { const technique = searchTechniqueSelect.value; const area = document.getElementById('technique-results-area'); const descContainer = document.getElementById('technique-search-description'); area.innerHTML = ""; const info = techniquesData.find(t => t.name === technique); descContainer.innerHTML = info ? info.description : "No description."; descContainer.style.display = 'block'; const results = deviations.filter(d => d.techniques.includes(technique)); if (results.length === 0) return area.innerHTML = "<p>No results.</p>"; results.forEach(d => area.innerHTML += `<div class="uni-card status-neutral"><div class="card-header"><span class="card-title">${d.name}</span></div></div>`); }
+function searchByTechnique() { 
+    const technique = searchTechniqueSelect.value; 
+    const area = document.getElementById('technique-results-area'); 
+    const descContainer = document.getElementById('technique-search-description'); 
+    area.innerHTML = ""; 
+    const trans = typeof translateTechnique === 'function' ? translateTechnique(technique) : { name: technique, description: "No description." };
+    descContainer.innerHTML = trans.description; 
+    descContainer.style.display = 'block'; 
+    const results = deviations.filter(d => d.techniques.includes(technique)); 
+    if (results.length === 0) return area.innerHTML = "<p>No results.</p>"; 
+    results.forEach(d => {
+        const localDevName = typeof translateDeviationName === 'function' ? translateDeviationName(d.name) : d.name;
+        area.innerHTML += `<div class="uni-card status-neutral"><div class="card-header"><span class="card-title">${localDevName}</span></div></div>`;
+    }); 
+}
 
 function addTrait() {
     const input = document.getElementById('traitInput');
@@ -564,10 +652,11 @@ function renderSelectedTraits() {
     userSelectedTraits.forEach((t, idx) => {
         // DYNAMIC: Only show badge if enabled
         const slotBadge = (SHOW_SLOT_DATA && t.slot) ? `<span class="slot-badge mini">S${t.slot}</span>` : '';
+        const trans = typeof translateTrait === 'function' ? translateTrait(t.name) : t;
 
         container.innerHTML += `
             <div class="trait-mini-card">
-                <span>${t.name}${slotBadge}</span>
+                <span>${trans.name}${slotBadge}</span>
                 <span class="remove-btn" onclick="removeTrait(${idx}); event.stopPropagation();">✕</span>
             </div>`;
     });
@@ -580,10 +669,10 @@ function updateBuilderTechniques() {
     document.getElementById('builderResults').innerHTML = "";
     if (dev) {
         [...dev.techniques].sort().forEach(technique => {
-            const techData = techniquesData.find(td => td.name === technique);
-            const desc = techData ? safeTooltip(techData.description) : technique;
+            const techData = typeof translateTechnique === 'function' ? translateTechnique(technique) : { name: technique, description: technique };
+            const desc = safeTooltip(techData.description);
             
-            container.innerHTML += `<div class="checkbox-item" onmouseenter="showTooltip(event, '${desc}')" onmouseleave="hideTooltip()" onclick="document.getElementById('chk_${technique.replace(/[^a-zA-Z0-9]/g,'')}').click()"><input type="checkbox" id="chk_${technique.replace(/[^a-zA-Z0-9]/g,'')}" value="${technique}" onclick="event.stopPropagation()"><label>${technique}</label></div>`;
+            container.innerHTML += `<div class="checkbox-item" onmouseenter="showTooltip(event, '${desc}')" onmouseleave="hideTooltip()" onclick="document.getElementById('chk_${technique.replace(/[^a-zA-Z0-9]/g,'')}').click()"><input type="checkbox" id="chk_${technique.replace(/[^a-zA-Z0-9]/g,'')}" value="${technique}" onclick="event.stopPropagation()"><label>${techData.name}</label></div>`;
         });
     }
 }
@@ -636,13 +725,13 @@ function generatePlan() {
                 else if (candidates[0].overlap === 1) initClass = 'status-good';
             }
 
-            const techData = techniquesData.find(td => td.name === technique);
-            const techTip = techData ? safeTooltip(techData.description) : technique;
+            const techData = typeof translateTechnique === 'function' ? translateTechnique(technique) : { name: technique, description: technique };
+            const techTip = safeTooltip(techData.description);
 
             html += `
             <div class="uni-card gradient-card donor-card ${initClass}" id="technique-card-${index}">
                 <div class="card-header">
-                    <span class="card-title" onmouseenter="showTooltip(event, '${techTip}')" onmouseleave="hideTooltip()">${technique}</span>
+                    <span class="card-title" onmouseenter="showTooltip(event, '${techTip}')" onmouseleave="hideTooltip()">${techData.name}</span>
                     <div style="display:flex; align-items:center;">
                         <span class="badge-shop" onmouseenter="showTooltip(event, 'Found in Shop')" onmouseleave="hideTooltip()">SHOP</span>
                         <span class="card-badge badge-dynamic">Calculating...</span>
@@ -657,10 +746,14 @@ function generatePlan() {
             else {
                 candidates.forEach(c => {
                     let label = c.overlap === 0 ? "PERFECT" : (c.overlap === 1 ? "GOOD" : "RISKY");
-                    const junkStr = c.overlap > 0 ? `Risk: ${c.overlapTechniques.join(', ')}` : "";
+                    const junkStr = c.overlap > 0 ? `Risk: ${c.overlapTechniques.map(t => {
+                        const trans = typeof translateTechnique === 'function' ? translateTechnique(t) : { name: t };
+                        return trans.name;
+                    }).join(', ')}` : "";
                     const isShop = shopDeviationNames.has(c.name);
                     const arenaName = shopDeviationArena[c.name] || "";
-                    html += `<option value="${c.overlap}" data-label="${label}" data-junk="${junkStr}" data-shop="${isShop}" data-arena="${arenaName}">(${label}) ${c.name} ${isShop ? '[SHOP]' : ''}</option>`;
+                    const localCandName = typeof translateDeviationName === 'function' ? translateDeviationName(c.name) : c.name;
+                    html += `<option value="${c.overlap}" data-label="${label}" data-junk="${junkStr}" data-shop="${isShop}" data-arena="${arenaName}">(${label}) ${localCandName} ${isShop ? '[SHOP]' : ''}</option>`;
                 });
             }
             html += `</select></div></div>`;
@@ -680,6 +773,7 @@ function generatePlan() {
         userSelectedTraits.forEach(t => {
             // DYNAMIC: Only show badge if enabled
             const slotBadge = (SHOW_SLOT_DATA && t.slot) ? `<span class="slot-badge">S${t.slot}</span>` : '';
+            const trans = typeof translateTrait === 'function' ? translateTrait(t.name) : t;
             
             let warningBadge = '';
             // DYNAMIC: Only calculate warnings if enabled
@@ -688,9 +782,9 @@ function generatePlan() {
             }
 
             html += `
-                <div class="uni-card status-purple" onmouseenter="showTooltip(event, '${safeTooltip(t.description)}')" onmouseleave="hideTooltip()">
+                <div class="uni-card status-purple" onmouseenter="showTooltip(event, '${safeTooltip(trans.description)}')" onmouseleave="hideTooltip()">
                     <div class="card-header left-align">
-                        <span class="card-title">${t.name}</span>
+                        <span class="card-title">${trans.name}</span>
                         ${warningBadge}
                         ${slotBadge}
                     </div>
@@ -733,6 +827,17 @@ function updateDonorCard(select) {
         shopBadge.style.display = "none"; 
         shopBadge.onmouseenter = null;
     }
+}
+
+function serializeCurrentBuild() {
+    const target = builderDevSelect.value;
+    const skills = Array.from(document.querySelectorAll('#builderCheckboxes input:checked')).map(cb => cb.value);
+    const traitData = userSelectedTraits.map(t => ({n: t.name, s: t.source}));
+    if (!target || target === "Loading..." || target === "" || (skills.length === 0 && traitData.length === 0)) {
+        return null;
+    }
+    const payload = { d: target, s: skills, t: traitData };
+    return btoa(JSON.stringify(payload));
 }
 
 function resetBuilder(keepTeamMode = false) {

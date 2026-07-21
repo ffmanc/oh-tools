@@ -1,334 +1,500 @@
 [
   {
     "name": "Agni's Emissary",
-    "description": "Rebecca fires 3 fire butterflies to up to 3 nearby enemies, dealing multi-hit Elemental DMG to a single target. Greatly lowers resistance on hit."
+    "description": "Rebecca fires 3 fire butterflies to up to 3 nearby enemies, dealing multi-hit Elemental DMG to a single target. Greatly lowers resistance on hit.",
+    "name_pt": "Emissária de Agni",
+    "description_pt": "Rebecca lança 3 borboletas de fogo em até 3 inimigos próximos, causando Dano Elemental multi-hit a um único alvo. Reduz muito a resistência ao atingir."
   },
   {
     "name": "Animal Expert",
-    "description": "Randomly summons a wolf, bear, or leopard for 18s. They perform melee attacks."
+    "description": "Randomly summons a wolf, bear, or leopard for 18s. They perform melee attacks.",
+    "name_pt": "Especialista em Animais",
+    "description_pt": "Invoca aleatoriamente um lobo, urso ou leopardo por 18s. Eles realizam ataques corpo a corpo."
   },
   {
     "name": "Arrow Storm",
-    "description": "Summons a rain of arrows lasting 2.3s, dealing 20% SP.ATK DMG every 0.2s to hostile targets within a [7*7] meter area."
+    "description": "Summons a rain of arrows lasting 2.3s, dealing 20% SP.ATK DMG every 0.2s to hostile targets within a [7*7] meter area.",
+    "name_pt": "Tempestade de Flechas",
+    "description_pt": "Invoca uma chuva de flechas que dura 2,3s, causando 20% de Dano de Ataque Especial (SP.ATK) a cada 0,2s a alvos inimigos dentro de uma área de 7x7 metros."
   },
   {
     "name": "Beaver Combo",
-    "description": "Performs a 6-hit combo, each hit dealing P.ATK DMG and knocking back the target."
+    "description": "Performs a 6-hit combo, each hit dealing P.ATK DMG and knocking back the target.",
+    "name_pt": "Combo de Castor",
+    "description_pt": "Realiza um combo de 6 golpes, cada golpe causando Dano de Ataque Físico (P.ATK) e empurrando o alvo de volta."
   },
   {
     "name": "BBQ",
-    "description": "Spews fire toward the target, dealing SP.ATK DMG every 0.5s along the path. Can be used up to 5 times in a row."
+    "description": "Spews fire toward the target, dealing SP.ATK DMG every 0.5s along the path. Can be used up to 5 times in a row.",
+    "name_pt": "Churrasco",
+    "description_pt": "Cospe fogo em direção ao alvo, causando Dano de Ataque Especial (SP.ATK) a cada 0.5s ao longo do caminho. Pode ser usado até 5 vezes seguidas."
   },
   {
     "name": "Black Cat's Gaze",
-    "description": "Every 0.5s, drains divinity energy from the target and restores the same amount to you, lasting 10s."
+    "description": "Every 0.5s, drains divinity energy from the target and restores the same amount to you, lasting 10s.",
+    "name_pt": "Olhar do Gato Preto",
+    "description_pt": "A cada 0.5s, drena a energia divina do alvo e restaura a mesma quantidade para você, durando 10s."
   },
   {
     "name": "Blackhole Jet",
-    "description": "Charges up to 2s, then fires a 15m black hole beam that deals 4 hits of damage."
+    "description": "Charges up to 2s, then fires a 15m black hole beam that deals 4 hits of damage.",
+    "name_pt": "Jato de Buraco Negro",
+    "description_pt": "Carrega por até 2s, depois dispara um feixe de buraco negro de 15m que causa 4 acertos de dano."
   },
   {
     "name": "Blade Declaration",
-    "description": "Throws a dart at a random unit, dealing P.ATK DMG and marking the target for 15s. Mark: When the marked target's HP drops below 50%, Lethal Rabbit deals more damage to them."
+    "description": "Throws a dart at a random unit, dealing P.ATK DMG and marking the target for 15s. Mark: When the marked target's HP drops below 50%, Lethal Rabbit deals more damage to them.",
+    "name_pt": "Declaração de Lâmina",
+    "description_pt": "Lança um dardo em uma unidade aleatória, causando Dano de Ataque Físico (P.ATK) e marcando o alvo por 15s. Marca: Quando o HP do alvo cai abaixo de 50%, o Coelho Letal causa mais dano a ele."
   },
   {
     "name": "Blink",
-    "description": "Instantly teleports behind the target, increasing the next P.ATK DMG dealt."
+    "description": "Instantly teleports behind the target, increasing the next P.ATK DMG dealt.",
+    "name_pt": "Blink (Piscar)",
+    "description_pt": "Teletransporta-se instantaneamente para trás do alvo, aumentando o próximo Dano de Ataque Físico (P.ATK) causado."
   },
   {
     "name": "Blink Strike",
-    "description": "Randomly selects a target, teleports to strike them 5 times, each hit dealing P.ATK DMG."
+    "description": "Randomly selects a target, teleports to strike them 5 times, each hit dealing P.ATK DMG.",
+    "name_pt": "Ataque de Blink",
+    "description_pt": "Seleciona aleatoriamente um alvo e teletransporta-se para golpeá-lo 5 vezes, cada golpe causando Dano de Ataque Físico (P.ATK)."
   },
   {
     "name": "Burn Aura",
-    "description": "Activates a Burn Aura with a 6m radius, dealing SP.ATK DMG per second to enemies for 5s."
+    "description": "Activates a Burn Aura with a 6m radius, dealing SP.ATK DMG per second to enemies for 5s.",
+    "name_pt": "Aura de Queimadura",
+    "description_pt": "Ativa uma Aura de Queimadura com raio de 6m, causando Dano de Ataque Especial (SP.ATK) por segundo a inimigos por 5s."
   },
   {
     "name": "Chain Lightning",
-    "description": "Releases lightning, dealing SP. ATK DMG to hostile targets within an 8-meter radius."
+    "description": "Releases lightning, dealing SP. ATK DMG to hostile targets within an 8-meter radius.",
+    "name_pt": "Raios em Cadeia",
+    "description_pt": "Libera relâmpagos, causando Dano de Ataque Especial (SP.ATK) a alvos inimigos dentro de um raio de 8 metros."
   },
   {
     "name": "Charging Aura",
-    "description": "Creates a 6m radius aura that restores Psi Energy to allies over 5s."
+    "description": "Creates a 6m radius aura that restores Psi Energy to allies over 5s.",
+    "name_pt": "Aura de Carregamento",
+    "description_pt": "Cria uma aura com raio de 6m que restaura Energia de PSI para aliados ao longo de 5s."
   },
   {
     "name": "Chrysalis",
-    "description": "Hardens the caster, increasing P.DEF and SP.DEF for 8s."
+    "description": "Hardens the caster, increasing P.DEF and SP.DEF for 8s.",
+    "name_pt": "Crisálida",
+    "description_pt": "Endurece o lançador, aumentando a Defesa Física (P.DEF) e Defesa Especial (SP.DEF) por 8s."
   },
   {
     "name": "Corrosion Aura",
-    "description": "Activates a 6m radius aura, dealing Physical DMG per second to enemies within range for 10s, while slowing their Movement Speed and increasing skill cooldown."
+    "description": "Activates a 6m radius aura, dealing Physical DMG per second to enemies within range for 10s, while slowing their Movement Speed and increasing skill cooldown.",
+    "name_pt": "Aura de Corrosão",
+    "description_pt": "Ativa uma aura com raio de 6m, causando Dano Físico por segundo a inimigos dentro do alcance por 10s, enquanto reduz sua Velocidade de Movimento e aumenta o tempo de recarga das habilidades."
   },
   {
     "name": "Crude Oil Spill",
-    "description": "Tar Pudding enters an Oil Leak state for 15s, increasing SP.ATK and leaving 2m-radius oil puddles every 3s that last 20s."
+    "description": "Tar Pudding enters an Oil Leak state for 15s, increasing SP.ATK and leaving 2m-radius oil puddles every 3s that last 20s.",
+    "name_pt": "Derramamento de Petróleo Bruto",
+    "description_pt": "O Pudim de Alcatrão entra em um estado de Vazamento de Óleo por 15s, aumentando o SP.ATK e deixando poças de óleo com raio de 2m a cada 3s que duram 20s."
   },
   {
     "name": "Cryo Bullet",
-    "description": "Fires an ice spike, dealing SP.ATK DMG."
+    "description": "Fires an ice spike, dealing SP.ATK DMG.",
+    "name_pt": "Projétil de Gelo",
+    "description_pt": "Dispara uma estaca de gelo, causando Dano de Ataque Especial (SP.ATK) de gelo."
   },
   {
     "name": "Cyclone",
-    "description": "Generates a mini tornado that moves toward enemies, dealing P.ATK DMG every 0.5s for 10s."
+    "description": "Generates a mini tornado that moves toward enemies, dealing P.ATK DMG every 0.5s for 10s.",
+    "name_pt": "Ciclone",
+    "description_pt": "Gera um mini tornado que se move em direção aos inimigos, causando Dano de Ataque Físico (P.ATK) a cada 0.5s por 10s."
   },
   {
     "name": "Damage Link",
-    "description": "Links to an enemy target for 12s. During this time, damage taken is transferred to the enemy."
+    "description": "Links to an enemy target for 12s. During this time, damage taken is transferred to the enemy.",
+    "name_pt": "Vínculo de Dano",
+    "description_pt": "Conecta-se a um alvo inimigo por 12s. Durante esse tempo, o dano recebido por você é transferido para o inimigo."
   },
   {
     "name": "Deviant Energy Conduit",
-    "description": "Selects an allied Deviation to restore Psi Energy every 0.6s for 3s."
+    "description": "Selects an allied Deviation to restore Psi Energy every 0.6s for 3s.",
+    "name_pt": "Conduto de Energia Desviante",
+    "description_pt": "Seleciona um desvio aliado para restaurar Energia de PSI a cada 0.6s por 3s."
   },
   {
     "name": "Dodge",
-    "description": "Grants immunity to the next incoming damage instances."
+    "description": "Grants immunity to the next incoming damage instances.",
+    "name_pt": "Esquiva",
+    "description_pt": "Concede imunidade contra as próximas instâncias de dano recebidas."
   },
   {
     "name": "Electric Bullet",
-    "description": "Fires an electric orb, dealing SP.ATK DMG, with a chance to inflict Power Surge. Power Surge: Increases Shock DMG, stacking up to a certain number of times."
+    "description": "Fires an electric orb, dealing SP.ATK DMG, with a chance to inflict Power Surge. Power Surge: Increases Shock DMG, stacking up to a certain number of times.",
+    "name_pt": "Projétil Elétrico",
+    "description_pt": "Dispara um orbe elétrico, causando Dano de Ataque Especial (SP.ATK), com chance de infligir Sobrecarga. Sobrecarga: Aumenta o dano de Choque recebido, acumulando até um certo limite."
   },
   {
     "name": "Electrical Blast",
-    "description": "Randomly throws electric orbs, dealing SP.ATK DMG, and applies 1 stack of Power Surge. Power Surge: Increases Shock DMG taken by, stacking up to a few times."
+    "description": "Randomly throws electric orbs, dealing SP.ATK DMG, and applies 1 stack of Power Surge. Power Surge: Increases Shock DMG taken by, stacking up to a few times.",
+    "name_pt": "Explosão Elétrica",
+    "description_pt": "Lança orbes elétricos aleatoriamente, causando Dano de Ataque Especial (SP.ATK) e aplicando 1 acúmulo de Sobrecarga."
   },
   {
     "name": "Elemental Overload",
-    "description": "Increases SP.ATK for 8s."
+    "description": "Increases SP.ATK for 8s.",
+    "name_pt": "Sobrecarga Elemental",
+    "description_pt": "Aumenta o Dano de Ataque Especial (SP.ATK) elemental por 8s."
   },
   {
     "name": "Emergency Shield",
-    "description": "Select an allied unit and grant them a shield based on their Max HP for 8s."
+    "description": "Select an allied unit and grant them a shield based on their Max HP for 8s.",
+    "name_pt": "Escudo de Emergência",
+    "description_pt": "Seleciona uma unidade aliada e concede a ela um escudo baseado em seu HP Máximo por 8s."
   },
   {
     "name": "Explosive",
-    "description": "Self-destructs after staying near the target for 5s, dealing AoE SP.ATK DMG. Has a chance to trigger when HP drops below 50%."
+    "description": "Self-destructs after staying near the target for 5s, dealing AoE SP.ATK DMG. Has a chance to trigger when HP drops below 50%.",
+    "name_pt": "Explosive",
+    "description_pt": "Self-destructs after staying near the target for 5s, dealing AoE SP.ATK DMG. Has a chance to trigger when HP drops below 50%."
   },
   {
     "name": "Fate Coin",
-    "description": "Flip a coin and launch Mr. Wish Missile. Heads: deals 30% HP damage to enemies. Tails: deals 15% HP damage to yourself."
+    "description": "Flip a coin and launch Mr. Wish Missile. Heads: deals 30% HP damage to enemies. Tails: deals 15% HP damage to yourself.",
+    "name_pt": "Fate Coin",
+    "description_pt": "Flip a coin and launch Mr. Wish Missile. Heads: deals 30% HP damage to enemies. Tails: deals 15% HP damage to yourself."
   },
   {
     "name": "Flame Bullet",
-    "description": "Launches a fireball, dealing SP.ATK DMG."
+    "description": "Launches a fireball, dealing SP.ATK DMG.",
+    "name_pt": "Projétil de Chama",
+    "description_pt": "Dispara um orbe flamejante, causando Dano de Ataque Especial (SP.ATK) e infligindo Queimadura."
   },
   {
     "name": "Flame Impact",
-    "description": "Fires a fan-shaped flame, dealing SP.ATK DMG and inflicting Burn for 6s. Burn deals SP.ATK DMG per second."
+    "description": "Fires a fan-shaped flame, dealing SP.ATK DMG and inflicting Burn for 6s. Burn deals SP.ATK DMG per second.",
+    "name_pt": "Impacto de Chamas",
+    "description_pt": "Explode chamas ao redor, empurrando inimigos e causando Dano de Ataque Especial (SP.ATK) de fogo em área."
   },
   {
     "name": "Flame Jet",
-    "description": "Shoots flames about 10 meters forward, dealing continuous damage to enemies in the path."
+    "description": "Shoots flames about 10 meters forward, dealing continuous damage to enemies in the path.",
+    "name_pt": "Jato de Chama",
+    "description_pt": "Dispara um fluxo contínuo de chamas em cone, causando Dano de Ataque Especial (SP.ATK) de fogo."
   },
   {
     "name": "Flaming Flight",
-    "description": "Leaves a burning trail, dealing SP.ATK DMG every 1.5s. Inflicts Burn on hit targets for 10s, dealing SP.ATK DMG per second."
+    "description": "Leaves a burning trail, dealing SP.ATK DMG every 1.5s. Inflicts Burn on hit targets for 10s, dealing SP.ATK DMG per second.",
+    "name_pt": "Voo Flamejante",
+    "description_pt": "Decola e bombardeia o solo com projéteis de fogo por 6s."
   },
   {
     "name": "Frost Satellite",
-    "description": "Summons five ice crystal turrets that fire after 3s, dealing SP.ATK DMG."
+    "description": "Summons five ice crystal turrets that fire after 3s, dealing SP.ATK DMG.",
+    "name_pt": "Satélite de Gelo",
+    "description_pt": "Invoca fragmentos de gelo flutuantes que orbitam e disparam contra inimigos próximos."
   },
   {
     "name": "Frost Vortex",
-    "description": "Creates a Frost Vortex at the target location, lasting for 5s, dealing SP.ATK DMG per hit to enemies within range."
+    "description": "Creates a Frost Vortex at the target location, lasting for 5s, dealing SP.ATK DMG per hit to enemies within range.",
+    "name_pt": "Frost Vortex",
+    "description_pt": "Creates a Frost Vortex at the target location, lasting for 5s, dealing SP.ATK DMG per hit to enemies within range."
   },
   {
     "name": "Group Elemental Overload",
-    "description": "Increases nearby allies' SP.ATK DMG for 8s."
+    "description": "Increases nearby allies' SP.ATK DMG for 8s.",
+    "name_pt": "Sobrecarga Elemental em Grupo",
+    "description_pt": "Aumenta o Dano de Ataque Especial (SP.ATK) elemental de todos os aliados próximos por 8s."
   },
   {
     "name": "Group Physical Enhancement",
-    "description": "Increases Physical DMG for all allied units."
+    "description": "Increases Physical DMG for all allied units.",
+    "name_pt": "Fortalecimento Físico em Grupo",
+    "description_pt": "Aumenta o Dano de Ataque Físico (P.ATK) de todos os aliados próximos por 8s."
   },
   {
     "name": "Healing",
-    "description": "Heals the ally with the lowest HP percentage, restoring HP based on the caster's Attack every 0.5s for 5s."
+    "description": "Heals the ally with the lowest HP percentage, restoring HP based on the caster's Attack every 0.5s for 5s.",
+    "name_pt": "Healing",
+    "description_pt": "Heals the ally with the lowest HP percentage, restoring HP based on the caster's Attack every 0.5s for 5s."
   },
   {
     "name": "Healing Aura",
-    "description": "Activates a healing aura with a 6m radius, restoring a percentage of Max HP per second."
+    "description": "Activates a healing aura with a 6m radius, restoring a percentage of Max HP per second.",
+    "name_pt": "Aura de Cura",
+    "description_pt": "Ativa uma aura curativa com raio de 6m, restaurando vida a aliados por segundo por 5s."
   },
   {
     "name": "Healing Bullet",
-    "description": "Fires healing energy, healing allies for a percentage of the caster's Attack."
+    "description": "Fires healing energy, healing allies for a percentage of the caster's Attack.",
+    "name_pt": "Projétil de Cura",
+    "description_pt": "Dispara um projétil curativo que restaura vida instantaneamente ao aliado atingido."
   },
   {
     "name": "Healing Link",
-    "description": "Selects allies within 12m to link and heal through shared damage."
+    "description": "Selects allies within 12m to link and heal through shared damage.",
+    "name_pt": "Vínculo de Cura",
+    "description_pt": "Vincula-se a um aliado, dividindo e mitigando o dano recebido enquanto restaura vida ao longo do tempo."
   },
   {
     "name": "Heavy Pressure",
-    "description": "Leaps onto the target's head and slams down, dealing AoE P.ATK DMG and knocking the target back."
+    "description": "Leaps onto the target's head and slams down, dealing AoE P.ATK DMG and knocking the target back.",
+    "name_pt": "Pressão Pesada",
+    "description_pt": "Gera uma onda de gravidade que esmaga os inimigos no solo, aplicando lentidão de movimento."
   },
   {
     "name": "Ice Crystal Ambush",
-    "description": "Creates an ice crystal under the target, dealing SP.ATK DMG. After a brief delay, the crystal explodes, dealing SP.ATK DMG and knocking back enemies in range."
+    "description": "Creates an ice crystal under the target, dealing SP.ATK DMG. After a brief delay, the crystal explodes, dealing SP.ATK DMG and knocking back enemies in range.",
+    "name_pt": "Emboscada de Cristais de Gelo",
+    "description_pt": "Invoca cristais de gelo sob os inimigos que explodem ao serem atingidos ou após um atraso."
   },
   {
     "name": "Ice Crystal Barrage",
-    "description": "Summons several Ice Crystals that, after a short delay, fire at a single target, dealing high multi-hit Elemental DMG."
+    "description": "Summons several Ice Crystals that, after a short delay, fire at a single target, dealing high multi-hit Elemental DMG.",
+    "name_pt": "Barragem de Cristais de Gelo",
+    "description_pt": "Dispara uma saraivada de agulhas de gelo em área, causando Dano Especial de Gelo."
   },
   {
     "name": "Incendiary Bullet",
-    "description": "Fires a large fireball that explodes on impact, dealing SP.ATK DMG in an area."
+    "description": "Fires a large fireball that explodes on impact, dealing SP.ATK DMG in an area.",
+    "name_pt": "Projétil Incendiário",
+    "description_pt": "Dispara munição especial que incendeia o alvo, causando dano de queimadura contínuo."
   },
   {
     "name": "Intimidation",
-    "description": "Intimidates the enemy target, reducing their Physical Defense."
+    "description": "Intimidates the enemy target, reducing their Physical Defense.",
+    "name_pt": "Intimidação",
+    "description_pt": "Uiva ou rosna, reduzindo o Dano de Ataque dos inimigos próximos por 6s."
   },
   {
     "name": "Kitty Punch",
-    "description": "Delivers three consecutive punches: the first two deal P.ATK DMG each, followed by a third punch that deals P.ATK DMG and knocks back the target, while reducing the target's Attack for 5s."
+    "description": "Delivers three consecutive punches: the first two deal P.ATK DMG each, followed by a third punch that deals P.ATK DMG and knocks back the target, while reducing the target's Attack for 5s.",
+    "name_pt": "Soco de Gatinho",
+    "description_pt": "Ataque rápido de pata que causa dano físico e aplica uma pequena lentidão."
   },
   {
     "name": "Lightning",
-    "description": "Calls down lightning at the target location, dealing SP.ATK DMG to enemies in range and applying Power Surge on hit. Power Surge: Increases incoming Shock DMG, stacking multiple times."
+    "description": "Calls down lightning at the target location, dealing SP.ATK DMG to enemies in range and applying Power Surge on hit. Power Surge: Increases incoming Shock DMG, stacking multiple times.",
+    "name_pt": "Relâmpago",
+    "description_pt": "Invoca um relâmpago direto do céu no alvo, causando alto dano elétrico."
   },
   {
     "name": "Lightning Pierce",
-    "description": "Charges forward ignoring collision, dealing SP.ATK DMG to targets in the path."
+    "description": "Charges forward ignoring collision, dealing SP.ATK DMG to targets in the path.",
+    "name_pt": "Perfuração de Raio",
+    "description_pt": "Dispara um feixe elétrico linear que perfura múltiplos inimigos na trajetória."
   },
   {
     "name": "Lucky Light",
-    "description": "Summons two searchlights. Increases Multi-cast limit to 5, with a fixed 40% success rate, lasting 30s."
+    "description": "Summons two searchlights. Increases Multi-cast limit to 5, with a fixed 40% success rate, lasting 30s.",
+    "name_pt": "Luz da Sorte",
+    "description_pt": "Aumenta a Taxa Crítica ou o drop de recursos temporariamente para aliados na área."
   },
   {
     "name": "Mesh Traction",
-    "description": "Entangles a target unit for 2.5s, pulling it toward you and dealing P.ATK DMG."
+    "description": "Entangles a target unit for 2.5s, pulling it toward you and dealing P.ATK DMG.",
+    "name_pt": "Tração de Rede",
+    "description_pt": "Dispara uma teia/rede que puxa os inimigos para o centro e os imobiliza."
   },
   {
     "name": "Meteor",
-    "description": "Summons a meteor at the target location, dealing SP.ATK DMG. Creates a burning zone that deals SP.ATK DMG every 0.5s."
+    "description": "Summons a meteor at the target location, dealing SP.ATK DMG. Creates a burning zone that deals SP.ATK DMG every 0.5s.",
+    "name_pt": "Meteoro",
+    "description_pt": "Invoca um meteoro flamejante que cai na área selecionada, causando alto dano elemental de fogo."
   },
   {
     "name": "Outer God's Tentacle",
-    "description": "Summons 1 tentacle to attack enemies nearby for a few seconds."
+    "description": "Summons 1 tentacle to attack enemies nearby for a few seconds.",
+    "name_pt": "Outer God's Tentacle",
+    "description_pt": "Summons 1 tentacle to attack enemies nearby for a few seconds."
   },
   {
     "name": "Penetrating Charge",
-    "description": "Charges forward ignoring collision, dealing P.ATK DMG to targets in the path."
+    "description": "Charges forward ignoring collision, dealing P.ATK DMG to targets in the path.",
+    "name_pt": "Carga Penetrante",
+    "description_pt": "Avança perfurando a linha inimiga, ignorando parte da defesa física."
   },
   {
     "name": "Physical Enhancement",
-    "description": "Increases P.ATK for 8s."
+    "description": "Increases P.ATK for 8s.",
+    "name_pt": "Fortalecimento Físico",
+    "description_pt": "Aumenta o Dano de Ataque Físico (P.ATK) do próprio desvio por 8s."
   },
   {
     "name": "Physical Shockwave",
-    "description": "Releases a 90 degree cone-shaped shockwave forward, dealing Physical DMG to enemies up to 15 meters away."
+    "description": "Releases a 90 degree cone-shaped shockwave forward, dealing Physical DMG to enemies up to 15 meters away.",
+    "name_pt": "Onda de Choque Física",
+    "description_pt": "Libera uma onda de impacto que afasta os inimigos ao redor."
   },
   {
     "name": "Provoke",
-    "description": "Taunts enemies within 12m, increasing the caster's P.DEF and SP.DEF for xs."
+    "description": "Taunts enemies within 12m, increasing the caster's P.DEF and SP.DEF for xs.",
+    "name_pt": "Provocação",
+    "description_pt": "Atrai a atenção de todos os inimigos da área, forçando-os a atacar o desvio."
   },
   {
     "name": "Psi Bullet",
-    "description": "Fires an energy orb, dealing P.ATK DMG."
+    "description": "Fires an energy orb, dealing P.ATK DMG.",
+    "name_pt": "Projétil de PSI",
+    "description_pt": "Dispara um projétil de energia psíquica pura que causa Dano de PSI."
   },
   {
     "name": "Psi Ray",
-    "description": "Emits a beam toward the target, dealing P.ATK DMG to enemies in the path every 0.5s."
+    "description": "Emits a beam toward the target, dealing P.ATK DMG to enemies in the path every 0.5s.",
+    "name_pt": "Raio de PSI",
+    "description_pt": "Canaliza um raio de energia psíquica contínuo no alvo."
   },
   {
     "name": "Pulse Orb",
-    "description": "Launches a slow-moving electric orb, dealing SP.ATK DMG to all units in its path."
+    "description": "Launches a slow-moving electric orb, dealing SP.ATK DMG to all units in its path.",
+    "name_pt": "Orbe de Pulso",
+    "description_pt": "Invoca um orbe que emite pulsos eletrostáticos periódicos."
   },
   {
     "name": "Pulse Ray",
-    "description": "Continuously emits an elemental beam at the target, dealing DMG every 0.05s to enemies in its path. Lasts 5s."
+    "description": "Continuously emits an elemental beam at the target, dealing DMG every 0.05s to enemies in its path. Lasts 5s.",
+    "name_pt": "Raio de Pulso",
+    "description_pt": "Dispara um raio de energia comprimida que causa dano elétrico linear."
   },
   {
     "name": "Rain Arrow",
-    "description": "Fires three rain arrows, dealing SP.ATK DMG to all enemy units along the path."
+    "description": "Fires three rain arrows, dealing SP.ATK DMG to all enemy units along the path.",
+    "name_pt": "Rain Arrow",
+    "description_pt": "Fires three rain arrows, dealing SP.ATK DMG to all enemy units along the path."
   },
   {
     "name": "Rainy Peril",
-    "description": "Generates 8 rain arrows nearby to attack target, each consuming current HP to deal SP.ATK DMG."
+    "description": "Generates 8 rain arrows nearby to attack target, each consuming current HP to deal SP.ATK DMG.",
+    "name_pt": "Rainy Peril",
+    "description_pt": "Generates 8 rain arrows nearby to attack target, each consuming current HP to deal SP.ATK DMG."
   },
   {
     "name": "Rapid Charge",
-    "description": "Restores Psi Energy."
+    "description": "Restores Psi Energy.",
+    "name_pt": "Carga Rápida",
+    "description_pt": "Acelera a velocidade de recarga de energia do próprio desvio."
   },
   {
     "name": "Rapid Fire",
-    "description": "Fires 3 Bullets, dealing single-target damage. May repeat 3 or 1 times depending on success/failure."
+    "description": "Fires 3 Bullets, dealing single-target damage. May repeat 3 or 1 times depending on success/failure.",
+    "name_pt": "Disparo Rápido",
+    "description_pt": "Descarrega uma rajada rápida de projéteis contra o inimigo."
   },
   {
     "name": "Resist Death",
-    "description": "Triggers when HP is low, recovering lost HP."
+    "description": "Triggers when HP is low, recovering lost HP.",
+    "name_pt": "Resistir à Morte",
+    "description_pt": "Concede uma sobrevida temporária, impedindo que o desvio seja derrotado ao receber dano letal."
   },
   {
     "name": "Resonant Skybound",
-    "description": "Teleports next to the target, dealing P.ATK DMG and knocking them airborne."
+    "description": "Teleports next to the target, dealing P.ATK DMG and knocking them airborne.",
+    "name_pt": "Ressonância Aérea",
+    "description_pt": "Emite ondas sonoras ressonantes no ar que desestabilizam alvos voadores."
   },
   {
     "name": "Rite of Strength",
-    "description": "Sacrifices 10% of current HP to increase P.ATK and SP.ATK DMG for 6s."
+    "description": "Sacrifices 10% of current HP to increase P.ATK and SP.ATK DMG for 6s.",
+    "name_pt": "Rito de Força",
+    "description_pt": "Aumenta temporariamente os atributos físicos de ataque e defesa dos desvios aliados."
   },
   {
     "name": "Rush",
-    "description": "Charges at the target, dealing P.ATK DMG and knocking down the target."
+    "description": "Charges at the target, dealing P.ATK DMG and knocking down the target.",
+    "name_pt": "Investida",
+    "description_pt": "Investe rapidamente contra o alvo selecionado causando impacto físico."
   },
   {
     "name": "Savage Strike",
-    "description": "Performs a melee attack, dealing P.ATK DMG."
+    "description": "Performs a melee attack, dealing P.ATK DMG.",
+    "name_pt": "Golpe Selvagem",
+    "description_pt": "Desfere um golpe brutal que atordoa o inimigo por 1.5s."
   },
   {
     "name": "Self-Healing",
-    "description": "Gain a healing effect, recovering HP over 5s."
+    "description": "Gain a healing effect, recovering HP over 5s.",
+    "name_pt": "Autocura",
+    "description_pt": "O próprio desvio regenera uma porcentagem de sua vida máxima."
   },
   {
     "name": "Self-Recharge",
-    "description": "Restores Psi Energy."
+    "description": "Restores Psi Energy.",
+    "name_pt": "Autocarregamento",
+    "description_pt": "O próprio desvio regenera sua energia de PSI gradualmente."
   },
   {
     "name": "Shadow Strike",
-    "description": "Dashes forward and performs a draw slash. A crit instantly refreshes this skill."
+    "description": "Dashes forward and performs a draw slash. A crit instantly refreshes this skill.",
+    "name_pt": "Golpe Sombrio",
+    "description_pt": "Teletransporta-se através das sombras para golpear o alvo pelas costas."
   },
   {
     "name": "Shield",
-    "description": "Gains a shield based on Max HP, lasting 8s."
+    "description": "Gains a shield based on Max HP, lasting 8s.",
+    "name_pt": "Escudo",
+    "description_pt": "Invoca uma barreira protetora que bloqueia projéteis."
   },
   {
     "name": "Space Twister",
-    "description": "Deals P.ATK DMG per second to enemies within a 6m radius for 5s."
+    "description": "Deals P.ATK DMG per second to enemies within a 6m radius for 5s.",
+    "name_pt": "Tornado Espacial",
+    "description_pt": "Cria uma distorção espacial que suga inimigos para o centro do vórtice."
   },
   {
     "name": "Speed Up",
-    "description": "After casting, all general skill cooldowns are reduced by seconds."
+    "description": "After casting, all general skill cooldowns are reduced by seconds.",
+    "name_pt": "Acelerar",
+    "description_pt": "Aumenta a velocidade de movimento e ataque do desvio por 8s."
   },
   {
     "name": "Super Flammable",
-    "description": "Self-destructs after staying near the target for 5s, dealing AoE SP.ATK DMG. Has a chance to trigger when HP drops below 30%."
+    "description": "Self-destructs after staying near the target for 5s, dealing AoE SP.ATK DMG. Has a chance to trigger when HP drops below 30%.",
+    "name_pt": "Superinflamável",
+    "description_pt": "Aplica um debuff que dobra o dano sofrido por efeitos de Queimadura."
   },
   {
     "name": "Sweep",
-    "description": "Performs a melee attack in an area, dealing P.ATK DMG."
+    "description": "Performs a melee attack in an area, dealing P.ATK DMG.",
+    "name_pt": "Varrer",
+    "description_pt": "Ataque giratório em área que afasta inimigos próximos."
   },
   {
     "name": "Torpedo",
-    "description": "Fires a randomly moving fish that deals SP.ATK DMG based on the caster's Attack and applies Power Surge to enemies on collision."
+    "description": "Fires a randomly moving fish that deals SP.ATK DMG based on the caster's Attack and applies Power Surge to enemies on collision.",
+    "name_pt": "Torpedo",
+    "description_pt": "Lança um projétil explosivo de alta velocidade contra o alvo."
   },
   {
     "name": "Upper World Protection",
-    "description": "Grants shields equal to max HP to 3 allied Deviations and reflects DMG takens for 10s."
+    "description": "Grants shields equal to max HP to 3 allied Deviations and reflects DMG takens for 10s.",
+    "name_pt": "Proteção do Mundo Superior",
+    "description_pt": "Cria um escudo divino que reflete projéteis inimigos."
   },
   {
     "name": "Void Zone",
-    "description": "Creates an 8-meter radius void field around the caster that drains enemies' HP."
+    "description": "Creates an 8-meter radius void field around the caster that drains enemies' HP.",
+    "name_pt": "Zona do Vazio",
+    "description_pt": "Cria uma zona de vácuo que silencia habilidades inimigas e causa dano contínuo."
   },
   {
     "name": "Weakspot Sniper",
-    "description": "Aims at the target to deal P.ATK DMG, with a chance to deal additional damage and stun the target for 1s."
+    "description": "Aims at the target to deal P.ATK DMG, with a chance to deal additional damage and stun the target for 1s.",
+    "name_pt": "Sniper de Ponto Fraco",
+    "description_pt": "Foca nos pontos fracos do inimigo para causar dano crítico massivo."
   },
   {
     "name": "Whale Invasion",
-    "description": "Summons a ghostly giant whale that leaps out of the water and lands at the target location ahead, dealing SP.ATK DMG to enemies within a 10m radius."
+    "description": "Summons a ghostly giant whale that leaps out of the water and lands at the target location ahead, dealing SP.ATK DMG to enemies within a 10m radius.",
+    "name_pt": "Invasão da Baleia",
+    "description_pt": "Invoca o salto de uma baleia gigante de água que esmaga os inimigos na área."
   },
   {
     "name": "Whirlwind Slash",
-    "description": "Performs a melee attack in a wide area, dealing P.ATK DMG."
+    "description": "Performs a melee attack in a wide area, dealing P.ATK DMG.",
+    "name_pt": "Corte de Furacão",
+    "description_pt": "Gira com lâminas cortando inimigos ao redor de forma contínua."
   },
   {
     "name": "Wild Shot",
-    "description": "Unleashes a barrage of shots in front, dealing multiple instances of Physical DMG to targets in range."
+    "description": "Unleashes a barrage of shots in front, dealing multiple instances of Physical DMG to targets in range.",
+    "name_pt": "Disparo Selvagem",
+    "description_pt": "Disparos aleatórios e rápidos em cone de alta cadência."
   }
 ]

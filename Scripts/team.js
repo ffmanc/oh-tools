@@ -114,15 +114,22 @@ function renderTeamSlots() {
         const div = document.createElement('div');
         
         if (data) {
-            // Apply accents
-            const techTags = data.s.map(tech => `<span class="uni-tag tag-tech">${tech}</span>`).join('');
-            const traitTags = data.t.map(trait => `<span class="uni-tag tag-trait">${trait.n}</span>`).join('');
+            // Apply accents with localized translations
+            const localDevName = typeof translateDeviationName === 'function' ? translateDeviationName(data.d) : data.d;
+            const techTags = data.s.map(tech => {
+                const trans = typeof translateTechnique === 'function' ? translateTechnique(tech) : { name: tech };
+                return `<span class="uni-tag tag-tech">${trans.name}</span>`;
+            }).join('');
+            const traitTags = data.t.map(trait => {
+                const trans = typeof translateTrait === 'function' ? translateTrait(trait.n) : { name: trait.n };
+                return `<span class="uni-tag tag-trait">${trans.name}</span>`;
+            }).join('');
 
             div.className = `team-slot ${isActive ? 'active-slot' : ''}`;
             
             div.innerHTML = `
                 <div class="card-header">
-                    <span class="card-title">${data.d}</span>
+                    <span class="card-title">${localDevName}</span>
                     <button class="btn-close" onclick="deleteTeamMember(event, ${i})">✕</button>
                 </div>
                 <div class="tag-list">${techTags}</div>
@@ -138,3 +145,4 @@ function renderTeamSlots() {
         container.appendChild(div);
     }
 }
+

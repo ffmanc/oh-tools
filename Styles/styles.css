@@ -401,3 +401,59 @@ tr:hover { background-color: #2a2a2a; }
         justify-content: center;
     }
 }
+
+/* Form Group Styles */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 12px;
+}
+.form-group label {
+    font-size: 0.85rem;
+    color: #aaa;
+    font-weight: 600;
+}
+.form-group input {
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    color: white;
+    padding: 8px 10px;
+    border-radius: var(--radius);
+}
+.form-group input:focus {
+    outline: none;
+    border-color: var(--accent);
+}
+
+/* Badges and Loader */
+.badge {
+    background: #3e3e42;
+    color: #e0e0e0;
+    font-size: 0.75rem;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-weight: 600;
+}
+.loading-spinner {
+    text-align: center;
+    padding: 25px;
+    color: var(--accent);
+    font-weight: bold;
+}
+.error-msg {
+    color: var(--danger);
+    font-weight: bold;
+    padding: 10px;
+}
+
+/* Suggest Button microanimation */
+.suggest-btn {
+    transition: transform 0.2s, opacity 0.2s;
+}
+.suggest-btn:hover {
+    transform: scale(1.2);
+    opacity: 1 !important;
+    color: var(--accent);
+}
+

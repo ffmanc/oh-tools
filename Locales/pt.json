@@ -1,0 +1,1173 @@
+{
+  "deviations": {
+    "Atomic Lighter": "Atomic Lighter",
+    "Atomic Snail": "Atomic Snail",
+    "Butterfly Emissary": "Butterfly Emissary",
+    "Buzzy Bee": "Buzzy Bee",
+    "By-the-Wind": "By-the-Wind",
+    "Chaos Extradimensional Cat": "Chaos Extradimensional Cat",
+    "Chaos Mr Wish": "Chaos Mr Wish",
+    "Chaosaurus": "Chaosaurus",
+    "Chaos Snowsprite": "Chaos Snowsprite",
+    "Chefosaurus Rex": "Chefosaurus Rex",
+    "Digby Boy": "Digby Boy",
+    "Disco Ball": "Disco Ball",
+    "Director Fox": "Director Fox",
+    "Doctor Raven": "Doctor Raven",
+    "Dr-Teddy": "Dr-Teddy",
+    "Dreamcatcher": "Dreamcatcher",
+    "Electric Eel": "Electric Eel",
+    "Enchanting Void": "Enchanting Void",
+    "Extradimensional Cat": "Extradimensional Cat",
+    "Festering Gel": "Festering Gel",
+    "Fetch-lot-Bunny": "Fetch-lot-Bunny",
+    "Flame Essence": "Flame Essence",
+    "Frog the Leaper": "Frog the Leaper",
+    "Gazocchio": "Gazocchio",
+    "Gingerbread House": "Gingerbread House",
+    "Growshroom": "Growshroom",
+    "Grumpy Bulb": "Grumpy Bulb",
+    "Hydronaut": "Hydronaut",
+    "H37": "H37",
+    "Hug-in-a-Bowl": "Hug-in-a-Bowl",
+    "Ice Pot": "Ice Pot",
+    "Invincible Sun": "Invincible Sun",
+    "Lethal Rabbit": "Lethal Rabbit",
+    "Logging Beaver": "Logging Beaver",
+    "Lonewolf Whisper": "Lonewolf Whisper",
+    "Masonic Pyramid": "Masonic Pyramid",
+    "Mini Feaster": "Mini Feaster",
+    "Mini Wonder": "Mini Wonder",
+    "Mr Wish": "Mr Wish",
+    "Nutcracker": "Nutcracker",
+    "Orb Lightning": "Orb Lightning",
+    "Paper Doll": "Paper Doll",
+    "Party Monkey": "Party Monkey",
+    "Polar Jelly": "Polar Jelly",
+    "Pup Buddy": "Pup Buddy",
+    "Pyro Dino": "Pyro Dino",
+    "Rainman": "Rainman",
+    "Rebecca": "Rebecca",
+    "Shattered Maiden": "Shattered Maiden",
+    "Snow Globe": "Snow Globe",
+    "Snowsprite": "Snowsprite",
+    "Soul Summoner": "Soul Summoner",
+    "Space Turner": "Space Turner",
+    "Strange Door": "Strange Door",
+    "Tar Pudding": "Tar Pudding",
+    "Upper World Spawn": "Upper World Spawn",
+    "Voodoo Doll": "Voodoo Doll",
+    "Whalepup": "Whalepup",
+    "ZapCam": "ZapCam",
+    "Zapamander": "Zapamander",
+    "Zeno Purifier": "Zeno Purifier"
+  },
+  "traits": {
+    "Upper Hand": {
+      "name": "Vantagem Suprema",
+      "description": "Quando a Energia chega a 0, consome automaticamente Vitalidade para recuperar Energia."
+    },
+    "Stable Energy": {
+      "name": "Energia Estável",
+      "description": "Limite máximo de Energia aumentado em 30."
+    },
+    "Stable Vitality": {
+      "name": "Vitalidade Estável",
+      "description": "Limite máximo de Pontos de Atividade aumentado em 30."
+    },
+    "Optimist": {
+      "name": "Otimista",
+      "description": "Humor máximo +15% / +20% / +25% / +30% / +35% (Níveis 1-5)"
+    },
+    "Covert Energy": {
+      "name": "Energia Oculta",
+      "description": "Poder de Mutação máximo +10 / +20 / +25 / +30 / +35 (Níveis 1-5)"
+    },
+    "Power Rewind": {
+      "name": "Reverter de Poder",
+      "description": "Velocidade de recuperação do Poder de Mutação +5% / +10% (Níveis 1-2)"
+    },
+    "Rise and Shine": {
+      "name": "Desperte e Brilhe",
+      "description": "Velocidade de recuperação do Humor +5% / +10% / +15% / +20% / +25% (Níveis 1-5)"
+    },
+    "Growing Pains": {
+      "name": "Dores de Crescimento",
+      "description": "Poder de Mutação máximo +30% / +40% / +50%; velocidade de recuperação do Humor -5% (Níveis 1-3)"
+    },
+    "Cheer Up": {
+      "name": "Anime-se",
+      "description": "Humor máximo +30% / +40% / +50%; Reverter de Poder de Mutação -5% (Níveis 1-3)"
+    },
+    "Worn-out": {
+      "name": "Desgastado",
+      "description": "Poder de Mutação máximo -5% / -10% (Níveis 1-2)"
+    },
+    "Feeling Blue": {
+      "name": "Triste",
+      "description": "Pontos de Atividade máximos -5% / -10% (Níveis 1-2)"
+    },
+    "Psychic Kid": {
+      "name": "Criança Psíquica",
+      "description": "Quando luta ao lado, concede +5% de Dano de Status."
+    },
+    "Crack Shot": {
+      "name": "Tiro Preciso",
+      "description": "Quando luta ao lado, concede +5% de Dano de Arma."
+    },
+    "Heavy and Solid": {
+      "name": "Pesado e Sólido",
+      "description": "Carga maior concede maior redução de dano para o torso, até +15%."
+    },
+    "Run Fast": {
+      "name": "Corra Rápido",
+      "description": "Sincronizando concede Velocidade de Movimento +5%"
+    },
+    "Power King": {
+      "name": "Rei do Poder",
+      "description": "Sincronizando concede Max Load +25, Velocidade de Movimento -5%"
+    },
+    "Brute Force": {
+      "name": "Força Bruta",
+      "description": "Sincronizando concede Max Load +15, Velocidade de Movimento -5%"
+    },
+    "Long Distance Runner": {
+      "name": "Corredor de Longa Distância",
+      "description": "Sincronizando concede consumo de Stamina -20%, Velocidade de Movimento -10%"
+    },
+    "Save Energy": {
+      "name": "Economize Energia",
+      "description": "Sincronizando concede consumo de Stamina -10%, Velocidade de Movimento -5%"
+    },
+    "Vegatative Calm": {
+      "name": "Calma Vegetativa",
+      "description": "Sincronizando concede Max Stamina +15, Velocidade de Movimento -5%"
+    },
+    "Beast of Burden": {
+      "name": "Animal de Carga",
+      "description": "Sincronizando concede Max Load +8"
+    },
+    "City Folk": {
+      "name": "Cidadão Urbano",
+      "description": "Sincronizando concede Max Load +15 ao explorar Assentamentos"
+    },
+    "Durability": {
+      "name": "Durabilidade",
+      "description": "Sincronizando concede consumo de Stamina -5%"
+    },
+    "Move More, Live Better": {
+      "name": "Corra Mais, Viva Melhor",
+      "description": "Progresso de Segurança +1 a cada 8 segundos correndo"
+    },
+    "Street Rascal": {
+      "name": "Rascal da Rua",
+      "description": "Sincronizando concede Velocidade de Movimento +10% em Assentamentos"
+    },
+    "Two-Shift System": {
+      "name": "Sistema de Dois Turnos",
+      "description": "Sincronizando concede Max Load +16 de dia, Velocidade de Movimento +12% à noite"
+    },
+    "Stay Indoors": {
+      "name": "Fique em Casa",
+      "description": "Sincronizando concede +8% de consumo de Stamina em Assentamentos"
+    },
+    "Wellbeing": {
+      "name": "Bem-estar",
+      "description": "Sincronizando concede Max Stamina +10"
+    },
+    "Sedantary": {
+      "name": "Sedentário",
+      "description": "Sincronizando concede Max Load -8 ao explorar Assentamentos."
+    },
+    "Lighten Your Mind": {
+      "name": "Leve Sua Mente",
+      "description": "Carga menor concede maior redução de dano para a cabeça, até +15%"
+    },
+    "Elemental DMG Reduction": {
+      "name": "Redução de Dano Elemental",
+      "description": "Redução de Dano Elemental +12% / +17% / +22% (Níveis 1-3)"
+    },
+    "Physical DMG Reduction": {
+      "name": "Redução de Dano Físico",
+      "description": "Redução de Dano Físico +12% / +17% / +22% (Níveis 1-3)"
+    },
+    "Elemental DMG Bonus": {
+      "name": "Bônus de Dano Elemental",
+      "description": "Bônus de Dano Elemental +15% / +21% / +27% (Níveis 1-3)"
+    },
+    "Physical DMG Bonus": {
+      "name": "Bônus de Dano Físico",
+      "description": "Bônus de Dano Físico +15% / +21% / +27% (Níveis 1-3)"
+    },
+    "Attack": {
+      "name": "Ataque",
+      "description": "Ataque +28 / +38 / +50 (Níveis 1-3)"
+    },
+    "Attack Percentage": {
+      "name": "Percentual de Ataque",
+      "description": "Ataque +10% / +14% / +18% (Níveis 1-3)"
+    },
+    "HP": {
+      "name": "PS (Vida)",
+      "description": "Pontos de Saúde +2350 / +3300 / +4250 (Níveis 1-3)"
+    },
+    "HP Percentage": {
+      "name": "Percentual de PS",
+      "description": "Pontos de Saúde +10% / +14% / +18% (Níveis 1-3)"
+    },
+    "Crit Damage": {
+      "name": "Dano Crítico",
+      "description": "Dano Crítico +36% / +50% / +64% (Níveis 1-3)"
+    },
+    "Crit Rate": {
+      "name": "Taxa Crítica",
+      "description": "Taxa Crítica +18% / +25% / +32% (Níveis 1-3)"
+    },
+    "Anti-Burnout": {
+      "name": "Anti-Exaustão",
+      "description": "Quando a Mutação está em repouso recuperando Poder de Mutação, há 20% de chance de outras Mutações Territoriais receberem +5 de Poder."
+    },
+    "Dream Wild": {
+      "name": "Sonho Selvagem",
+      "description": "Quando a Mutação está em repouso recuperando Poder de Mutação, há 10% de chance de outras Mutações Territoriais receberem +10 de Poder de Mutação."
+    },
+    "A World of Charm": {
+      "name": "Um Mundo de Encanto",
+      "description": "Quando a Mutação está em repouso recuperando Humor, há 10% de chance de outras Mutações Territoriais receberem +20 de Humor."
+    },
+    "Sweet Talk": {
+      "name": "Lero-Lero",
+      "description": "Quando a Mutação está em repouso recuperando Humor, há 20% de chance de outras Mutações Territoriais receberem +5 de Humor."
+    },
+    "Hydrophilic": {
+      "name": "Hidrofílico",
+      "description": "Quando descansando perto da água, a Velocidade de Recuperação de Energia aumenta em 30%."
+    },
+    "Devoted laborer": {
+      "name": "Trabalhador Dedicado",
+      "description": "Aumenta em 20% a velocidade de consumo de Humor e Poder de Mutação para Mutações Territoriais em operação."
+    },
+    "Workaholic": {
+      "name": "Viciado em Trabalho",
+      "description": "Consumo de Humor e Poder de Mutação +10% para Mutações Territoriais em operação."
+    },
+    "Water Dormancy": {
+      "name": "Dormência na Água",
+      "description": "Quando descansando perto da água, a velocidade de recuperação de humor aumenta em 30%."
+    },
+    "Voluntary Overtime": {
+      "name": "Hora Extra Voluntária",
+      "description": "10% de chance de que o trabalho não consuma Humor."
+    },
+    "Living Map": {
+      "name": "Mapa Vivo",
+      "description": "Intervalo de produção de recursos reduzido em 5% para Mutações Territoriais."
+    },
+    "Stardust Affinity": {
+      "name": "Afinidade com Poeira Estelar",
+      "description": "Quando as Mutações Territoriais estão trabalhando na Zona de Poluição, há 20% de chance de não consumir Vitalidade."
+    },
+    "OnePlus": {
+      "name": "Mais Um",
+      "description": "Quando as Mutações Territoriais retornam com recursos, há 5% de chance de eles trazerem cristais raros de volta. No entanto, o tempo de retorno necessário é aumentado."
+    },
+    "Imperfect Endless Motion": {
+      "name": "Movimento Infinito Imperfeito",
+      "description": "Há 10% de chance de que o trabalho não consuma Poder de Mutação."
+    },
+    "Lazy Bones": {
+      "name": "Preguiçoso (Lazy Bones)",
+      "description": "Velocidade de trabalho -5% para Mutações Territoriais."
+    },
+    "Panovision": {
+      "name": "Visão Panorâmica",
+      "description": "Velocidade de trabalho -10% para Mutações Territoriais."
+    },
+    "Slacking Off": {
+      "name": "Vadiando (Slacking Off)",
+      "description": "Velocidade de consumo de Humor e Poder de Mutação +5% para Mutações Territoriais em operação."
+    },
+    "Baffling Behavior": {
+      "name": "Comportamento Confuso",
+      "description": "Quando seu Poder de Mutação diminui, há 10% de chance de outras Mutações Territoriais também perderem Poder."
+    },
+    "Holding the Team Back": {
+      "name": "Segurando a Equipe",
+      "description": "Quando seu Humor diminui, há 10% de chance de outras Mutações Territoriais também perderem Humor."
+    },
+    "Heartthrob": {
+      "name": "Coração Palpitante",
+      "description": "Quando seu Poder de Mutação diminui, há 10% de chance de outras perderem Poder. Em repouso, 10% de chance de outras ganharem +5 de Humor."
+    },
+    "Snooze Afficionado": {
+      "name": "Aficionado por Soneca",
+      "description": "Quando seu Humor diminui, há 10% de chance de outras perderem Humor. Em repouso, 10% de chance de outras ganharem +5 de Poder."
+    },
+    "Toxicologist": {
+      "name": "Toxicologista",
+      "description": "Mutações Territoriais podem trazer Ácido de volta."
+    },
+    "An old Hand Knows the Ropes": {
+      "name": "Veterano Conhece os Macetes",
+      "description": "Consumo mais rápido de Humor/Poder, Velocidade de Trabalho +10% para Mutações Territoriais."
+    },
+    "Waste Not": {
+      "name": "Sem Desperdício",
+      "description": "Quando a Pontuação de Atividade de Mutação estiver acima de 90%, há 5% de chance de aumentar o Poder de Mutação em 10 pontos ao gerar recursos."
+    },
+    "Leftover": {
+      "name": "Sobra",
+      "description": "Pontuação de Atividade >20%, 10% de chance de aumentar Poder de outras em 1. Energia -20%, Armazenamento Máximo -20%."
+    },
+    "Byproduct": {
+      "name": "Subproduto",
+      "description": "Quando a Pontuação de Atividade de Mutação estiver acima de 90%, há 10% de chance de aumentar o Poder de Mutação em 2 pontos ao gerar recursos."
+    },
+    "Efficiency Above All": {
+      "name": "Eficiência Acima de Tudo",
+      "description": "Velocidade de Fabricação +20%, capacidade máxima de armazenamento -30%."
+    },
+    "Stardust Empowerment": {
+      "name": "Fortalecimento Estelar",
+      "description": "Trabalhando na Zona de Poluição, há 20% de chance de não consumir Energia."
+    },
+    "Speed Up": {
+      "name": "Acelerar",
+      "description": "O intervalo de produção de recursos para Fabricação é reduzido em 10%."
+    },
+    "Productivity First": {
+      "name": "Produtividade Primeiro",
+      "description": "O intervalo de produção de recursos para Fabricação é reduzido em 5%."
+    },
+    "Collection +1": {
+      "name": "Coleta +1",
+      "description": "5% de chance de Produção +2, velocidade de fabricação -20%."
+    },
+    "Eureka Moment": {
+      "name": "Momento Eureka",
+      "description": "1% de chance de produzir 10 unidades extras, mas intervalo aumentado em 50%."
+    },
+    "The Joy of Slacking Off": {
+      "name": "A Alegria de Vadiar",
+      "description": "10% de chance de fabricar consumindo 0 de Humor, velocidade -20%."
+    },
+    "Unhinged Production": {
+      "name": "Produção Desenfreada",
+      "description": "Atividade <20%, consome 1 de Poder de outras para produzir 2 unidades extras."
+    },
+    "Unplanned Production": {
+      "name": "Produção Não Planejada",
+      "description": "10% de chance de fabricar consumindo 0 de Poder, velocidade -20%."
+    },
+    "Big Cup": {
+      "name": "Copo Grande",
+      "description": "Capacidade limite durante a Fabricação +20%."
+    },
+    "Buy 1 Get 2": {
+      "name": "Compre 1 Leve 2",
+      "description": "Ao gerar recursos, a Fabricação tem 5% de chance de produzir 1 unidade adicional."
+    },
+    "Come As One": {
+      "name": "Venham Como Um Só",
+      "description": "Quando as Mutações de Fabricação produzem recursos, adiciona 1 unidade à produção para cada Mutação de Território no Território."
+    },
+    "Efficiency First": {
+      "name": "Eficiência Primeiro",
+      "description": "O intervalo de produção de recursos para Fabricação é reduzido em 5%."
+    },
+    "Medium Cup": {
+      "name": "Copo Médio",
+      "description": "Capacidade máxima de armazenamento +10%."
+    },
+    "Mineral Talent": {
+      "name": "Talento Mineral",
+      "description": "Dentro do Campo de Petróleo, há 20% de chance de aumentar a produção em 1."
+    },
+    "One More Bottle": {
+      "name": "Mais Uma Garrafa",
+      "description": "2% de chance de produzir 2 unidades extras."
+    },
+    "Out of Scratch": {
+      "name": "Do Zero",
+      "description": "Quando as Mutações de Fabricação produzem recursos, há 3% de chance de não consumir Poder de Mutação."
+    },
+    "Piece of Cake": {
+      "name": "Pequeno Ajudante",
+      "description": "Quando as Mutações de Fabricação produzem recursos, há 5% de chance de não consumir Pontos de Atividade."
+    },
+    "Super Big Cup": {
+      "name": "Super Copão",
+      "description": "A capacidade limite durante a Fabricação aumenta em 30%."
+    },
+    "The Last Night": {
+      "name": "A Última Noite",
+      "description": "O intervalo de produção de recursos para Fabricação é reduzido em 15%."
+    },
+    "Work of Proficiency": {
+      "name": "Obra da Proficiência",
+      "description": "Quando as Mutações de Fabricação produzem recursos, há 5% de chance de não consumir Poder de Mutação."
+    },
+    "Clumsy": {
+      "name": "Desajeitado",
+      "description": "5% de chance de Produção de Fabricação -1."
+    },
+    "No Such Thing As a Small Cup": {
+      "name": "Copo Pequeno Não Existe",
+      "description": "Capacidade máxima de armazenamento -10%."
+    },
+    "Lazy": {
+      "name": "Preguiçoso (Lazy)",
+      "description": "Velocidade de Fabricação -10%."
+    },
+    "Smooth Sheep Rustler": {
+      "name": "Ladrão de Ovelhas Manso",
+      "description": "Quando Pontuação de Atividade <20%, consome 5 de Poder de outras Mutações para gerar recursos."
+    },
+    "Moonlight Assault": {
+      "name": "Ataque à Luz da Lua",
+      "description": "À noite, a recuperação de Energia Desviante e de Humor é aumentada em 15%."
+    },
+    "Feline Creatures": {
+      "name": "Criaturas Felinas",
+      "description": "Após sincronizar, dano de queda é reduzido em 50% e fraturas são prevenidas."
+    },
+    "Brute Force Rules": {
+      "name": "Regras da Força Bruta",
+      "description": "Durante a produção, têm 10% de chance de dobrar a produção de recursos."
+    },
+    "Foul Symbiosis": {
+      "name": "Simbiose Ruim",
+      "description": "Ao ajudar a matar Desviantes, o loot tem 10% de chance de conceder +1 Ácido."
+    },
+    "Polar Beast": {
+      "name": "Animal Polar",
+      "description": "Quando a temperatura ambiental está abaixo de 0°C, o ataque aumenta 10%."
+    },
+    "Top Grunt": {
+      "name": "Grunhido Superior",
+      "description": "Quando a Energia Desviante cai para 10%, converte automaticamente Humor em Energia Desviante para continuar trabalhando."
+    },
+    "Nightmare Waters": {
+      "name": "Pesadelo das Águas",
+      "description": "Após sincronizar, consumo de Stamina é significativamente reduzido ao mergulhar, e Oxigênio é muito aumentado."
+    },
+    "Mind Massage": {
+      "name": "Massagem Mental",
+      "description": "Após sincronizar, Sanidade se recupera gradualmente."
+    },
+    "Herbivore": {
+      "name": "Herbívoro",
+      "description": "Após sincronizar, herbívoros próximos não fogem do jogador."
+    },
+    "Pollution Adaptation": {
+      "name": "Adaptação à Poluição",
+      "description": "Sanidade cai 90% mais devagar na Zona de Poluição."
+    },
+    "Precision Moment": {
+      "name": "Momento de Precisão",
+      "description": "Aumenta Humor e Energia Desviante em 10 para todas as Desviações da área a cada hora."
+    },
+    "Master of Temperatures": {
+      "name": "Master of Temperatures",
+      "description": "Players gain 10 Heat Resist within territory."
+    },
+    "Knights of the Round Table": {
+      "name": "Cavaleiros da Távola Redonda",
+      "description": "Sua Defesa aumenta em 5% e o consumo de Energia Desviante é reduzido quando atingido."
+    },
+    "Warm Flame": {
+      "name": "Chama Quente",
+      "description": "Resistência ao Frio +10 dentro do território."
+    },
+    "Extra Load": {
+      "name": "Carga Extra",
+      "description": "Aumenta capacidade de armazenamento de Produções em 15%."
+    },
+    "Music Resonance": {
+      "name": "Ressonância Musical",
+      "description": "Não requer rádio para a caixa de segurança da Desviação."
+    },
+    "Clean and Hygienic": {
+      "name": "Limpa e Higienizada",
+      "description": "Sanidade não cairá abaixo de 20% dentro do território."
+    },
+    "Neon Flicker": {
+      "name": "Cintilação de Néon",
+      "description": "Para cada Desvio com a característica Cintilação de Néon no território, o Humor máximo de todos os Desvios aumenta em 1."
+    },
+    "Gilded Oracle": {
+      "name": "Oráculo Dourado",
+      "description": "Mutações Territoriais podem trazer Minérios adicionais de volta."
+    },
+    "Wild Wood Spirit": {
+      "name": "Wild Wood Spirit",
+      "description": "When bringing back resources, 5% chance to bring a deviated flower."
+    },
+    "Milk Sugar": {
+      "name": "Açúcar de Leite",
+      "description": "Ganha humor máximo +35%"
+    },
+    "Marine Star": {
+      "name": "Estrela Marinha",
+      "description": "Cada recarga dá um bônus de 5% de Dano de Arma ou 5% de Dano de Status aleatório."
+    },
+    "Spring Rose": {
+      "name": "Rosa de Primavera",
+      "description": "Sincronizado: cura recebida +20% de dia, +10% à noite."
+    },
+    "Ancient Scroll": {
+      "name": "Pergaminho Antigo",
+      "description": "Ganha energia máxima +40%."
+    },
+    "Glistening Blue": {
+      "name": "Azul Brilhante",
+      "description": "Sincronizado: atingir um Ponto Fraco aumenta o progresso seguro em 1. Cooldown: 3s."
+    },
+    "Starry Night": {
+      "name": "Noite Estrelada",
+      "description": "Sincronizado: causa +6% de dano à noite, metade do efeito de dia."
+    },
+    "Aquarius": {
+      "name": "Aquário",
+      "description": "Ganha velocidade de recuperação de humor +30%."
+    },
+    "Gluttonous Bunny": {
+      "name": "Coelhinho Glutão",
+      "description": "Ganha velocidade de recuperação de energia +15%."
+    },
+    "Dark Rebel": {
+      "name": "Rebelde Sombrio",
+      "description": "Ao explorar, tem chance de trazer Ácido de volta."
+    },
+    "Alice": {
+      "name": "Alice",
+      "description": "Ao explorar, tem 10% de chance de trazer Ácido de volta."
+    },
+    "Violet Robe": {
+      "name": "Manto Violeta",
+      "description": "Ganha energia máxima +40%."
+    },
+    "Extra Large": {
+      "name": "Extragrande",
+      "description": "Ganha humor máximo +40%."
+    },
+    "Green Touch": {
+      "name": "Toque Verde",
+      "description": "Trabalhando na Zona de Poluição, tem 25% de chance de não consumir energia."
+    },
+    "Green Field": {
+      "name": "Campo Verde",
+      "description": "Limite máximo de energia aumentado em 10."
+    },
+    "Copper Green": {
+      "name": "Verde Cobre",
+      "description": "Poder de Mutação máximo +7%."
+    },
+    "Tin Soldier": {
+      "name": "Soldadinho de Chumbo",
+      "description": "Ganha energia máxima +35."
+    },
+    "Twisted Fairy Tale": {
+      "name": "Conto de Fadas Distorcido",
+      "description": "Ganha energia máxima +40%."
+    },
+    "Displaced Fairy Tale": {
+      "name": "Conto de Fadas Deslocado",
+      "description": "Ganha energia máxima +40%."
+    },
+    "Wood Yellow": {
+      "name": "Madeira Amarela",
+      "description": "Velocidade de recuperação de humor +7%."
+    },
+    "Clear Lake": {
+      "name": "Lago Claro",
+      "description": "Velocidade de recuperação do Poder de Mutação +7%."
+    },
+    "Purple (Power Rewind)": {
+      "name": "Roxo (Recuperação de Energia)",
+      "description": "Ganha velocidade de recuperação de energia +15%."
+    },
+    "Date Brown": {
+      "name": "Marrom Tâmara",
+      "description": "Humor máximo +7%."
+    },
+    "Golden Era": {
+      "name": "Era de Ouro",
+      "description": "Ganha humor máximo +35."
+    },
+    "Silver Gentleman": {
+      "name": "Cavalheiro Prateado",
+      "description": "Ao recuperar humor em repouso, 25% de chance de restaurar 10 de humor para outras mutações territoriais."
+    },
+    "Diamond Duke": {
+      "name": "Duque de Diamante",
+      "description": "5% de chance de não consumir Poder de Mutação ao trabalhar na Zona de Poluição."
+    },
+    "Diamond Count": {
+      "name": "Conde de Diamante",
+      "description": "5% de chance de não consumir energia ao trabalhar na Zona de Poluição."
+    },
+    "Ocean Blue": {
+      "name": "Azul Oceano",
+      "description": "Trabalhando na Zona de Poluição, 30% de chance de não consumir humor."
+    },
+    "Christmas": {
+      "name": "Natal",
+      "description": "Durante o trabalho, intervalo de consumo de energia e humor +5%."
+    },
+    "Sugar Guard": {
+      "name": "Guarda de Açúcar",
+      "description": "Há 3% de chance de que o trabalho não consuma humor."
+    },
+    "Admiral": {
+      "name": "Almirante",
+      "description": "Há 3% de chance de que o trabalho não consuma Poder de Mutação."
+    },
+    "Elegant Purple": {
+      "name": "Roxo Elegante",
+      "description": "Quando ativado e trabalhando, 20% de chance de não consumir Poder de Mutação."
+    },
+    "Dappled Light": {
+      "name": "Luz Suave",
+      "description": "Ao trabalhar, ganha intervalo de consumo de energia e humor +20%."
+    },
+    "Good Fortune": {
+      "name": "Boa Sorte",
+      "description": "Ganha humor máximo +40%."
+    },
+    "Moonlit Jewels": {
+      "name": "Joias ao Luar",
+      "description": "Em repouso de energia, 20% de chance de restaurar 15 de poder para outras mutações territoriais."
+    },
+    "Heavy Ginger": {
+      "name": "Gengibre Pesado",
+      "description": "Descansando perto da água, ganha velocidade de recuperação de humor +35%."
+    },
+    "Emerald": {
+      "name": "Esmeralda",
+      "description": "Ganha velocidade de recuperação de energia +10%."
+    },
+    "Fortune Dice": {
+      "name": "Dado da Sorte",
+      "description": "Um dado que nunca te decepciona. Poder de Mutação máximo +6%."
+    },
+    "Pure Gold": {
+      "name": "Ouro Puro",
+      "description": "Ao explorar, tem chance de trazer minérios adicionais."
+    },
+    "Prism": {
+      "name": "Prisma",
+      "description": "Quando ativado e trabalhando, tem 15% de chance de não consumir humor."
+    },
+    "Radiant Flourish": {
+      "name": "Florescer Radiante",
+      "description": "Aumenta humor máximo em 8%."
+    },
+    "Pumpkin Lantern": {
+      "name": "Lanterna de Abóbora",
+      "description": "Poder de Mutação máximo +10%."
+    },
+    "Pharaoh": {
+      "name": "Faraó",
+      "description": "Ganha velocidade de recuperação de humor +30%."
+    },
+    "Bursting Magma": {
+      "name": "Magma Explosivo",
+      "description": "Ganha energia máxima +40%."
+    },
+    "Distant Tears": {
+      "name": "Lágrimas Distantes",
+      "description": "Ganha energia máxima +40%."
+    },
+    "Radiant Variant": {
+      "name": "Variante Radiante",
+      "description": "Ganha humor máximo +7%."
+    },
+    "Frigid Touch": {
+      "name": "Toque Gélido",
+      "description": "Ganha velocidade de recuperação de energia +15%."
+    },
+    "Wandering Witch": {
+      "name": "Bruxa Errante",
+      "description": "Velocidade de fabricação +15%."
+    },
+    "Golden Toad": {
+      "name": "Sapo Dourado",
+      "description": "Ganha velocidade de recuperação de energia +20%."
+    },
+    "Prince": {
+      "name": "Príncipe",
+      "description": "Aumenta humor máximo em 35%."
+    },
+    "White Cliff Remnants": {
+      "name": "Penhasco Branco",
+      "description": "Redução de consumo de energia ao patrulhar."
+    },
+    "Fluffy Curse": {
+      "name": "Maldição Fofinha",
+      "description": "Ganha velocidade de recuperação de humor +25%."
+    },
+    "Infrasonic Illusion": {
+      "name": "Ilusão Infrassônica",
+      "description": "Taquicardia ou bônus sonoro."
+    },
+    "Spring's Return": {
+      "name": "Retorno da Primavera",
+      "description": "Cura em área aumentada em 15%."
+    },
+    "Fool's Memory": {
+      "name": "Memória do Tolo",
+      "description": "Aumenta o limite máximo de armazenamento."
+    },
+    "Light Rain": {
+      "name": "Chuva Leve",
+      "description": "Recuperação constante de sanidade."
+    },
+    "Childlike Whimsy": {
+      "name": "Capricho Infantil",
+      "description": "Aumenta a velocidade de movimento."
+    },
+    "Radiance": {
+      "name": "Radiância",
+      "description": "Aumenta o dano crítico em combate."
+    },
+    "Fine Brew": {
+      "name": "Bebida Fina",
+      "description": "Melhora a eficiência de fabricação de elixires."
+    },
+    "Gold Lightning": {
+      "name": "Raio de Ouro",
+      "description": "Dano elemental de choque aumentado."
+    },
+    "Prototype": {
+      "name": "Protótipo",
+      "description": "Aumenta todos os atributos em 5%."
+    },
+    "Witch's Beloved": {
+      "name": "Amado da Bruxa",
+      "description": "Velocidade de movimento aumentada sob escudos."
+    },
+    "Star Devourer": {
+      "name": "Devorador de Estrelas",
+      "description": "Velocidade de regeneração do escudo aumentada."
+    },
+    "Malevolent Sun": {
+      "name": "Sol Malévolo",
+      "description": "Aumenta o dano contra alvos inflamados."
+    },
+    "Christmas Spirit": {
+      "name": "Espírito de Natal",
+      "description": "Aumenta a velocidade de trabalho em 12%."
+    },
+    "Chaosaurus": {
+      "name": "Chaosaurus",
+      "description": "Chaos trait with extremely high Dex Value (Deviation Secure Scenario)"
+    },
+    "Chaos Mr. Wish": {
+      "name": "Chaos Mr. Wish",
+      "description": "Chaos trait with extremely high Dex Value (Deviation Secure Scenario)"
+    },
+    "Chaos Snowsprite": {
+      "name": "Chaos Snowsprite",
+      "description": "Chaos trait with extremely high Dex Value (Deviation Secure Scenario)"
+    },
+    "Chaos Cat": {
+      "name": "Chaos Cat",
+      "description": "Chaos trait with extremely high Dex Value (Deviation Secure Scenario)"
+    },
+    "Lunar Oracle": {
+      "name": "Lunar Oracle",
+      "description": "While working, energy and Activity Score consumption interval +20%"
+    },
+    "Starfall Inversion": {
+      "name": "Starfall Inversion",
+      "description": "Restores 1 Power/8s (1.5 when airborne)"
+    },
+    "Aberrant Progeny": {
+      "name": "Aberrant Progeny",
+      "description": "Has a 30% chance of yielding +1 resource when in a Pollution Zone."
+    }
+  },
+  "techniques": {
+    "Agni's Emissary": {
+      "name": "Emissária de Agni",
+      "description": "Rebecca lança 3 borboletas de fogo em até 3 inimigos próximos, causando Dano Elemental multi-hit a um único alvo. Reduz muito a resistência ao atingir."
+    },
+    "Animal Expert": {
+      "name": "Especialista em Animais",
+      "description": "Invoca aleatoriamente um lobo, urso ou leopardo por 18s. Eles realizam ataques corpo a corpo."
+    },
+    "Arrow Storm": {
+      "name": "Tempestade de Flechas",
+      "description": "Invoca uma chuva de flechas que dura 2,3s, causando 20% de Dano de Ataque Especial (SP.ATK) a cada 0,2s a alvos inimigos dentro de uma área de 7x7 metros."
+    },
+    "Beaver Combo": {
+      "name": "Combo de Castor",
+      "description": "Realiza um combo de 6 golpes, cada golpe causando Dano de Ataque Físico (P.ATK) e empurrando o alvo de volta."
+    },
+    "BBQ": {
+      "name": "Churrasco",
+      "description": "Cospe fogo em direção ao alvo, causando Dano de Ataque Especial (SP.ATK) a cada 0.5s ao longo do caminho. Pode ser usado até 5 vezes seguidas."
+    },
+    "Black Cat's Gaze": {
+      "name": "Olhar do Gato Preto",
+      "description": "A cada 0.5s, drena a energia divina do alvo e restaura a mesma quantidade para você, durando 10s."
+    },
+    "Blackhole Jet": {
+      "name": "Jato de Buraco Negro",
+      "description": "Carrega por até 2s, depois dispara um feixe de buraco negro de 15m que causa 4 acertos de dano."
+    },
+    "Blade Declaration": {
+      "name": "Declaração de Lâmina",
+      "description": "Lança um dardo em uma unidade aleatória, causando Dano de Ataque Físico (P.ATK) e marcando o alvo por 15s. Marca: Quando o HP do alvo cai abaixo de 50%, o Coelho Letal causa mais dano a ele."
+    },
+    "Blink": {
+      "name": "Blink (Piscar)",
+      "description": "Teletransporta-se instantaneamente para trás do alvo, aumentando o próximo Dano de Ataque Físico (P.ATK) causado."
+    },
+    "Blink Strike": {
+      "name": "Ataque de Blink",
+      "description": "Seleciona aleatoriamente um alvo e teletransporta-se para golpeá-lo 5 vezes, cada golpe causando Dano de Ataque Físico (P.ATK)."
+    },
+    "Burn Aura": {
+      "name": "Aura de Queimadura",
+      "description": "Ativa uma Aura de Queimadura com raio de 6m, causando Dano de Ataque Especial (SP.ATK) por segundo a inimigos por 5s."
+    },
+    "Chain Lightning": {
+      "name": "Raios em Cadeia",
+      "description": "Libera relâmpagos, causando Dano de Ataque Especial (SP.ATK) a alvos inimigos dentro de um raio de 8 metros."
+    },
+    "Charging Aura": {
+      "name": "Aura de Carregamento",
+      "description": "Cria uma aura com raio de 6m que restaura Energia de PSI para aliados ao longo de 5s."
+    },
+    "Chrysalis": {
+      "name": "Crisálida",
+      "description": "Endurece o lançador, aumentando a Defesa Física (P.DEF) e Defesa Especial (SP.DEF) por 8s."
+    },
+    "Corrosion Aura": {
+      "name": "Aura de Corrosão",
+      "description": "Ativa uma aura com raio de 6m, causando Dano Físico por segundo a inimigos dentro do alcance por 10s, enquanto reduz sua Velocidade de Movimento e aumenta o tempo de recarga das habilidades."
+    },
+    "Crude Oil Spill": {
+      "name": "Derramamento de Petróleo Bruto",
+      "description": "O Pudim de Alcatrão entra em um estado de Vazamento de Óleo por 15s, aumentando o SP.ATK e deixando poças de óleo com raio de 2m a cada 3s que duram 20s."
+    },
+    "Cryo Bullet": {
+      "name": "Projétil de Gelo",
+      "description": "Dispara uma estaca de gelo, causando Dano de Ataque Especial (SP.ATK) de gelo."
+    },
+    "Cyclone": {
+      "name": "Ciclone",
+      "description": "Gera um mini tornado que se move em direção aos inimigos, causando Dano de Ataque Físico (P.ATK) a cada 0.5s por 10s."
+    },
+    "Damage Link": {
+      "name": "Vínculo de Dano",
+      "description": "Conecta-se a um alvo inimigo por 12s. Durante esse tempo, o dano recebido por você é transferido para o inimigo."
+    },
+    "Deviant Energy Conduit": {
+      "name": "Conduto de Energia Desviante",
+      "description": "Seleciona um desvio aliado para restaurar Energia de PSI a cada 0.6s por 3s."
+    },
+    "Dodge": {
+      "name": "Esquiva",
+      "description": "Concede imunidade contra as próximas instâncias de dano recebidas."
+    },
+    "Electric Bullet": {
+      "name": "Projétil Elétrico",
+      "description": "Dispara um orbe elétrico, causando Dano de Ataque Especial (SP.ATK), com chance de infligir Sobrecarga. Sobrecarga: Aumenta o dano de Choque recebido, acumulando até um certo limite."
+    },
+    "Electrical Blast": {
+      "name": "Explosão Elétrica",
+      "description": "Lança orbes elétricos aleatoriamente, causando Dano de Ataque Especial (SP.ATK) e aplicando 1 acúmulo de Sobrecarga."
+    },
+    "Elemental Overload": {
+      "name": "Sobrecarga Elemental",
+      "description": "Aumenta o Dano de Ataque Especial (SP.ATK) elemental por 8s."
+    },
+    "Emergency Shield": {
+      "name": "Escudo de Emergência",
+      "description": "Seleciona uma unidade aliada e concede a ela um escudo baseado em seu HP Máximo por 8s."
+    },
+    "Explosive": {
+      "name": "Explosive",
+      "description": "Self-destructs after staying near the target for 5s, dealing AoE SP.ATK DMG. Has a chance to trigger when HP drops below 50%."
+    },
+    "Fate Coin": {
+      "name": "Fate Coin",
+      "description": "Flip a coin and launch Mr. Wish Missile. Heads: deals 30% HP damage to enemies. Tails: deals 15% HP damage to yourself."
+    },
+    "Flame Bullet": {
+      "name": "Projétil de Chama",
+      "description": "Dispara um orbe flamejante, causando Dano de Ataque Especial (SP.ATK) e infligindo Queimadura."
+    },
+    "Flame Impact": {
+      "name": "Impacto de Chamas",
+      "description": "Explode chamas ao redor, empurrando inimigos e causando Dano de Ataque Especial (SP.ATK) de fogo em área."
+    },
+    "Flame Jet": {
+      "name": "Jato de Chama",
+      "description": "Dispara um fluxo contínuo de chamas em cone, causando Dano de Ataque Especial (SP.ATK) de fogo."
+    },
+    "Flaming Flight": {
+      "name": "Voo Flamejante",
+      "description": "Decola e bombardeia o solo com projéteis de fogo por 6s."
+    },
+    "Frost Satellite": {
+      "name": "Satélite de Gelo",
+      "description": "Invoca fragmentos de gelo flutuantes que orbitam e disparam contra inimigos próximos."
+    },
+    "Frost Vortex": {
+      "name": "Frost Vortex",
+      "description": "Creates a Frost Vortex at the target location, lasting for 5s, dealing SP.ATK DMG per hit to enemies within range."
+    },
+    "Group Elemental Overload": {
+      "name": "Sobrecarga Elemental em Grupo",
+      "description": "Aumenta o Dano de Ataque Especial (SP.ATK) elemental de todos os aliados próximos por 8s."
+    },
+    "Group Physical Enhancement": {
+      "name": "Fortalecimento Físico em Grupo",
+      "description": "Aumenta o Dano de Ataque Físico (P.ATK) de todos os aliados próximos por 8s."
+    },
+    "Healing": {
+      "name": "Healing",
+      "description": "Heals the ally with the lowest HP percentage, restoring HP based on the caster's Attack every 0.5s for 5s."
+    },
+    "Healing Aura": {
+      "name": "Aura de Cura",
+      "description": "Ativa uma aura curativa com raio de 6m, restaurando vida a aliados por segundo por 5s."
+    },
+    "Healing Bullet": {
+      "name": "Projétil de Cura",
+      "description": "Dispara um projétil curativo que restaura vida instantaneamente ao aliado atingido."
+    },
+    "Healing Link": {
+      "name": "Vínculo de Cura",
+      "description": "Vincula-se a um aliado, dividindo e mitigando o dano recebido enquanto restaura vida ao longo do tempo."
+    },
+    "Heavy Pressure": {
+      "name": "Pressão Pesada",
+      "description": "Gera uma onda de gravidade que esmaga os inimigos no solo, aplicando lentidão de movimento."
+    },
+    "Ice Crystal Ambush": {
+      "name": "Emboscada de Cristais de Gelo",
+      "description": "Invoca cristais de gelo sob os inimigos que explodem ao serem atingidos ou após um atraso."
+    },
+    "Ice Crystal Barrage": {
+      "name": "Barragem de Cristais de Gelo",
+      "description": "Dispara uma saraivada de agulhas de gelo em área, causando Dano Especial de Gelo."
+    },
+    "Incendiary Bullet": {
+      "name": "Projétil Incendiário",
+      "description": "Dispara munição especial que incendeia o alvo, causando dano de queimadura contínuo."
+    },
+    "Intimidation": {
+      "name": "Intimidação",
+      "description": "Uiva ou rosna, reduzindo o Dano de Ataque dos inimigos próximos por 6s."
+    },
+    "Kitty Punch": {
+      "name": "Soco de Gatinho",
+      "description": "Ataque rápido de pata que causa dano físico e aplica uma pequena lentidão."
+    },
+    "Lightning": {
+      "name": "Relâmpago",
+      "description": "Invoca um relâmpago direto do céu no alvo, causando alto dano elétrico."
+    },
+    "Lightning Pierce": {
+      "name": "Perfuração de Raio",
+      "description": "Dispara um feixe elétrico linear que perfura múltiplos inimigos na trajetória."
+    },
+    "Lucky Light": {
+      "name": "Luz da Sorte",
+      "description": "Aumenta a Taxa Crítica ou o drop de recursos temporariamente para aliados na área."
+    },
+    "Mesh Traction": {
+      "name": "Tração de Rede",
+      "description": "Dispara uma teia/rede que puxa os inimigos para o centro e os imobiliza."
+    },
+    "Meteor": {
+      "name": "Meteoro",
+      "description": "Invoca um meteoro flamejante que cai na área selecionada, causando alto dano elemental de fogo."
+    },
+    "Outer God's Tentacle": {
+      "name": "Outer God's Tentacle",
+      "description": "Summons 1 tentacle to attack enemies nearby for a few seconds."
+    },
+    "Penetrating Charge": {
+      "name": "Carga Penetrante",
+      "description": "Avança perfurando a linha inimiga, ignorando parte da defesa física."
+    },
+    "Physical Enhancement": {
+      "name": "Fortalecimento Físico",
+      "description": "Aumenta o Dano de Ataque Físico (P.ATK) do próprio desvio por 8s."
+    },
+    "Physical Shockwave": {
+      "name": "Onda de Choque Física",
+      "description": "Libera uma onda de impacto que afasta os inimigos ao redor."
+    },
+    "Provoke": {
+      "name": "Provocação",
+      "description": "Atrai a atenção de todos os inimigos da área, forçando-os a atacar o desvio."
+    },
+    "Psi Bullet": {
+      "name": "Projétil de PSI",
+      "description": "Dispara um projétil de energia psíquica pura que causa Dano de PSI."
+    },
+    "Psi Ray": {
+      "name": "Raio de PSI",
+      "description": "Canaliza um raio de energia psíquica contínuo no alvo."
+    },
+    "Pulse Orb": {
+      "name": "Orbe de Pulso",
+      "description": "Invoca um orbe que emite pulsos eletrostáticos periódicos."
+    },
+    "Pulse Ray": {
+      "name": "Raio de Pulso",
+      "description": "Dispara um raio de energia comprimida que causa dano elétrico linear."
+    },
+    "Rain Arrow": {
+      "name": "Rain Arrow",
+      "description": "Fires three rain arrows, dealing SP.ATK DMG to all enemy units along the path."
+    },
+    "Rainy Peril": {
+      "name": "Rainy Peril",
+      "description": "Generates 8 rain arrows nearby to attack target, each consuming current HP to deal SP.ATK DMG."
+    },
+    "Rapid Charge": {
+      "name": "Carga Rápida",
+      "description": "Acelera a velocidade de recarga de energia do próprio desvio."
+    },
+    "Rapid Fire": {
+      "name": "Disparo Rápido",
+      "description": "Descarrega uma rajada rápida de projéteis contra o inimigo."
+    },
+    "Resist Death": {
+      "name": "Resistir à Morte",
+      "description": "Concede uma sobrevida temporária, impedindo que o desvio seja derrotado ao receber dano letal."
+    },
+    "Resonant Skybound": {
+      "name": "Ressonância Aérea",
+      "description": "Emite ondas sonoras ressonantes no ar que desestabilizam alvos voadores."
+    },
+    "Rite of Strength": {
+      "name": "Rito de Força",
+      "description": "Aumenta temporariamente os atributos físicos de ataque e defesa dos desvios aliados."
+    },
+    "Rush": {
+      "name": "Investida",
+      "description": "Investe rapidamente contra o alvo selecionado causando impacto físico."
+    },
+    "Savage Strike": {
+      "name": "Golpe Selvagem",
+      "description": "Desfere um golpe brutal que atordoa o inimigo por 1.5s."
+    },
+    "Self-Healing": {
+      "name": "Autocura",
+      "description": "O próprio desvio regenera uma porcentagem de sua vida máxima."
+    },
+    "Self-Recharge": {
+      "name": "Autocarregamento",
+      "description": "O próprio desvio regenera sua energia de PSI gradualmente."
+    },
+    "Shadow Strike": {
+      "name": "Golpe Sombrio",
+      "description": "Teletransporta-se através das sombras para golpear o alvo pelas costas."
+    },
+    "Shield": {
+      "name": "Escudo",
+      "description": "Invoca uma barreira protetora que bloqueia projéteis."
+    },
+    "Space Twister": {
+      "name": "Tornado Espacial",
+      "description": "Cria uma distorção espacial que suga inimigos para o centro do vórtice."
+    },
+    "Speed Up": {
+      "name": "Acelerar",
+      "description": "Aumenta a velocidade de movimento e ataque do desvio por 8s."
+    },
+    "Super Flammable": {
+      "name": "Superinflamável",
+      "description": "Aplica um debuff que dobra o dano sofrido por efeitos de Queimadura."
+    },
+    "Sweep": {
+      "name": "Varrer",
+      "description": "Ataque giratório em área que afasta inimigos próximos."
+    },
+    "Torpedo": {
+      "name": "Torpedo",
+      "description": "Lança um projétil explosivo de alta velocidade contra o alvo."
+    },
+    "Upper World Protection": {
+      "name": "Proteção do Mundo Superior",
+      "description": "Cria um escudo divino que reflete projéteis inimigos."
+    },
+    "Void Zone": {
+      "name": "Zona do Vazio",
+      "description": "Cria uma zona de vácuo que silencia habilidades inimigas e causa dano contínuo."
+    },
+    "Weakspot Sniper": {
+      "name": "Sniper de Ponto Fraco",
+      "description": "Foca nos pontos fracos do inimigo para causar dano crítico massivo."
+    },
+    "Whale Invasion": {
+      "name": "Invasão da Baleia",
+      "description": "Invoca o salto de uma baleia gigante de água que esmaga os inimigos na área."
+    },
+    "Whirlwind Slash": {
+      "name": "Corte de Furacão",
+      "description": "Gira com lâminas cortando inimigos ao redor de forma contínua."
+    },
+    "Wild Shot": {
+      "name": "Disparo Selvagem",
+      "description": "Disparos aleatórios e rápidos em cone de alta cadência."
+    }
+  },
+  "ui": {
+    "title": "Once Human SCP: Planejador de Fusões",
+    "tabs": {
+      "planner": "Planejador",
+      "techniques": "Habilidades",
+      "traits": "Traços",
+      "moderation": "Moderação",
+      "login": "Entrar",
+      "register": "Cadastrar",
+      "profile": "Perfil",
+      "logout": "Sair"
+    },
+    "buttons": {
+      "approve": "Aprovar",
+      "decline": "Recusar",
+      "save": "Salvar",
+      "delete": "Excluir",
+      "share": "Compartilhar",
+      "copyCode": "Copiar Código",
+      "approveBulk": "Aprovar Selecionados",
+      "declineBulk": "Recusar Selecionados",
+      "saveCloud": "Salvar na Nuvem",
+      "recoverPass": "Recuperar Senha",
+      "submitTranslation": "Sugerir Tradução",
+      "submit": "Enviar",
+      "close": "Fechar",
+      "cancel": "Cancelar"
+    },
+    "fields": {
+      "email": "E-mail",
+      "password": "Senha",
+      "username": "Login (Nome de usuário)",
+      "contact": "Contato (Telefone/WhatsApp - opcional)",
+      "searchDeviant": "Pesquisar desviante...",
+      "searchTechnique": "Pesquisar habilidade...",
+      "language": "Idioma",
+      "proposedText": "Sua Tradução Proposta"
+    },
+    "messages": {
+      "copied": "Copiado para a área de transferência!",
+      "noAuth": "Este recurso exige estar logado. Faça login ou crie uma conta.",
+      "loginSuccess": "Login efetuado com sucesso!",
+      "registerSuccess": "Cadastro efetuado com sucesso!",
+      "recoverSuccess": "E-mail de recuperação de senha enviado com sucesso!",
+      "translationSubmitted": "Obrigado! Sua sugestão de tradução foi enviada para moderação.",
+      "adminOnly": "Acesso restrito ao administrador."
+    }
+  }
+}

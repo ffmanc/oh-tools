@@ -1,0 +1,1173 @@
+{
+  "deviations": {
+    "Atomic Lighter": "Atomic Lighter",
+    "Atomic Snail": "Atomic Snail",
+    "Butterfly Emissary": "Butterfly Emissary",
+    "Buzzy Bee": "Buzzy Bee",
+    "By-the-Wind": "By-the-Wind",
+    "Chaos Extradimensional Cat": "Chaos Extradimensional Cat",
+    "Chaos Mr Wish": "Chaos Mr Wish",
+    "Chaosaurus": "Chaosaurus",
+    "Chaos Snowsprite": "Chaos Snowsprite",
+    "Chefosaurus Rex": "Chefosaurus Rex",
+    "Digby Boy": "Digby Boy",
+    "Disco Ball": "Disco Ball",
+    "Director Fox": "Director Fox",
+    "Doctor Raven": "Doctor Raven",
+    "Dr-Teddy": "Dr-Teddy",
+    "Dreamcatcher": "Dreamcatcher",
+    "Electric Eel": "Electric Eel",
+    "Enchanting Void": "Enchanting Void",
+    "Extradimensional Cat": "Extradimensional Cat",
+    "Festering Gel": "Festering Gel",
+    "Fetch-lot-Bunny": "Fetch-lot-Bunny",
+    "Flame Essence": "Flame Essence",
+    "Frog the Leaper": "Frog the Leaper",
+    "Gazocchio": "Gazocchio",
+    "Gingerbread House": "Gingerbread House",
+    "Growshroom": "Growshroom",
+    "Grumpy Bulb": "Grumpy Bulb",
+    "Hydronaut": "Hydronaut",
+    "H37": "H37",
+    "Hug-in-a-Bowl": "Hug-in-a-Bowl",
+    "Ice Pot": "Ice Pot",
+    "Invincible Sun": "Invincible Sun",
+    "Lethal Rabbit": "Lethal Rabbit",
+    "Logging Beaver": "Logging Beaver",
+    "Lonewolf Whisper": "Lonewolf Whisper",
+    "Masonic Pyramid": "Masonic Pyramid",
+    "Mini Feaster": "Mini Feaster",
+    "Mini Wonder": "Mini Wonder",
+    "Mr Wish": "Mr Wish",
+    "Nutcracker": "Nutcracker",
+    "Orb Lightning": "Orb Lightning",
+    "Paper Doll": "Paper Doll",
+    "Party Monkey": "Party Monkey",
+    "Polar Jelly": "Polar Jelly",
+    "Pup Buddy": "Pup Buddy",
+    "Pyro Dino": "Pyro Dino",
+    "Rainman": "Rainman",
+    "Rebecca": "Rebecca",
+    "Shattered Maiden": "Shattered Maiden",
+    "Snow Globe": "Snow Globe",
+    "Snowsprite": "Snowsprite",
+    "Soul Summoner": "Soul Summoner",
+    "Space Turner": "Space Turner",
+    "Strange Door": "Strange Door",
+    "Tar Pudding": "Tar Pudding",
+    "Upper World Spawn": "Upper World Spawn",
+    "Voodoo Doll": "Voodoo Doll",
+    "Whalepup": "Whalepup",
+    "ZapCam": "ZapCam",
+    "Zapamander": "Zapamander",
+    "Zeno Purifier": "Zeno Purifier"
+  },
+  "traits": {
+    "Upper Hand": {
+      "name": "Upper Hand",
+      "description": "When Deviant Power drops to 0, automatically consume Mood to recover Deviant Power."
+    },
+    "Stable Energy": {
+      "name": "Stable Energy",
+      "description": "Max Deviant Power +30%"
+    },
+    "Stable Vitality": {
+      "name": "Stable Vitality",
+      "description": "Max Mood +30%"
+    },
+    "Optimist": {
+      "name": "Optimist",
+      "description": "Max Mood +15% / +20% / +25% / +30% / +35% (Levels 1-5)"
+    },
+    "Covert Energy": {
+      "name": "Covert Energy",
+      "description": "Max Deviant Power +10% / +20% / +25% / +30% / +35% (Levels 1-5)"
+    },
+    "Power Rewind": {
+      "name": "Power Rewind",
+      "description": "Deviant Power recovery speed +5% / +10% (Levels 1-2)"
+    },
+    "Rise and Shine": {
+      "name": "Rise and Shine",
+      "description": "Mood recovery speed +5% / +10% / +15% / +20% / +25% (Levels 1-5)"
+    },
+    "Growing Pains": {
+      "name": "Growing Pains",
+      "description": "Max Deviant Power +30% / +40% / +50%; Mood recovery speed -5% (Levels 1-3)"
+    },
+    "Cheer Up": {
+      "name": "Cheer Up",
+      "description": "Max Mood +30% / +40% / +50%; Deviant Power recovery speed -5% (Levels 1-3)"
+    },
+    "Worn-out": {
+      "name": "Worn-out",
+      "description": "Max Deviant Power -5% / -10% (Levels 1-2)"
+    },
+    "Feeling Blue": {
+      "name": "Feeling Blue",
+      "description": "Max Mood -5% / -10% (Levels 1-2)"
+    },
+    "Psychic Kid": {
+      "name": "Psychic Kid",
+      "description": "Having it fight alongside grants Status DMG +5%"
+    },
+    "Crack Shot": {
+      "name": "Crack Shot",
+      "description": "Having it fight alongside grants Weapon DMG +5%"
+    },
+    "Heavy and Solid": {
+      "name": "Heavy and Solid",
+      "description": "Higher Load grants higher DMG Reduction for torso, up to +15%"
+    },
+    "Run Fast": {
+      "name": "Run Fast",
+      "description": "Syncing with this Deviation grants Movement Speed +5%"
+    },
+    "Power King": {
+      "name": "Power King",
+      "description": "Syncing with it grants Max Load +25, Movement Speed -5%"
+    },
+    "Brute Force": {
+      "name": "Brute Force",
+      "description": "Syncing with it grants Max Load +15, Movement Speed -5%"
+    },
+    "Long Distance Runner": {
+      "name": "Long Distance Runner",
+      "description": "Syncing with it grants Stamina consumption -20%, Movement Speed -10%"
+    },
+    "Save Energy": {
+      "name": "Save Energy",
+      "description": "Syncing with it grants Stamina consumption -10%, Movement Speed -5%"
+    },
+    "Vegatative Calm": {
+      "name": "Vegatative Calm",
+      "description": "Syncing with it grants Max Stamina +15, Movement Speed -5%"
+    },
+    "Beast of Burden": {
+      "name": "Beast of Burden",
+      "description": "Syncing with it grants Max Load +8"
+    },
+    "City Folk": {
+      "name": "City Folk",
+      "description": "Syncing with it grants Max Load +15 when exploring Settlements"
+    },
+    "Durability": {
+      "name": "Durability",
+      "description": "Syncing with it grants Stamina Consumption -5%"
+    },
+    "Move More, Live Better": {
+      "name": "Move More, Live Better",
+      "description": "Securement Progress +1 per 8 seconds when sprinting"
+    },
+    "Street Rascal": {
+      "name": "Street Rascal",
+      "description": "Syncing with it grants Movement Speed +10% in Settlements"
+    },
+    "Two-Shift System": {
+      "name": "Two-Shift System",
+      "description": "Syncing with it grants Max Load +16 at daytime, and Movement Speed +12% at night"
+    },
+    "Stay Indoors": {
+      "name": "Stay Indoors",
+      "description": "Syncing with it grants +8% Stamina Consumption in Settlements"
+    },
+    "Wellbeing": {
+      "name": "Wellbeing",
+      "description": "Syncing with this Deviation grants Max Stamina +10"
+    },
+    "Sedantary": {
+      "name": "Sedantary",
+      "description": "Syncing with it grants Max Load -8 when exploring Settlements"
+    },
+    "Lighten Your Mind": {
+      "name": "Lighten Your Mind",
+      "description": "Lower Load grants higher DMG Reduction for head, up to +15%"
+    },
+    "Elemental DMG Reduction": {
+      "name": "Elemental DMG Reduction",
+      "description": "Elemental DMG Reduction +12% / +17% / +22% (Levels 1-3)"
+    },
+    "Physical DMG Reduction": {
+      "name": "Physical DMG Reduction",
+      "description": "Physical DMG Reduction +12% / +17% / +22% (Levels 1-3)"
+    },
+    "Elemental DMG Bonus": {
+      "name": "Elemental DMG Bonus",
+      "description": "Elemental DMG Bonus +15% / +21% / +27% (Levels 1-3)"
+    },
+    "Physical DMG Bonus": {
+      "name": "Physical DMG Bonus",
+      "description": "Physical DMG Bonus +15% / +21% / +27% (Levels 1-3)"
+    },
+    "Attack": {
+      "name": "Attack",
+      "description": "Attack +28 / +38 / +50 (Levels 1-3)"
+    },
+    "Attack Percentage": {
+      "name": "Attack Percentage",
+      "description": "Attack +10% / +14% / +18% (Levels 1-3)"
+    },
+    "HP": {
+      "name": "HP",
+      "description": "HP +2350 / +3300 / +4250 (Levels 1-3)"
+    },
+    "HP Percentage": {
+      "name": "HP Percentage",
+      "description": "HP +10% / +14% / +18% (Levels 1-3)"
+    },
+    "Crit Damage": {
+      "name": "Crit Damage",
+      "description": "Crit Damage +36% / +50% / +64% (Levels 1-3)"
+    },
+    "Crit Rate": {
+      "name": "Crit Rate",
+      "description": "Crit Rate +18% / +25% / +32% (Levels 1-3)"
+    },
+    "Anti-Burnout": {
+      "name": "Anti-Burnout",
+      "description": "When dormant (regaining Power), 20% chance others receive Power +5"
+    },
+    "Dream Wild": {
+      "name": "Dream Wild",
+      "description": "When dormant (regaining Power), 10% chance others receive Power +10"
+    },
+    "A World of Charm": {
+      "name": "A World of Charm",
+      "description": "When dormant (regaining Mood), 10% chance others receive Mood +20"
+    },
+    "Sweet Talk": {
+      "name": "Sweet Talk",
+      "description": "When dormant (regaining Mood), 20% chance others receive Mood +5"
+    },
+    "Hydrophilic": {
+      "name": "Hydrophilic",
+      "description": "When resting by water, Energy Recovery Speed +30%"
+    },
+    "Devoted laborer": {
+      "name": "Devoted laborer",
+      "description": "Mood and Power consumption speed +20% (Works 20% faster)"
+    },
+    "Workaholic": {
+      "name": "Workaholic",
+      "description": "Mood and Power consumption speed +10% (Works 10% faster)"
+    },
+    "Water Dormancy": {
+      "name": "Water Dormancy",
+      "description": "When resting by water, Mood Recover Speed +30%"
+    },
+    "Voluntary Overtime": {
+      "name": "Voluntary Overtime",
+      "description": "10% chance that working does not consume Mood"
+    },
+    "Living Map": {
+      "name": "Living Map",
+      "description": "Resource production interval -5%"
+    },
+    "Stardust Affinity": {
+      "name": "Stardust Affinity",
+      "description": "When working in Pollution Zone, 20% chance to not consume Mood"
+    },
+    "OnePlus": {
+      "name": "OnePlus",
+      "description": "5% chance to bring back rare crystals. Return time increased."
+    },
+    "Imperfect Endless Motion": {
+      "name": "Imperfect Endless Motion",
+      "description": "10% chance that working does not consume Deviant Power"
+    },
+    "Lazy Bones": {
+      "name": "Lazy Bones",
+      "description": "Working speed -5%"
+    },
+    "Panovision": {
+      "name": "Panovision",
+      "description": "Working speed -10%"
+    },
+    "Slacking Off": {
+      "name": "Slacking Off",
+      "description": "Mood and Power consumption speed +5%"
+    },
+    "Baffling Behavior": {
+      "name": "Baffling Behavior",
+      "description": "When Power decreases, 10% chance other Deviations also lose Power."
+    },
+    "Holding the Team Back": {
+      "name": "Holding the Team Back",
+      "description": "When Mood decreases, 10% chance other Deviations also lose Mood."
+    },
+    "Heartthrob": {
+      "name": "Heartthrob",
+      "description": "When Power decreases, 10% chance others lose Power. When dormant, 10% chance others gain +5 Mood."
+    },
+    "Snooze Afficionado": {
+      "name": "Snooze Afficionado",
+      "description": "When Mood decreases, 10% chance others lose Mood. When dormant, 10% chance others gain +5 Power."
+    },
+    "Toxicologist": {
+      "name": "Toxicologist",
+      "description": "Territorial Deviation may bring back Acid."
+    },
+    "An old Hand Knows the Ropes": {
+      "name": "An old Hand Knows the Ropes",
+      "description": "Faster Mood/Power consumption, Working Speed +10%."
+    },
+    "Waste Not": {
+      "name": "Waste Not",
+      "description": "Activity Score > 90%, 5% chance to increase others' Power by 10"
+    },
+    "Leftover": {
+      "name": "Leftover",
+      "description": "Activity Score > 20%, 10% chance to increase others' Power by 1. Energy -20%, Max Storage -20%"
+    },
+    "Byproduct": {
+      "name": "Byproduct",
+      "description": "Activity Score > 90%, 10% chance to increase others' Power by 2"
+    },
+    "Efficiency Above All": {
+      "name": "Efficiency Above All",
+      "description": "Crafting speed +20%, Max storage capacity -30%"
+    },
+    "Stardust Empowerment": {
+      "name": "Stardust Empowerment",
+      "description": "Working in Pollution Zone, 20% chance to not consume Energy"
+    },
+    "Speed Up": {
+      "name": "Speed Up",
+      "description": "Crafting production interval reduced by 10%"
+    },
+    "Productivity First": {
+      "name": "Productivity First",
+      "description": "Crafting production interval reduced by 5%"
+    },
+    "Collection +1": {
+      "name": "Collection +1",
+      "description": "5% chance Crafting output +2, Crafting speed -20%"
+    },
+    "Eureka Moment": {
+      "name": "Eureka Moment",
+      "description": "Attacker revealed and DMG -10%. / No light required for securement."
+    },
+    "The Joy of Slacking Off": {
+      "name": "The Joy of Slacking Off",
+      "description": "10% chance that crafting consumes 0 Mood, Crafting speed -20%"
+    },
+    "Unhinged Production": {
+      "name": "Unhinged Production",
+      "description": "Activity Score < 20%, consume others' Power by 1 to produce 2 extra units"
+    },
+    "Unplanned Production": {
+      "name": "Unplanned Production",
+      "description": "10% chance crafting consumes 0 Power, Crafting speed -20%"
+    },
+    "Big Cup": {
+      "name": "Big Cup",
+      "description": "Limit capacity during Crafting +20%"
+    },
+    "Buy 1 Get 2": {
+      "name": "Buy 1 Get 2",
+      "description": "5% chance to produce 1 extra unit"
+    },
+    "Come As One": {
+      "name": "Come As One",
+      "description": "Output +1 for every 1 Territory Deviation in the Territory"
+    },
+    "Efficiency First": {
+      "name": "Efficiency First",
+      "description": "Crafting interval reduced by 5%"
+    },
+    "Medium Cup": {
+      "name": "Medium Cup",
+      "description": "Max storage capacity +10%"
+    },
+    "Mineral Talent": {
+      "name": "Mineral Talent",
+      "description": "Within Oil Field radius, 20% chance to increase output by 1"
+    },
+    "One More Bottle": {
+      "name": "One More Bottle",
+      "description": "2% chance to produce 2 extra units"
+    },
+    "Out of Scratch": {
+      "name": "Out of Scratch",
+      "description": "3% chance to not use up Deviant Power"
+    },
+    "Piece of Cake": {
+      "name": "Piece of Cake",
+      "description": "5% chance to not use up Activity Score"
+    },
+    "Super Big Cup": {
+      "name": "Super Big Cup",
+      "description": "Limit capacity during Crafting +30%"
+    },
+    "The Last Night": {
+      "name": "The Last Night",
+      "description": "Crafting interval reduced by 15%"
+    },
+    "Work of Proficiency": {
+      "name": "Work of Proficiency",
+      "description": "5% chance to not use up Deviant Power"
+    },
+    "Clumsy": {
+      "name": "Clumsy",
+      "description": "5% chance that Crafting Output -1"
+    },
+    "No Such Thing As a Small Cup": {
+      "name": "No Such Thing As a Small Cup",
+      "description": "Max Storage Capacity -10%"
+    },
+    "Lazy": {
+      "name": "Lazy",
+      "description": "Crafting speed -10%"
+    },
+    "Smooth Sheep Rustler": {
+      "name": "Smooth Sheep Rustler",
+      "description": "When Mood < 20%, consume other Deviations' Power by 5 to generate resources."
+    },
+    "Moonlight Assault": {
+      "name": "Moonlight Assault",
+      "description": "At night, Deviant Energy and Mood Recovery rates are increased."
+    },
+    "Feline Creatures": {
+      "name": "Feline Creatures",
+      "description": "Fall damage reduced by 50%, fractures prevented. / Extra Lightweight item."
+    },
+    "Brute Force Rules": {
+      "name": "Brute Force Rules",
+      "description": "Dodging/dashing shatters ores/trees. / Chance to double resource output."
+    },
+    "Foul Symbiosis": {
+      "name": "Foul Symbiosis",
+      "description": "10% chance for +1 Acid on kill. / +1 Acid in Pollution Zone."
+    },
+    "Polar Beast": {
+      "name": "Polar Beast",
+      "description": "Temp below 0C, Attack +10% / Mood recovers 10% faster."
+    },
+    "Top Grunt": {
+      "name": "Top Grunt",
+      "description": "No Stamina consumed during gathering. / Converts Mood to Energy at low power."
+    },
+    "Nightmare Waters": {
+      "name": "Nightmare Waters",
+      "description": "Stamina consumption reduced while diving. / Chance to yield extra fish."
+    },
+    "Mind Massage": {
+      "name": "Mind Massage",
+      "description": "Sanity gradually recovers when returning to territory."
+    },
+    "Herbivore": {
+      "name": "Herbivore",
+      "description": "Nearby herbivores will no longer flee. / Chance to yield additional deviated plant."
+    },
+    "Pollution Adaptation": {
+      "name": "Pollution Adaptation",
+      "description": "Sanity drops 90% slower in Pollution Zone. / Max Power +15 in Pollution."
+    },
+    "Precision Moment": {
+      "name": "Precision Moment",
+      "description": "Increases Mood by 10 and Energy by 10 for all Deviations every hour."
+    },
+    "Master of Temperatures": {
+      "name": "Master of Temperatures",
+      "description": "Players gain 10 Heat Resist within territory."
+    },
+    "Knights of the Round Table": {
+      "name": "Knights of the Round Table",
+      "description": "Reduces damage taken by this Deviation / Def +5% & Energy drain reduced."
+    },
+    "Warm Flame": {
+      "name": "Warm Flame",
+      "description": "Player's Cold Resist +10"
+    },
+    "Extra Load": {
+      "name": "Extra Load",
+      "description": "Max Load +20. / Storage +15%."
+    },
+    "Music Resonance": {
+      "name": "Music Resonance",
+      "description": "Will not require radio for securement box"
+    },
+    "Clean and Hygienic": {
+      "name": "Clean and Hygienic",
+      "description": "Sanity automatically recovers to 20% when low"
+    },
+    "Neon Flicker": {
+      "name": "Neon Flicker",
+      "description": "For every 'Neon Flicker' in territory, max Mood all Deviations +1"
+    },
+    "Gilded Oracle": {
+      "name": "Gilded Oracle",
+      "description": "May bring back additional ores."
+    },
+    "Wild Wood Spirit": {
+      "name": "Wild Wood Spirit",
+      "description": "When bringing back resources, 5% chance to bring a deviated flower."
+    },
+    "Milk Sugar": {
+      "name": "Milk Sugar",
+      "description": "Gains Max Mood 35%"
+    },
+    "Marine Star": {
+      "name": "Marine Star",
+      "description": "Each reload gives either 5% Weapon DMG bonus or 5% Status DMG at random."
+    },
+    "Spring Rose": {
+      "name": "Spring Rose",
+      "description": "When synced +20% more healing during the day +10% at night"
+    },
+    "Ancient Scroll": {
+      "name": "Ancient Scroll",
+      "description": "Gains Max Energy 40%"
+    },
+    "Glistening Blue": {
+      "name": "Glistening Blue",
+      "description": "When synced, hitting a Weakspot increases Deviation Power by 1 (CD: 3s)."
+    },
+    "Starry Night": {
+      "name": "Starry Night",
+      "description": "When synced, deal +6% more damage at night +3% during day"
+    },
+    "Aquarius": {
+      "name": "Aquarius",
+      "description": "Gains Mood Recovery Speed +30%"
+    },
+    "Gluttonous Bunny": {
+      "name": "Gluttonous Bunny",
+      "description": "Gains Energy Recovery Speed +15%"
+    },
+    "Dark Rebel": {
+      "name": "Dark Rebel",
+      "description": "When exploring, has a chance to bring back Acid."
+    },
+    "Alice": {
+      "name": "Alice",
+      "description": "When exploring, has a 10% chance to bring back Acid."
+    },
+    "Violet Robe": {
+      "name": "Violet Robe",
+      "description": "Gains Max Energy 40%"
+    },
+    "Extra Large": {
+      "name": "Extra Large",
+      "description": "Gains Max Mood +40%"
+    },
+    "Green Touch": {
+      "name": "Green Touch",
+      "description": "When working in Pollution Zone, has 25% chance to not consume Energy."
+    },
+    "Green Field": {
+      "name": "Green Field",
+      "description": "Energy Max Limit increased by 10."
+    },
+    "Copper Green": {
+      "name": "Copper Green",
+      "description": "Max Deviant Power +7%"
+    },
+    "Tin Soldier": {
+      "name": "Tin Soldier",
+      "description": "Gains Max Energy +35"
+    },
+    "Twisted Fairy Tale": {
+      "name": "Twisted Fairy Tale",
+      "description": "Gains Max Energy +40%"
+    },
+    "Displaced Fairy Tale": {
+      "name": "Displaced Fairy Tale",
+      "description": "Gains Max Energy +40%"
+    },
+    "Wood Yellow": {
+      "name": "Wood Yellow",
+      "description": "Mood Recovery Speed +7%"
+    },
+    "Clear Lake": {
+      "name": "Clear Lake",
+      "description": "Deviant Power Recovery Speed +7%"
+    },
+    "Purple (Power Rewind)": {
+      "name": "Purple (Power Rewind)",
+      "description": "Gains Energy Recovery Speed +15%"
+    },
+    "Date Brown": {
+      "name": "Date Brown",
+      "description": "Max Mood +7%"
+    },
+    "Golden Era": {
+      "name": "Golden Era",
+      "description": "Gains Max Mood +35"
+    },
+    "Silver Gentleman": {
+      "name": "Silver Gentleman",
+      "description": "When recovering Mood while dormant, 25% chance to restore 10 Mood to Territory Deviations."
+    },
+    "Diamond Duke": {
+      "name": "Diamond Duke",
+      "description": "5% chance to not consume Deviant Power when working in Pollution Zone."
+    },
+    "Diamond Count": {
+      "name": "Diamond Count",
+      "description": "5% chance not consume Energy Territory Deviations, in Pollution Zone"
+    },
+    "Ocean Blue": {
+      "name": "Ocean Blue",
+      "description": "When working in Pollution Zone, 30% chance not to consume Mood."
+    },
+    "Christmas": {
+      "name": "Christmas",
+      "description": "While working, energy and Mood consumption interval +5%."
+    },
+    "Sugar Guard": {
+      "name": "Sugar Guard",
+      "description": "There is a 3% chance that working does not consume Mood."
+    },
+    "Admiral": {
+      "name": "Admiral",
+      "description": "There is a 3% chance that working does not consume Deviant Power."
+    },
+    "Elegant Purple": {
+      "name": "Elegant Purple",
+      "description": "When activated and working, 20% chance not to consume Deviant Power."
+    },
+    "Dappled Light": {
+      "name": "Dappled Light",
+      "description": "When working, gains Energy and Mood consumption interval +20%"
+    },
+    "Good Fortune": {
+      "name": "Good Fortune",
+      "description": "Gains Max Mood +40%"
+    },
+    "Moonlit Jewels": {
+      "name": "Moonlit Jewels",
+      "description": "When recovering Energy dormant, 20% chance to restore 15 Power to other Territory Deviations."
+    },
+    "Heavy Ginger": {
+      "name": "Heavy Ginger",
+      "description": "When resting by water, gains Mood Recovery Speed +35%"
+    },
+    "Emerald": {
+      "name": "Emerald",
+      "description": "Gains Energy Recovery Speed +10%"
+    },
+    "Fortune Dice": {
+      "name": "Fortune Dice",
+      "description": "A dice that never lets you down. Max Deviant Power +6%."
+    },
+    "Pure Gold": {
+      "name": "Pure Gold",
+      "description": "When exploring, has a chance to bring back additional ores."
+    },
+    "Prism": {
+      "name": "Prism",
+      "description": "When activated and working, has a 15% chance to not consume Mood."
+    },
+    "Radiant Flourish": {
+      "name": "Radiant Flourish",
+      "description": "Increases Max Mood 8%."
+    },
+    "Pumpkin Lantern": {
+      "name": "Pumpkin Lantern",
+      "description": "Max Deviant Power +10%."
+    },
+    "Pharaoh": {
+      "name": "Pharaoh",
+      "description": "Gains Mood Recovery Speed +30%"
+    },
+    "Bursting Magma": {
+      "name": "Bursting Magma",
+      "description": "Gains Max Energy +40%"
+    },
+    "Distant Tears": {
+      "name": "Distant Tears",
+      "description": "Gains Max Energy +40%"
+    },
+    "Radiant Variant": {
+      "name": "Radiant Variant",
+      "description": "Gains Max Mood +7%"
+    },
+    "Frigid Touch": {
+      "name": "Frigid Touch",
+      "description": "Gains Energy Recovery Speed +15%"
+    },
+    "Wandering Witch": {
+      "name": "Wandering Witch",
+      "description": "Max Deviant Power +10%"
+    },
+    "Golden Toad": {
+      "name": "Golden Toad",
+      "description": "Gains Mood Recovery Speed +20%"
+    },
+    "Prince": {
+      "name": "Prince",
+      "description": "Gains Max Mood +35%"
+    },
+    "White Cliff Remnants": {
+      "name": "White Cliff Remnants",
+      "description": "Gains Max Mood +35%"
+    },
+    "Fluffy Curse": {
+      "name": "Fluffy Curse",
+      "description": "Gains Energy Recovery Speed +10%"
+    },
+    "Infrasonic Illusion": {
+      "name": "Infrasonic Illusion",
+      "description": "Gains Energy Recovery Speed +10% / Mood +20% depending on source."
+    },
+    "Spring's Return": {
+      "name": "Spring's Return",
+      "description": "Gains Max Mood +35%"
+    },
+    "Fool's Memory": {
+      "name": "Fool's Memory",
+      "description": "Gains Energy Recovery Speed +10%"
+    },
+    "Light Rain": {
+      "name": "Light Rain",
+      "description": "Gains Energy Recovery Speed +15%"
+    },
+    "Childlike Whimsy": {
+      "name": "Childlike Whimsy",
+      "description": "Gains Energy Recovery Speed +30%"
+    },
+    "Radiance": {
+      "name": "Radiance",
+      "description": "Gains Max Energy +40%"
+    },
+    "Fine Brew": {
+      "name": "Fine Brew",
+      "description": "Gains Energy Recovery Speed +10%"
+    },
+    "Gold Lightning": {
+      "name": "Gold Lightning",
+      "description": "Gains Energy Recovery Speed +15%"
+    },
+    "Prototype": {
+      "name": "Prototype",
+      "description": "Gains Energy Recovery Speed +10%"
+    },
+    "Witch's Beloved": {
+      "name": "Witch's Beloved",
+      "description": "Gains Mood Recovery Speed +20%"
+    },
+    "Star Devourer": {
+      "name": "Star Devourer",
+      "description": "Energy Recovery Speed +10%"
+    },
+    "Malevolent Sun": {
+      "name": "Malevolent Sun",
+      "description": "Mood Recovery Speed +20%"
+    },
+    "Christmas Spirit": {
+      "name": "Christmas Spirit",
+      "description": "Max Energy +10%, Energy recovery speed +5%"
+    },
+    "Chaosaurus": {
+      "name": "Chaosaurus",
+      "description": "Chaos trait with extremely high Dex Value (Deviation Secure Scenario)"
+    },
+    "Chaos Mr. Wish": {
+      "name": "Chaos Mr. Wish",
+      "description": "Chaos trait with extremely high Dex Value (Deviation Secure Scenario)"
+    },
+    "Chaos Snowsprite": {
+      "name": "Chaos Snowsprite",
+      "description": "Chaos trait with extremely high Dex Value (Deviation Secure Scenario)"
+    },
+    "Chaos Cat": {
+      "name": "Chaos Cat",
+      "description": "Chaos trait with extremely high Dex Value (Deviation Secure Scenario)"
+    },
+    "Lunar Oracle": {
+      "name": "Lunar Oracle",
+      "description": "While working, energy and Activity Score consumption interval +20%"
+    },
+    "Starfall Inversion": {
+      "name": "Starfall Inversion",
+      "description": "Restores 1 Power/8s (1.5 when airborne)"
+    },
+    "Aberrant Progeny": {
+      "name": "Aberrant Progeny",
+      "description": "Has a 30% chance of yielding +1 resource when in a Pollution Zone."
+    }
+  },
+  "techniques": {
+    "Agni's Emissary": {
+      "name": "Agni's Emissary",
+      "description": "Rebecca fires 3 fire butterflies to up to 3 nearby enemies, dealing multi-hit Elemental DMG to a single target. Greatly lowers resistance on hit."
+    },
+    "Animal Expert": {
+      "name": "Animal Expert",
+      "description": "Randomly summons a wolf, bear, or leopard for 18s. They perform melee attacks."
+    },
+    "Arrow Storm": {
+      "name": "Arrow Storm",
+      "description": "Summons a rain of arrows lasting 2.3s, dealing 20% SP.ATK DMG every 0.2s to hostile targets within a [7*7] meter area."
+    },
+    "Beaver Combo": {
+      "name": "Beaver Combo",
+      "description": "Performs a 6-hit combo, each hit dealing P.ATK DMG and knocking back the target."
+    },
+    "BBQ": {
+      "name": "BBQ",
+      "description": "Spews fire toward the target, dealing SP.ATK DMG every 0.5s along the path. Can be used up to 5 times in a row."
+    },
+    "Black Cat's Gaze": {
+      "name": "Black Cat's Gaze",
+      "description": "Every 0.5s, drains divinity energy from the target and restores the same amount to you, lasting 10s."
+    },
+    "Blackhole Jet": {
+      "name": "Blackhole Jet",
+      "description": "Charges up to 2s, then fires a 15m black hole beam that deals 4 hits of damage."
+    },
+    "Blade Declaration": {
+      "name": "Blade Declaration",
+      "description": "Throws a dart at a random unit, dealing P.ATK DMG and marking the target for 15s. Mark: When the marked target's HP drops below 50%, Lethal Rabbit deals more damage to them."
+    },
+    "Blink": {
+      "name": "Blink",
+      "description": "Instantly teleports behind the target, increasing the next P.ATK DMG dealt."
+    },
+    "Blink Strike": {
+      "name": "Blink Strike",
+      "description": "Randomly selects a target, teleports to strike them 5 times, each hit dealing P.ATK DMG."
+    },
+    "Burn Aura": {
+      "name": "Burn Aura",
+      "description": "Activates a Burn Aura with a 6m radius, dealing SP.ATK DMG per second to enemies for 5s."
+    },
+    "Chain Lightning": {
+      "name": "Chain Lightning",
+      "description": "Releases lightning, dealing SP. ATK DMG to hostile targets within an 8-meter radius."
+    },
+    "Charging Aura": {
+      "name": "Charging Aura",
+      "description": "Creates a 6m radius aura that restores Psi Energy to allies over 5s."
+    },
+    "Chrysalis": {
+      "name": "Chrysalis",
+      "description": "Hardens the caster, increasing P.DEF and SP.DEF for 8s."
+    },
+    "Corrosion Aura": {
+      "name": "Corrosion Aura",
+      "description": "Activates a 6m radius aura, dealing Physical DMG per second to enemies within range for 10s, while slowing their Movement Speed and increasing skill cooldown."
+    },
+    "Crude Oil Spill": {
+      "name": "Crude Oil Spill",
+      "description": "Tar Pudding enters an Oil Leak state for 15s, increasing SP.ATK and leaving 2m-radius oil puddles every 3s that last 20s."
+    },
+    "Cryo Bullet": {
+      "name": "Cryo Bullet",
+      "description": "Fires an ice spike, dealing SP.ATK DMG."
+    },
+    "Cyclone": {
+      "name": "Cyclone",
+      "description": "Generates a mini tornado that moves toward enemies, dealing P.ATK DMG every 0.5s for 10s."
+    },
+    "Damage Link": {
+      "name": "Damage Link",
+      "description": "Links to an enemy target for 12s. During this time, damage taken is transferred to the enemy."
+    },
+    "Deviant Energy Conduit": {
+      "name": "Deviant Energy Conduit",
+      "description": "Selects an allied Deviation to restore Psi Energy every 0.6s for 3s."
+    },
+    "Dodge": {
+      "name": "Dodge",
+      "description": "Grants immunity to the next incoming damage instances."
+    },
+    "Electric Bullet": {
+      "name": "Electric Bullet",
+      "description": "Fires an electric orb, dealing SP.ATK DMG, with a chance to inflict Power Surge. Power Surge: Increases Shock DMG, stacking up to a certain number of times."
+    },
+    "Electrical Blast": {
+      "name": "Electrical Blast",
+      "description": "Randomly throws electric orbs, dealing SP.ATK DMG, and applies 1 stack of Power Surge. Power Surge: Increases Shock DMG taken by, stacking up to a few times."
+    },
+    "Elemental Overload": {
+      "name": "Elemental Overload",
+      "description": "Increases SP.ATK for 8s."
+    },
+    "Emergency Shield": {
+      "name": "Emergency Shield",
+      "description": "Select an allied unit and grant them a shield based on their Max HP for 8s."
+    },
+    "Explosive": {
+      "name": "Explosive",
+      "description": "Self-destructs after staying near the target for 5s, dealing AoE SP.ATK DMG. Has a chance to trigger when HP drops below 50%."
+    },
+    "Fate Coin": {
+      "name": "Fate Coin",
+      "description": "Flip a coin and launch Mr. Wish Missile. Heads: deals 30% HP damage to enemies. Tails: deals 15% HP damage to yourself."
+    },
+    "Flame Bullet": {
+      "name": "Flame Bullet",
+      "description": "Launches a fireball, dealing SP.ATK DMG."
+    },
+    "Flame Impact": {
+      "name": "Flame Impact",
+      "description": "Fires a fan-shaped flame, dealing SP.ATK DMG and inflicting Burn for 6s. Burn deals SP.ATK DMG per second."
+    },
+    "Flame Jet": {
+      "name": "Flame Jet",
+      "description": "Shoots flames about 10 meters forward, dealing continuous damage to enemies in the path."
+    },
+    "Flaming Flight": {
+      "name": "Flaming Flight",
+      "description": "Leaves a burning trail, dealing SP.ATK DMG every 1.5s. Inflicts Burn on hit targets for 10s, dealing SP.ATK DMG per second."
+    },
+    "Frost Satellite": {
+      "name": "Frost Satellite",
+      "description": "Summons five ice crystal turrets that fire after 3s, dealing SP.ATK DMG."
+    },
+    "Frost Vortex": {
+      "name": "Frost Vortex",
+      "description": "Creates a Frost Vortex at the target location, lasting for 5s, dealing SP.ATK DMG per hit to enemies within range."
+    },
+    "Group Elemental Overload": {
+      "name": "Group Elemental Overload",
+      "description": "Increases nearby allies' SP.ATK DMG for 8s."
+    },
+    "Group Physical Enhancement": {
+      "name": "Group Physical Enhancement",
+      "description": "Increases Physical DMG for all allied units."
+    },
+    "Healing": {
+      "name": "Healing",
+      "description": "Heals the ally with the lowest HP percentage, restoring HP based on the caster's Attack every 0.5s for 5s."
+    },
+    "Healing Aura": {
+      "name": "Healing Aura",
+      "description": "Activates a healing aura with a 6m radius, restoring a percentage of Max HP per second."
+    },
+    "Healing Bullet": {
+      "name": "Healing Bullet",
+      "description": "Fires healing energy, healing allies for a percentage of the caster's Attack."
+    },
+    "Healing Link": {
+      "name": "Healing Link",
+      "description": "Selects allies within 12m to link and heal through shared damage."
+    },
+    "Heavy Pressure": {
+      "name": "Heavy Pressure",
+      "description": "Leaps onto the target's head and slams down, dealing AoE P.ATK DMG and knocking the target back."
+    },
+    "Ice Crystal Ambush": {
+      "name": "Ice Crystal Ambush",
+      "description": "Creates an ice crystal under the target, dealing SP.ATK DMG. After a brief delay, the crystal explodes, dealing SP.ATK DMG and knocking back enemies in range."
+    },
+    "Ice Crystal Barrage": {
+      "name": "Ice Crystal Barrage",
+      "description": "Summons several Ice Crystals that, after a short delay, fire at a single target, dealing high multi-hit Elemental DMG."
+    },
+    "Incendiary Bullet": {
+      "name": "Incendiary Bullet",
+      "description": "Fires a large fireball that explodes on impact, dealing SP.ATK DMG in an area."
+    },
+    "Intimidation": {
+      "name": "Intimidation",
+      "description": "Intimidates the enemy target, reducing their Physical Defense."
+    },
+    "Kitty Punch": {
+      "name": "Kitty Punch",
+      "description": "Delivers three consecutive punches: the first two deal P.ATK DMG each, followed by a third punch that deals P.ATK DMG and knocks back the target, while reducing the target's Attack for 5s."
+    },
+    "Lightning": {
+      "name": "Lightning",
+      "description": "Calls down lightning at the target location, dealing SP.ATK DMG to enemies in range and applying Power Surge on hit. Power Surge: Increases incoming Shock DMG, stacking multiple times."
+    },
+    "Lightning Pierce": {
+      "name": "Lightning Pierce",
+      "description": "Charges forward ignoring collision, dealing SP.ATK DMG to targets in the path."
+    },
+    "Lucky Light": {
+      "name": "Lucky Light",
+      "description": "Summons two searchlights. Increases Multi-cast limit to 5, with a fixed 40% success rate, lasting 30s."
+    },
+    "Mesh Traction": {
+      "name": "Mesh Traction",
+      "description": "Entangles a target unit for 2.5s, pulling it toward you and dealing P.ATK DMG."
+    },
+    "Meteor": {
+      "name": "Meteor",
+      "description": "Summons a meteor at the target location, dealing SP.ATK DMG. Creates a burning zone that deals SP.ATK DMG every 0.5s."
+    },
+    "Outer God's Tentacle": {
+      "name": "Outer God's Tentacle",
+      "description": "Summons 1 tentacle to attack enemies nearby for a few seconds."
+    },
+    "Penetrating Charge": {
+      "name": "Penetrating Charge",
+      "description": "Charges forward ignoring collision, dealing P.ATK DMG to targets in the path."
+    },
+    "Physical Enhancement": {
+      "name": "Physical Enhancement",
+      "description": "Increases P.ATK for 8s."
+    },
+    "Physical Shockwave": {
+      "name": "Physical Shockwave",
+      "description": "Releases a 90 degree cone-shaped shockwave forward, dealing Physical DMG to enemies up to 15 meters away."
+    },
+    "Provoke": {
+      "name": "Provoke",
+      "description": "Taunts enemies within 12m, increasing the caster's P.DEF and SP.DEF for xs."
+    },
+    "Psi Bullet": {
+      "name": "Psi Bullet",
+      "description": "Fires an energy orb, dealing P.ATK DMG."
+    },
+    "Psi Ray": {
+      "name": "Psi Ray",
+      "description": "Emits a beam toward the target, dealing P.ATK DMG to enemies in the path every 0.5s."
+    },
+    "Pulse Orb": {
+      "name": "Pulse Orb",
+      "description": "Launches a slow-moving electric orb, dealing SP.ATK DMG to all units in its path."
+    },
+    "Pulse Ray": {
+      "name": "Pulse Ray",
+      "description": "Continuously emits an elemental beam at the target, dealing DMG every 0.05s to enemies in its path. Lasts 5s."
+    },
+    "Rain Arrow": {
+      "name": "Rain Arrow",
+      "description": "Fires three rain arrows, dealing SP.ATK DMG to all enemy units along the path."
+    },
+    "Rainy Peril": {
+      "name": "Rainy Peril",
+      "description": "Generates 8 rain arrows nearby to attack target, each consuming current HP to deal SP.ATK DMG."
+    },
+    "Rapid Charge": {
+      "name": "Rapid Charge",
+      "description": "Restores Psi Energy."
+    },
+    "Rapid Fire": {
+      "name": "Rapid Fire",
+      "description": "Fires 3 Bullets, dealing single-target damage. May repeat 3 or 1 times depending on success/failure."
+    },
+    "Resist Death": {
+      "name": "Resist Death",
+      "description": "Triggers when HP is low, recovering lost HP."
+    },
+    "Resonant Skybound": {
+      "name": "Resonant Skybound",
+      "description": "Teleports next to the target, dealing P.ATK DMG and knocking them airborne."
+    },
+    "Rite of Strength": {
+      "name": "Rite of Strength",
+      "description": "Sacrifices 10% of current HP to increase P.ATK and SP.ATK DMG for 6s."
+    },
+    "Rush": {
+      "name": "Rush",
+      "description": "Charges at the target, dealing P.ATK DMG and knocking down the target."
+    },
+    "Savage Strike": {
+      "name": "Savage Strike",
+      "description": "Performs a melee attack, dealing P.ATK DMG."
+    },
+    "Self-Healing": {
+      "name": "Self-Healing",
+      "description": "Gain a healing effect, recovering HP over 5s."
+    },
+    "Self-Recharge": {
+      "name": "Self-Recharge",
+      "description": "Restores Psi Energy."
+    },
+    "Shadow Strike": {
+      "name": "Shadow Strike",
+      "description": "Dashes forward and performs a draw slash. A crit instantly refreshes this skill."
+    },
+    "Shield": {
+      "name": "Shield",
+      "description": "Gains a shield based on Max HP, lasting 8s."
+    },
+    "Space Twister": {
+      "name": "Space Twister",
+      "description": "Deals P.ATK DMG per second to enemies within a 6m radius for 5s."
+    },
+    "Speed Up": {
+      "name": "Speed Up",
+      "description": "After casting, all general skill cooldowns are reduced by seconds."
+    },
+    "Super Flammable": {
+      "name": "Super Flammable",
+      "description": "Self-destructs after staying near the target for 5s, dealing AoE SP.ATK DMG. Has a chance to trigger when HP drops below 30%."
+    },
+    "Sweep": {
+      "name": "Sweep",
+      "description": "Performs a melee attack in an area, dealing P.ATK DMG."
+    },
+    "Torpedo": {
+      "name": "Torpedo",
+      "description": "Fires a randomly moving fish that deals SP.ATK DMG based on the caster's Attack and applies Power Surge to enemies on collision."
+    },
+    "Upper World Protection": {
+      "name": "Upper World Protection",
+      "description": "Grants shields equal to max HP to 3 allied Deviations and reflects DMG takens for 10s."
+    },
+    "Void Zone": {
+      "name": "Void Zone",
+      "description": "Creates an 8-meter radius void field around the caster that drains enemies' HP."
+    },
+    "Weakspot Sniper": {
+      "name": "Weakspot Sniper",
+      "description": "Aims at the target to deal P.ATK DMG, with a chance to deal additional damage and stun the target for 1s."
+    },
+    "Whale Invasion": {
+      "name": "Whale Invasion",
+      "description": "Summons a ghostly giant whale that leaps out of the water and lands at the target location ahead, dealing SP.ATK DMG to enemies within a 10m radius."
+    },
+    "Whirlwind Slash": {
+      "name": "Whirlwind Slash",
+      "description": "Performs a melee attack in a wide area, dealing P.ATK DMG."
+    },
+    "Wild Shot": {
+      "name": "Wild Shot",
+      "description": "Unleashes a barrage of shots in front, dealing multiple instances of Physical DMG to targets in range."
+    }
+  },
+  "ui": {
+    "title": "Once Human SCP: Planificador de Fusiones",
+    "tabs": {
+      "planner": "Planificador",
+      "techniques": "Habilidades",
+      "traits": "Rasgos",
+      "moderation": "Moderación",
+      "login": "Entrar",
+      "register": "Registrarse",
+      "profile": "Perfil",
+      "logout": "Salir"
+    },
+    "buttons": {
+      "approve": "Aprobar",
+      "decline": "Rechazar",
+      "save": "Guardar",
+      "delete": "Eliminar",
+      "share": "Compartir",
+      "copyCode": "Copiar Código",
+      "approveBulk": "Aprobar Seleccionados",
+      "declineBulk": "Rechazar Seleccionados",
+      "saveCloud": "Guardar en la Nube",
+      "recoverPass": "Recuperar Contraseña",
+      "submitTranslation": "Sugerir Traducción",
+      "submit": "Enviar",
+      "close": "Cerrar",
+      "cancel": "Cancelar"
+    },
+    "fields": {
+      "email": "Correo electrónico",
+      "password": "Contraseña",
+      "username": "Usuario",
+      "contact": "Contacto (WhatsApp/Teléfono - opcional)",
+      "searchDeviant": "Buscar desviación...",
+      "searchTechnique": "Buscar habilidad...",
+      "language": "Idioma",
+      "proposedText": "Tu propuesta de traducción"
+    },
+    "messages": {
+      "copied": "¡Copiado al portapapeles!",
+      "noAuth": "Esta función requiere iniciar sesión. Por favor inicia sesión o regístrate.",
+      "loginSuccess": "¡Inicio de sesión exitoso!",
+      "registerSuccess": "¡Registro completado con éxito!",
+      "recoverSuccess": "¡Correo de recuperación de contraseña enviado con éxito!",
+      "translationSubmitted": "¡Gracias! Tu sugerencia de traducción ha sido enviada para moderación.",
+      "adminOnly": "Acceso restringido a administradores."
+    }
+  }
+}

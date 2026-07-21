@@ -3,13 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Once Human SCP: Fusion Planner</title>
+    <title data-i18n="title">Once Human SCP: Fusion Planner</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="Styles/styles.css">
+    
+    <!-- Firebase SDKs Compat -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+    
+    <!-- Custom Scripts -->
+    <script src="Scripts/i18n.js" defer></script>
+    <script src="Scripts/firebase-config.js" defer></script>
+    <script src="Scripts/admin.js" defer></script>
     <script src="Scripts/script.js" defer></script>
     <script src="Scripts/team.js" defer></script>
 </head>
@@ -17,6 +27,7 @@
 
 <div id="technique-tooltip"></div>
 
+<!-- Modals -->
 <div id="dataSyncModal" class="modal-overlay hidden">
     <div class="modal-content">
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
@@ -64,18 +75,135 @@
     </div>
 </div>
 
+<!-- Authentication Modal -->
+<div id="authModal" class="modal-overlay hidden">
+    <div class="modal-content" style="max-width: 400px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px; border-bottom:1px solid #333; padding-bottom:10px;">
+            <h3 id="authModalTitle" style="margin:0; color:white;" data-i18n="tabs.login">Login</h3>
+            <span class="close-modal" onclick="closeAuthModal()">✕</span>
+        </div>
+        
+        <!-- Login View -->
+        <div id="auth-login-view">
+            <div class="form-group">
+                <label data-i18n="fields.email">Email</label>
+                <input type="email" id="loginEmail" placeholder="Enter your email...">
+            </div>
+            <div class="form-group" style="margin-top:10px;">
+                <label data-i18n="fields.password">Password</label>
+                <input type="password" id="loginPassword" placeholder="Enter your password...">
+            </div>
+            <div style="margin-top:20px; display:flex; gap:10px; flex-direction:column;">
+                <button onclick="handleLogin(document.getElementById('loginEmail').value, document.getElementById('loginPassword').value)" data-i18n="buttons.submit">Submit</button>
+                <div style="display:flex; justify-content:space-between; font-size:0.85rem; margin-top:5px;">
+                    <a href="#" onclick="showAuthView('register')" style="color:var(--accent);" data-i18n="tabs.register">Register</a>
+                    <a href="#" onclick="showAuthView('recover')" style="color:#aaa;" data-i18n="buttons.recoverPass">Recover Password</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Register View -->
+        <div id="auth-register-view" style="display:none;">
+            <div class="form-group">
+                <label data-i18n="fields.username">Username</label>
+                <input type="text" id="regUsername" placeholder="Enter a username...">
+            </div>
+            <div class="form-group" style="margin-top:10px;">
+                <label data-i18n="fields.email">Email</label>
+                <input type="email" id="regEmail" placeholder="Enter your email...">
+            </div>
+            <div class="form-group" style="margin-top:10px;">
+                <label data-i18n="fields.password">Password</label>
+                <input type="password" id="regPassword" placeholder="Enter a password...">
+            </div>
+            <div class="form-group" style="margin-top:10px;">
+                <label data-i18n="fields.contact">Contact (WhatsApp/Phone - optional)</label>
+                <input type="text" id="regContact" placeholder="Enter phone contact (optional)...">
+            </div>
+            <div style="margin-top:20px; display:flex; gap:10px; flex-direction:column;">
+                <button onclick="handleRegister(document.getElementById('regUsername').value, document.getElementById('regEmail').value, document.getElementById('regPassword').value, document.getElementById('regContact').value)" data-i18n="buttons.submit">Submit</button>
+                <a href="#" onclick="showAuthView('login')" style="text-align:center; font-size:0.85rem; color:var(--accent); margin-top:5px;" data-i18n="tabs.login">Login</a>
+            </div>
+        </div>
+
+        <!-- Password Recovery View -->
+        <div id="auth-recover-view" style="display:none;">
+            <div class="form-group">
+                <label data-i18n="fields.email">Email</label>
+                <input type="email" id="recoverEmail" placeholder="Enter your registered email...">
+            </div>
+            <div style="margin-top:20px; display:flex; gap:10px; flex-direction:column;">
+                <button onclick="handlePasswordRecovery(document.getElementById('recoverEmail').value)" data-i18n="buttons.submit">Submit</button>
+                <a href="#" onclick="showAuthView('login')" style="text-align:center; font-size:0.85rem; color:var(--accent); margin-top:5px;" data-i18n="tabs.login">Login</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- User Profile Modal -->
+<div id="profileModal" class="modal-overlay hidden">
+    <div class="modal-content" style="max-width: 450px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px; border-bottom:1px solid #333; padding-bottom:10px;">
+            <h3 style="margin:0; color:white;" data-i18n="tabs.profile">Profile</h3>
+            <span class="close-modal" onclick="closeProfileModal()">✕</span>
+        </div>
+        <div id="profileDetailsContainer"></div>
+        <div style="margin-top:20px; text-align:right;">
+            <button onclick="handleLogout()" class="secondary" style="border-color:var(--danger); color:var(--danger);" data-i18n="tabs.logout">Logout</button>
+        </div>
+    </div>
+</div>
+
+<!-- Suggest Translation Modal -->
+<div id="suggestTranslationModal" class="modal-overlay hidden">
+    <div class="modal-content" style="max-width: 400px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px; border-bottom:1px solid #333; padding-bottom:10px;">
+            <h3 style="margin:0; color:white;" data-i18n="buttons.submitTranslation">Suggest Translation</h3>
+            <span class="close-modal" onclick="closeTranslationModal()">✕</span>
+        </div>
+        <div>
+            <p style="margin:0 0 10px 0; color:#aaa; font-size:0.9rem;">Term (EN): <strong id="suggestTargetKey" style="color:white;"></strong></p>
+            <div class="form-group">
+                <label data-i18n="fields.proposedText">Your Proposed Translation</label>
+                <input type="text" id="suggestProposedInput" placeholder="Type your translation...">
+            </div>
+            <div style="margin-top:20px; display:flex; gap:10px; justify-content:flex-end;">
+                <button class="secondary" onclick="closeTranslationModal()" data-i18n="buttons.cancel">Cancel</button>
+                <button onclick="suggestTranslation(activeSuggestKey, activeSuggestType, document.getElementById('suggestProposedInput').value)" data-i18n="buttons.submit">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="container">
     
     <h1 style="text-align:center; color:white; margin-bottom: 20px;">
-        Once Human SCP: <span class="title-break">Fusion Planner</span>
+        Once Human SCP: <span class="title-break" data-i18n="title">Fusion Planner</span>
     </h1>
 
     <div class="header-actions">
+        <!-- Main Actions -->
         <button class="secondary" onclick="toggleArenaShops()" id="btnArenaShops">Arena Shops</button>
         <button class="secondary" onclick="toggleTechniquesLibrary()" id="btnTechniquesLib">Techniques Library</button>
         <button class="secondary" onclick="toggleLibrary()" id="btnLib">Traits Library</button>
         
-        <div style="display:flex; gap:10px; align-items:center;">
+        <!-- Auth & i18n & Settings -->
+        <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
+            <!-- Language Select -->
+            <select id="langSelect" onchange="changeLanguage(this.value)" style="padding: 5px 8px; border-radius: 4px; background: #252526; color: white; border: 1px solid var(--border);">
+                <option value="en">English</option>
+                <option value="pt">Português</option>
+                <option value="es">Español</option>
+                <option value="fr">Français</option>
+                <option value="zh">简体中文</option>
+            </select>
+
+            <!-- Admin and Auth Tabs -->
+            <button class="secondary active" id="tab-admin" onclick="toggleAdminPanel()" style="display:none;" data-i18n="tabs.moderation">Moderation</button>
+            <button class="secondary" id="tab-login" onclick="openAuthModal()" data-i18n="tabs.login">Login</button>
+            <button class="secondary active" id="tab-profile" onclick="openProfileModal()" style="display:none;"></button>
+
+            <!-- Utilities -->
             <button class="btn-sq" onclick="openDataModal()" title="Database Info">i</button>
             
             <button class="btn-sq" onclick="toggleSettingsModal()" title="Module Settings">
@@ -88,6 +216,18 @@
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.419-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
             </a>
         </div>
+    </div>
+
+    <!-- Admin Moderation Panel -->
+    <div id="adminPanel" class="tool-panel hidden" style="border-top-color: var(--danger);">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
+            <h3 data-i18n="tabs.moderation">Moderation</h3>
+            <div style="display:flex; gap:10px;">
+                <button onclick="handleBulkModeration('approved')" class="secondary" style="border-color:var(--success); color:var(--success);" data-i18n="buttons.approveBulk">Approve Selected</button>
+                <button onclick="handleBulkModeration('declined')" class="secondary" style="border-color:var(--danger); color:var(--danger);" data-i18n="buttons.declineBulk">Decline Selected</button>
+            </div>
+        </div>
+        <div id="adminProposalsList"></div>
     </div>
 
     <div id="arenaShops" class="tool-panel hidden" style="border-top-color: var(--success);">
@@ -107,7 +247,7 @@
 
     <div id="techniquesLibrary" class="tool-panel hidden" style="border-top-color: var(--accent);">
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
-            <h3>Techniques Library</h3>
+            <h3 data-i18n="tabs.techniques">Techniques Library</h3>
             <input type="text" id="searchTechniquesLib" placeholder="Search..." onkeyup="filterTechniquesLib()" style="max-width: 200px;">
         </div>
         <div style="overflow-x:auto; max-height:400px; border:1px solid var(--border);">
@@ -119,7 +259,7 @@
     </div>
 
     <div id="traitsLibrary" class="tool-panel hidden" style="border-top-color: var(--purple);">
-        <h3 style="margin:0 0 15px 0;">Traits Library</h3>
+        <h3 style="margin:0 0 15px 0;" data-i18n="tabs.traits">Traits Library</h3>
         
         <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:15px;">
             <div style="display:flex; gap:5px; flex-wrap:wrap; align-items:center;">
@@ -152,7 +292,7 @@
     </div>
 
     <div id="panel-builder" class="tool-panel" style="border-top-color: #ffffff;">
-        <h3>Custom Build Planner</h3>
+        <h3 data-i18n="tabs.planner">Custom Build Planner</h3>
         
         <div style="margin-bottom: 20px;">
             <label style="display:block; font-size:0.85rem; color:#aaa; margin-bottom:5px;">Target Deviation</label>
@@ -176,9 +316,10 @@
             <div id="selectedTraits" style="margin-top:10px;"></div>
         </div>
         
-        <div style="margin-top: 25px; display:flex; gap:10px;">
+        <div style="margin-top: 25px; display:flex; gap:10px; flex-wrap:wrap;">
             <button class="btn-neutral" style="flex:2" onclick="generatePlan()">Generate Strategy</button>
             <button style="flex:1" onclick="resetBuilder()">Reset</button>
+            <button id="btnSaveCloud" class="secondary" style="display:none; flex:1;" onclick="savePlanToCloud()" data-i18n="buttons.saveCloud">Save to Cloud</button>
         </div>
         
         <div id="builderResults" class="grid-cols"></div>
@@ -275,6 +416,16 @@ document.addEventListener('click', function(e) {
         if(dd) dd.style.display = 'none';
     }
 });
+
+function toggleAdminPanel() {
+    const adminPanel = document.getElementById("adminPanel");
+    if (adminPanel) {
+        adminPanel.classList.toggle("hidden");
+        if (!adminPanel.classList.contains("hidden")) {
+            loadPendingProposalsList();
+        }
+    }
+}
 </script>
 
 </body>
