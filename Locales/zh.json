@@ -1148,7 +1148,8 @@
       "submitTranslation": "建议翻译",
       "submit": "提交",
       "close": "关闭",
-      "cancel": "取消"
+      "cancel": "取消",
+      "btnArenaShops": "竞技场商店"
     },
     "fields": {
       "email": "电子邮箱",

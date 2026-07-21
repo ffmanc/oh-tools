@@ -154,7 +154,10 @@ function filterTraitDropdown() {
         return;
     }
 
-    const matches = traits.filter(t => t.name.toUpperCase().includes(filter));
+    const matches = traits.filter(t => {
+        const trans = typeof translateTrait === 'function' ? translateTrait(t.name) : t;
+        return t.name.toUpperCase().includes(filter) || trans.name.toUpperCase().includes(filter);
+    });
     
     if (matches.length > 0) {
         dropdown.style.display = 'block';
@@ -164,9 +167,10 @@ function filterTraitDropdown() {
             
             // DYNAMIC: Only show slot text if enabled
             const slotStr = (SHOW_SLOT_DATA && t.slot) ? ` [S${t.slot}]` : '';
+            const trans = typeof translateTrait === 'function' ? translateTrait(t.name) : t;
             
-            div.innerHTML = `${t.name} <span>[${t.source}]${slotStr}</span>`;
-            div.onclick = () => selectTraitFromDropdown(t.name, t.source);
+            div.innerHTML = `${trans.name} <span>[${t.source}]${slotStr}</span>`;
+            div.onclick = () => selectTraitFromDropdown(t.name, t.source, trans.name);
             dropdown.appendChild(div);
         });
     } else {
@@ -174,9 +178,9 @@ function filterTraitDropdown() {
     }
 }
 
-function selectTraitFromDropdown(name, source) {
+function selectTraitFromDropdown(name, source, localName) {
     const input = document.getElementById('traitInput');
-    input.value = `${name} [${source}]`;
+    input.value = `${localName || name} [${source}]`;
     document.getElementById('traitDropdown').style.display = 'none';
 }
 
@@ -638,8 +642,17 @@ function addTrait() {
     traitSource = traitSource.replace(/\s*\[S\d+\]$/, '');
 
     let traitInfo;
-    if (traitSource) traitInfo = traits.find(t => t.name === traitName && t.source === traitSource);
-    else traitInfo = traits.find(t => t.name === traitName);
+    if (traitSource) {
+        traitInfo = traits.find(t => {
+            const trans = typeof translateTrait === 'function' ? translateTrait(t.name) : t;
+            return (t.name === traitName || trans.name === traitName) && t.source === traitSource;
+        });
+    } else {
+        traitInfo = traits.find(t => {
+            const trans = typeof translateTrait === 'function' ? translateTrait(t.name) : t;
+            return t.name === traitName || trans.name === traitName;
+        });
+    }
     if (!traitInfo) { alert("Trait not found in database."); return; }
     const duplicate = userSelectedTraits.find(t => t.name === traitInfo.name && t.source === traitInfo.source);
     if(duplicate) { input.value = ""; return; }

@@ -1148,7 +1148,8 @@
       "submitTranslation": "Suggérer une traduction",
       "submit": "Envoyer",
       "close": "Fermer",
-      "cancel": "Annuler"
+      "cancel": "Annuler",
+      "btnArenaShops": "Boutiques d'Arène"
     },
     "fields": {
       "email": "E-mail",

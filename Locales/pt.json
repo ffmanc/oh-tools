@@ -1148,7 +1148,8 @@
       "submitTranslation": "Sugerir Tradução",
       "submit": "Enviar",
       "close": "Fechar",
-      "cancel": "Cancelar"
+      "cancel": "Cancelar",
+      "btnArenaShops": "Lojas da Arena"
     },
     "fields": {
       "email": "E-mail",
