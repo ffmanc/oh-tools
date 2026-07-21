@@ -83,6 +83,9 @@
             <span class="close-modal" onclick="closeAuthModal()">✕</span>
         </div>
         
+        <!-- Inline Auth Message Container -->
+        <div id="authModalMessage" style="display:none; padding:10px; margin-bottom:15px; border-radius:var(--radius); font-size:0.85rem; text-align:center; font-weight:600;"></div>
+        
         <!-- Login View -->
         <div id="auth-login-view">
             <div class="form-group">
@@ -163,9 +166,9 @@
         </div>
         <div>
             <p style="margin:0 0 10px 0; color:#aaa; font-size:0.9rem;">Term (EN): <strong id="suggestTargetKey" style="color:white;"></strong></p>
-            <div class="form-group">
-                <label data-i18n="fields.proposedText">Your Proposed Translation</label>
-                <input type="text" id="suggestProposedInput" placeholder="Type your translation...">
+            <div class="form-group" style="margin-bottom:15px;">
+                <label data-i18n="fields.proposedText" style="display:block; margin-bottom:8px; font-weight:600;">Your Proposed Translation</label>
+                <input type="text" id="suggestProposedInput" placeholder="Type your translation..." data-i18n-placeholder="ui.fields.proposedTextPlaceholder" style="width:100%; box-sizing:border-box; padding:10px; border-radius:var(--radius); border:1px solid var(--border); background:var(--bg-input); color:white; font-size:0.9rem;">
             </div>
             <div style="margin-top:20px; display:flex; gap:10px; justify-content:flex-end;">
                 <button class="secondary" onclick="closeTranslationModal()" data-i18n="buttons.cancel">Cancel</button>
@@ -229,7 +232,7 @@
 
         <!-- Admin / Settings footer -->
         <div class="sidebar-footer">
-            <button class="secondary active" id="tab-admin" onclick="toggleAdminPanel()" style="display:none; width:100%; margin-bottom:8px; border-color:var(--danger); color:var(--danger);" data-i18n="tabs.moderation">Moderation</button>
+            <button class="secondary active" id="tab-admin" onclick="toggleAdminPanel()" style="display:none; width:100%; margin-bottom:8px; border-color:var(--danger); color:var(--danger);" data-i18n="tabs.moderation">Administration</button>
             <div style="display:flex; gap:8px;">
                 <button class="btn-sq" onclick="openDataModal()" title="Database Info" style="flex:1;">i</button>
                 <button class="btn-sq" onclick="toggleSettingsModal()" title="Module Settings" style="flex:1;">
@@ -247,17 +250,25 @@
     <!-- Main Content Area -->
     <main class="main-content">
         
-        <!-- Admin Moderation Panel (Global alert position) -->
-        <div id="adminPanel" class="tool-panel hidden" style="border-top-color: var(--danger); margin-bottom: 20px;">
-            <div class="tabs-header" style="display:flex; gap:10px; border-bottom:1px solid #333; padding-bottom:10px; margin-bottom:15px;">
-                <button class="tab-link active" onclick="switchAdminTab('tab-mod-proposals', this)">Proposals</button>
-                <button class="tab-link" onclick="switchAdminTab('tab-mod-console', this)">Translation Console</button>
-            </div>
+        <!-- Admin Moderation Panel (Global alert position) in Modal Box -->
+        <div id="adminModal" class="modal-overlay hidden">
+            <div id="adminPanel" class="modal-content" style="max-width: 950px; width:95%; max-height:90vh; overflow-y:auto; border-top: 3px solid var(--danger); padding:20px; position:relative;">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px; border-bottom:1px solid #333; padding-bottom:10px;">
+                    <div style="display:flex; align-items:center; gap:15px;">
+                        <h3 id="adminModalTitle" style="margin:0; color:white;" data-i18n="tabs.moderation">Administration</h3>
+                        <span id="adminVisitorCounter" style="font-size:0.8rem; color:var(--accent); font-weight:600; background:rgba(0,212,241,0.1); padding:2px 8px; border-radius:4px;">Unique Visitors: Loading...</span>
+                    </div>
+                    <span class="close-modal" onclick="toggleAdminPanel()">✕</span>
+                </div>
+                <div class="tabs-header" style="display:flex; gap:10px; border-bottom:1px solid #333; padding-bottom:10px; margin-bottom:15px;">
+                    <button class="tab-link active" onclick="switchAdminTab('tab-mod-proposals', this)" data-i18n="ui.moderation.proposalsTab">Proposals</button>
+                    <button class="tab-link" onclick="switchAdminTab('tab-mod-console', this)" data-i18n="ui.moderation.consoleTab">Translation Console</button>
+                </div>
 
             <!-- Proposals Tab Content -->
             <div id="tab-mod-proposals" class="admin-tab-content">
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
-                    <h3 data-i18n="tabs.moderation">Moderation</h3>
+                    <h3 data-i18n="ui.moderation.proposalsTab">Moderation</h3>
                     <div style="display:flex; gap:10px;">
                         <button onclick="handleBulkModeration('approved')" class="secondary" style="border-color:var(--success); color:var(--success);" data-i18n="buttons.approveBulk">Approve Selected</button>
                         <button onclick="handleBulkModeration('declined')" class="secondary" style="border-color:var(--danger); color:var(--danger);" data-i18n="buttons.declineBulk">Decline Selected</button>
@@ -269,14 +280,14 @@
             <!-- Translation Console Tab Content -->
             <div id="tab-mod-console" class="admin-tab-content hidden">
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px; flex-wrap:wrap; gap:10px;">
-                    <h3>Translation Database Editor</h3>
+                    <h3 data-i18n="ui.moderation.consoleTab">Translation Console</h3>
                     <div style="display:flex; gap:10px; align-items:center;">
-                        <input type="text" id="adminConsoleSearch" placeholder="Search keys..." onkeyup="renderTranslationConsoleTable()" style="max-width:250px; margin-bottom:0;">
+                        <input type="text" id="adminConsoleSearch" placeholder="Search keys..." data-i18n-placeholder="ui.fields.searchPlaceholder" onkeyup="renderTranslationConsoleTable()" style="max-width:250px; margin-bottom:0;">
                         <select id="adminConsoleTypeFilter" onchange="renderTranslationConsoleTable()" style="width:130px; padding:8px; background:var(--bg-input); border:1px solid var(--border); color:white; border-radius:var(--radius);">
-                            <option value="All">All Types</option>
-                            <option value="deviation">Deviations</option>
-                            <option value="technique">Techniques</option>
-                            <option value="trait">Traits</option>
+                            <option value="All" data-i18n="ui.moderation.allTypes">All Types</option>
+                            <option value="deviation" data-i18n="ui.moderation.deviations">Deviations</option>
+                            <option value="technique" data-i18n="ui.moderation.techniques">Techniques</option>
+                            <option value="trait" data-i18n="ui.moderation.traits">Traits</option>
                         </select>
                     </div>
                 </div>
@@ -284,13 +295,13 @@
                     <table class="admin-table" style="min-width: 900px;">
                         <thead>
                             <tr>
-                                <th width="20%">Key (EN)</th>
-                                <th width="10%">Type</th>
-                                <th width="15%">Portuguese (PT)</th>
-                                <th width="15%">Spanish (ES)</th>
-                                <th width="15%">French (FR)</th>
-                                <th width="15%">Chinese (ZH)</th>
-                                <th width="10%">Actions</th>
+                                <th width="20%" data-i18n="ui.moderation.keyEn">Key (EN)</th>
+                                <th width="10%" data-i18n="ui.moderation.type">Type</th>
+                                <th width="15%" data-i18n="ui.moderation.pt">Portuguese (PT)</th>
+                                <th width="15%" data-i18n="ui.moderation.es">Spanish (ES)</th>
+                                <th width="15%" data-i18n="ui.moderation.fr">French (FR)</th>
+                                <th width="15%" data-i18n="ui.moderation.zh">Chinese (ZH)</th>
+                                <th width="10%" data-i18n="ui.moderation.actions">Actions</th>
                             </tr>
                         </thead>
                         <tbody id="adminConsoleTableBody"></tbody>
@@ -298,6 +309,7 @@
                 </div>
             </div>
         </div>
+    </div>
 
         <!-- Under Construction View (Generic placeholder) -->
         <div id="module-construction" class="tool-panel hidden" style="text-align:center; padding: 60px 20px; border-top-color: var(--warning);">
@@ -353,7 +365,7 @@
                         </div>
 
                         <div style="margin-top: 20px; padding-top: 15px; border-top: 1px dashed var(--border); display:flex; gap:10px;">
-                            <input type="text" id="shareCodeInput" placeholder="Share Code...">
+                            <input type="text" id="shareCodeInput" placeholder="Share Code..." data-i18n-placeholder="ui.fields.shareCodePlaceholder">
                             <button onclick="loadShareCode()" data-i18n="ui.planner.load">Load</button>
                             <button onclick="generateShareCode()" data-i18n="ui.planner.copy">Copy</button>
                             <span id="shareStatus" style="align-self:center; font-size:0.8rem;"></span>
@@ -413,7 +425,7 @@
                     </div>
                     <div style="overflow-x:auto; max-height:400px; border:1px solid var(--border);">
                         <table id="techniquesTable">
-                            <thead><tr><th width="30%">Name</th><th>Description</th></tr></thead>
+                            <thead><tr><th width="30%" data-i18n="ui.headers.name">Name</th><th data-i18n="ui.headers.description">Description</th></tr></thead>
                             <tbody id="techniquesBody"></tbody>
                         </table>
                     </div>
@@ -440,11 +452,11 @@
                             <button class="filter-btn slot-btn" onclick="applySlotFilter(3, this)">3</button>
                             <button class="filter-btn slot-btn" onclick="applySlotFilter(4, this)">4</button>
                         </div>
-                        <input type="text" id="searchTraits" placeholder="Search..." onkeyup="filterTraits()" style="max-width: 200px;">
+                        <input type="text" id="searchTraits" placeholder="Search..." data-i18n-placeholder="ui.fields.searchPlaceholder" onkeyup="filterTraits()" style="max-width: 200px;">
                     </div>
                     <div style="overflow-x:auto; max-height:400px; border:1px solid var(--border);">
                         <table id="traitsTable">
-                            <thead><tr><th width="20%">Name</th><th width="15%">Source</th><th width="15%">Category</th><th>Description</th></tr></thead>
+                            <thead><tr><th width="20%" data-i18n="ui.headers.name">Name</th><th width="15%" data-i18n="ui.headers.source">Source</th><th width="15%" data-i18n="ui.headers.category">Category</th><th data-i18n="ui.headers.description">Description</th></tr></thead>
                             <tbody id="traitsBody"></tbody>
                         </table>
                     </div>
@@ -454,14 +466,14 @@
                 <div id="tab-deviants-lib" class="lib-tab-content hidden">
                     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
                         <h3 data-i18n="tabs.deviants" style="margin:0;">Deviants List</h3>
-                        <input type="text" id="searchDeviantsLibInput" placeholder="Search..." onkeyup="filterDeviantsLib()" style="max-width: 200px;">
+                        <input type="text" id="searchDeviantsLibInput" placeholder="Search..." data-i18n-placeholder="ui.fields.searchPlaceholder" onkeyup="filterDeviantsLib()" style="max-width: 200px;">
                     </div>
                     <div style="overflow-x:auto; max-height:400px; border:1px solid var(--border);">
                         <table id="deviantsLibTable">
                             <thead>
                                 <tr>
-                                    <th width="40%">Name (EN)</th>
-                                    <th>Translated Name</th>
+                                    <th width="40%" data-i18n="ui.headers.nameEn">Name (EN)</th>
+                                    <th data-i18n="ui.headers.translatedName">Translated Name</th>
                                 </tr>
                             </thead>
                             <tbody id="deviantsLibBody"></tbody>
@@ -555,12 +567,27 @@ document.addEventListener('click', function(e) {
 });
 
 function toggleAdminPanel() {
-    const adminPanel = document.getElementById("adminPanel");
-    if (adminPanel) {
-        adminPanel.classList.toggle("hidden");
-        if (!adminPanel.classList.contains("hidden")) {
-            loadPendingProposalsList();
+    const adminModal = document.getElementById("adminModal");
+    if (adminModal) {
+        adminModal.classList.toggle("hidden");
+        if (!adminModal.classList.contains("hidden")) {
+            if (typeof loadPendingProposalsList === 'function') loadPendingProposalsList();
+            if (typeof loadAllOnlineTranslations === 'function') loadAllOnlineTranslations();
+            loadVisitorCount();
         }
+    }
+}
+
+async function loadVisitorCount() {
+    const counterEl = document.getElementById("adminVisitorCounter");
+    if (!counterEl) return;
+    try {
+        const doc = await db.collection("stats").doc("visits").get();
+        if (doc.exists) {
+            counterEl.textContent = `Unique Visitors: ${doc.data().count || 0}`;
+        }
+    } catch(err) {
+        console.warn("Could not load stats:", err);
     }
 }
 

@@ -1128,7 +1128,7 @@
       "planner": "规划器",
       "techniques": "技能",
       "traits": "特质",
-      "moderation": "管理审核",
+      "moderation": "管理",
       "login": "登录",
       "register": "注册",
       "profile": "个人资料",
@@ -1161,7 +1161,11 @@
       "searchDeviant": "搜索异常...",
       "searchTechnique": "搜索技能...",
       "language": "语言",
-      "proposedText": "您建议的翻译"
+      "proposedText": "您建议的翻译",
+      "proposedTextPlaceholder": "输入您的翻译...",
+      "searchPlaceholder": "搜索词条...",
+      "shareCodePlaceholder": "分享代码...",
+      "translate": "翻译..."
     },
     "messages": {
       "copied": "已复制到剪贴板！",
@@ -1279,7 +1283,29 @@
       "keyEn": "原始词条 (EN)",
       "type": "类型",
       "proposed": "建议的翻译",
-      "submittedBy": "提交人"
+      "submittedBy": "提交者",
+      "proposalsTab": "待处理提案",
+      "consoleTab": "翻译控制台",
+      "pt": "葡萄牙语 (PT)",
+      "es": "西班牙语 (ES)",
+      "fr": "法语 (FR)",
+      "zh": "中文 (ZH)",
+      "actions": "操作",
+      "allTypes": "所有类型",
+      "deviations": "异常",
+      "techniques": "技能",
+      "traits": "特质",
+      "save": "保存",
+      "definitive": "确定性",
+      "proposedTranslation": "提议的翻译"
+    },
+    "headers": {
+      "name": "名称",
+      "source": "来源",
+      "category": "类别",
+      "description": "描述",
+      "nameEn": "英文名称",
+      "translatedName": "翻译名称"
     }
   }
 }

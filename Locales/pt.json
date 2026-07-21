@@ -1128,7 +1128,7 @@
       "planner": "Planejador",
       "techniques": "Habilidades",
       "traits": "Traços",
-      "moderation": "Moderação",
+      "moderation": "Administração",
       "login": "Entrar",
       "register": "Cadastrar",
       "profile": "Perfil",
@@ -1161,7 +1161,11 @@
       "searchDeviant": "Pesquisar desviante...",
       "searchTechnique": "Pesquisar habilidade...",
       "language": "Idioma",
-      "proposedText": "Sua Tradução Proposta"
+      "proposedText": "Sua Tradução Proposta",
+      "proposedTextPlaceholder": "Digite sua tradução...",
+      "searchPlaceholder": "Pesquisar termo...",
+      "shareCodePlaceholder": "Código de Compartilhamento...",
+      "translate": "Traduzir..."
     },
     "messages": {
       "copied": "Copiado para a área de transferência!",
@@ -1271,7 +1275,7 @@
       "territory": "Território",
       "global": "Global",
       "animal": "Animal",
-      "furniture": "Mobiliário",
+      "furniture": "Mobília",
       "variations": "Variações",
       "all": "Todos"
     },
@@ -1279,7 +1283,29 @@
       "keyEn": "Termo Original (EN)",
       "type": "Tipo",
       "proposed": "Tradução Proposta",
-      "submittedBy": "Enviado por"
+      "submittedBy": "Enviado Por",
+      "proposalsTab": "Propostas Pendentes",
+      "consoleTab": "Console de Tradução",
+      "pt": "Português (PT)",
+      "es": "Espanhol (ES)",
+      "fr": "Francês (FR)",
+      "zh": "Chinês (ZH)",
+      "actions": "Ações",
+      "allTypes": "Todos os Tipos",
+      "deviations": "Desvios",
+      "techniques": "Habilidades",
+      "traits": "Traços",
+      "save": "Salvar",
+      "definitive": "Definitivo",
+      "proposedTranslation": "Tradução Proposta"
+    },
+    "headers": {
+      "name": "Nome",
+      "source": "Origem",
+      "category": "Categoria",
+      "description": "Descrição",
+      "nameEn": "Nome (EN)",
+      "translatedName": "Nome Traduzido"
     }
   }
 }

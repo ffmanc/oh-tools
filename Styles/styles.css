@@ -1,3 +1,7 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
 :root {
     --bg-body: #121212; 
     --bg-panel: #1e1e1e; 
@@ -420,6 +424,8 @@ tr:hover { background-color: #2a2a2a; }
     color: white;
     padding: 8px 10px;
     border-radius: var(--radius);
+    width: 100%;
+    box-sizing: border-box;
 }
 .form-group input:focus {
     outline: none;

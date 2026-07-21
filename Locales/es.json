@@ -1128,7 +1128,7 @@
       "planner": "Planificador",
       "techniques": "Habilidades",
       "traits": "Rasgos",
-      "moderation": "Moderación",
+      "moderation": "Administración",
       "login": "Entrar",
       "register": "Registrarse",
       "profile": "Perfil",
@@ -1161,7 +1161,11 @@
       "searchDeviant": "Buscar desviación...",
       "searchTechnique": "Buscar habilidad...",
       "language": "Idioma",
-      "proposedText": "Tu propuesta de traducción"
+      "proposedText": "Tu propuesta de traducción",
+      "proposedTextPlaceholder": "Escribe tu traducción...",
+      "searchPlaceholder": "Buscar término...",
+      "shareCodePlaceholder": "Código de Compartir...",
+      "translate": "Traducir..."
     },
     "messages": {
       "copied": "¡Copiado al portapapeles!",
@@ -1279,7 +1283,29 @@
       "keyEn": "Término (EN)",
       "type": "Tipo",
       "proposed": "Traducción Propuesta",
-      "submittedBy": "Enviado Por"
+      "submittedBy": "Enviado Por",
+      "proposalsTab": "Propuestas Pendientes",
+      "consoleTab": "Consola de Traducción",
+      "pt": "Portugués (PT)",
+      "es": "Español (ES)",
+      "fr": "Francés (FR)",
+      "zh": "Chino (ZH)",
+      "actions": "Acciones",
+      "allTypes": "Todos los Tipos",
+      "deviations": "Desviaciones",
+      "techniques": "Técnicas",
+      "traits": "Rasgos",
+      "save": "Guardar",
+      "definitive": "Definitivo",
+      "proposedTranslation": "Traducción Propuesta"
+    },
+    "headers": {
+      "name": "Nombre",
+      "source": "Origen",
+      "category": "Categoría",
+      "description": "Descripción",
+      "nameEn": "Nombre (EN)",
+      "translatedName": "Nombre Traducido"
     }
   }
 }

@@ -1128,7 +1128,7 @@
       "planner": "Planner",
       "techniques": "Skills",
       "traits": "Traits",
-      "moderation": "Moderation",
+      "moderation": "Administration",
       "login": "Login",
       "register": "Register",
       "profile": "Profile",
@@ -1161,7 +1161,11 @@
       "searchDeviant": "Search deviant...",
       "searchTechnique": "Search skill...",
       "language": "Language",
-      "proposedText": "Your Proposed Translation"
+      "proposedText": "Your Proposed Translation",
+      "proposedTextPlaceholder": "Type your translation...",
+      "searchPlaceholder": "Search term...",
+      "shareCodePlaceholder": "Share Code...",
+      "translate": "Translate..."
     },
     "messages": {
       "copied": "Copied to clipboard!",
@@ -1279,7 +1283,29 @@
       "keyEn": "Key (EN)",
       "type": "Type",
       "proposed": "Proposed Translation",
-      "submittedBy": "Submitted By"
+      "submittedBy": "Submitted By",
+      "proposalsTab": "Pending Proposals",
+      "consoleTab": "Translation Console",
+      "pt": "Portuguese (PT)",
+      "es": "Spanish (ES)",
+      "fr": "French (FR)",
+      "zh": "Chinese (ZH)",
+      "actions": "Actions",
+      "allTypes": "All Types",
+      "deviations": "Deviations",
+      "techniques": "Techniques",
+      "traits": "Traits",
+      "save": "Save",
+      "definitive": "Definitive",
+      "proposedTranslation": "Proposed Translation"
+    },
+    "headers": {
+      "name": "Name",
+      "source": "Source",
+      "category": "Category",
+      "description": "Description",
+      "nameEn": "Name (EN)",
+      "translatedName": "Translated Name"
     }
   }
 }

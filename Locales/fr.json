@@ -1128,7 +1128,7 @@
       "planner": "Planificateur",
       "techniques": "Compétences",
       "traits": "Traits",
-      "moderation": "Modération",
+      "moderation": "Administration",
       "login": "Connexion",
       "register": "S'inscrire",
       "profile": "Profil",
@@ -1161,7 +1161,11 @@
       "searchDeviant": "Rechercher un déviation...",
       "searchTechnique": "Rechercher une compétence...",
       "language": "Langue",
-      "proposedText": "Votre proposition de traduction"
+      "proposedText": "Votre proposition de traduction",
+      "proposedTextPlaceholder": "Tapez votre traduction...",
+      "searchPlaceholder": "Rechercher un terme...",
+      "shareCodePlaceholder": "Code de Partage...",
+      "translate": "Traduire..."
     },
     "messages": {
       "copied": "Copié dans le presse-papiers !",
@@ -1279,7 +1283,29 @@
       "keyEn": "Clé (EN)",
       "type": "Type",
       "proposed": "Traduction Proposée",
-      "submittedBy": "Soumis Par"
+      "submittedBy": "Soumis Par",
+      "proposalsTab": "Propositions en Attente",
+      "consoleTab": "Console de Traduction",
+      "pt": "Portugais (PT)",
+      "es": "Espagnol (ES)",
+      "fr": "Français (FR)",
+      "zh": "Chinois (ZH)",
+      "actions": "Actions",
+      "allTypes": "Tous les Types",
+      "deviations": "Déviations",
+      "techniques": "Techniques",
+      "traits": "Traits",
+      "save": "Sauvegarder",
+      "definitive": "Définitif",
+      "proposedTranslation": "Traduction Proposée"
+    },
+    "headers": {
+      "name": "Nom",
+      "source": "Source",
+      "category": "Catégorie",
+      "description": "Description",
+      "nameEn": "Nom (EN)",
+      "translatedName": "Nom Traduit"
     }
   }
 }

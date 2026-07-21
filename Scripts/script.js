@@ -91,6 +91,9 @@ async function init() {
             if (typeof fetchOnlineTranslations === 'function') {
                 await fetchOnlineTranslations();
             }
+            if (typeof trackUniqueVisit === 'function') {
+                trackUniqueVisit();
+            }
         }
 
         let devRes;

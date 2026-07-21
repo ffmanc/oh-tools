@@ -55,10 +55,50 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
+// Message helpers for modal auth
+function showAuthMessage(text, isError = false) {
+  const msgEl = document.getElementById("authModalMessage");
+  if (!msgEl) return;
+  msgEl.textContent = text;
+  msgEl.style.display = "block";
+  if (isError) {
+    msgEl.style.background = "rgba(255, 82, 82, 0.15)";
+    msgEl.style.border = "1px solid rgba(255, 82, 82, 0.3)";
+    msgEl.style.color = "var(--danger)";
+  } else {
+    msgEl.style.background = "rgba(76, 175, 80, 0.15)";
+    msgEl.style.border = "1px solid rgba(76, 175, 80, 0.3)";
+    msgEl.style.color = "var(--success)";
+  }
+}
+
+function clearAuthMessage() {
+  const msgEl = document.getElementById("authModalMessage");
+  if (msgEl) {
+    msgEl.textContent = "";
+    msgEl.style.display = "none";
+  }
+}
+
+async function trackUniqueVisit() {
+  if (typeof db === 'undefined') return;
+  if (!localStorage.getItem("oh_tools_visited")) {
+    try {
+      await db.collection("stats").doc("visits").set({
+        count: firebase.firestore.FieldValue.increment(1)
+      }, { merge: true });
+      localStorage.setItem("oh_tools_visited", "true");
+    } catch(err) {
+      console.warn("Error tracking visit:", err);
+    }
+  }
+}
+
 // Authentications Flows
 async function handleRegister(username, email, password, contact) {
+  clearAuthMessage();
   if (!username || !email || !password) {
-    alert(t("ui.messages.fillAll"));
+    showAuthMessage(t("ui.messages.fillAll"), true);
     return;
   }
   try {
@@ -77,38 +117,47 @@ async function handleRegister(username, email, password, contact) {
       createdAt: firebase.firestore.FieldValue.serverTimestamp()
     });
 
-    alert(t("ui.messages.registerSuccess"));
-    closeAuthModal();
+    showAuthMessage(t("ui.messages.registerSuccess"), false);
+    setTimeout(() => {
+      closeAuthModal();
+    }, 1500);
   } catch (err) {
-    alert("Register Error: " + err.message);
+    showAuthMessage("Register Error: " + err.message, true);
   }
 }
 
 async function handleLogin(email, password) {
+  clearAuthMessage();
   if (!email || !password) {
-    alert(t("ui.messages.fillCredentials"));
+    showAuthMessage(t("ui.messages.fillCredentials"), true);
     return;
   }
   try {
     await auth.signInWithEmailAndPassword(email, password);
-    alert(t("ui.messages.loginSuccess"));
-    closeAuthModal();
+    showAuthMessage(t("ui.messages.loginSuccess"), false);
+    setTimeout(() => {
+      closeAuthModal();
+    }, 1500);
   } catch (err) {
-    alert("Login Error: " + err.message);
+    showAuthMessage("Login Error: " + err.message, true);
   }
 }
 
 async function handlePasswordRecovery(email) {
+  clearAuthMessage();
   if (!email) {
-    alert(t("ui.messages.enterEmail"));
+    showAuthMessage(t("ui.messages.enterEmail"), true);
     return;
   }
   try {
     await auth.sendPasswordResetEmail(email);
-    alert(t("ui.messages.recoverSuccess"));
-    showAuthView('login');
+    showAuthMessage(t("ui.messages.recoverSuccess"), false);
+    setTimeout(() => {
+      showAuthView('login');
+      clearAuthMessage();
+    }, 1500);
   } catch (err) {
-    alert("Password Recovery Error: " + err.message);
+    showAuthMessage("Password Recovery Error: " + err.message, true);
   }
 }
 
@@ -188,10 +237,10 @@ function renderAdminProposals() {
       <thead>
         <tr>
           <th width="5%"><input type="checkbox" id="selectAllProposals" onchange="toggleSelectAllProposals(this.checked)"></th>
-          <th width="20%">Key (EN)</th>
-          <th width="15%">Type</th>
-          <th>Proposed Translation</th>
-          <th width="20%">Submitted By</th>
+          <th width="20%">${t("ui.moderation.keyEn")}</th>
+          <th width="15%">${t("ui.moderation.type")}</th>
+          <th>${t("ui.moderation.proposedTranslation")}</th>
+          <th width="20%">${t("ui.moderation.submittedBy")}</th>
         </tr>
       </thead>
       <tbody>
@@ -331,11 +380,13 @@ function applyOnlineTranslations() {
 
 // Auth modal controller
 function openAuthModal() {
+  clearAuthMessage();
   const modal = document.getElementById("authModal");
   if (modal) modal.classList.remove("hidden");
   showAuthView('login');
 }
 function closeAuthModal() {
+  clearAuthMessage();
   const modal = document.getElementById("authModal");
   if (modal) modal.classList.add("hidden");
 }
@@ -538,26 +589,26 @@ function renderTranslationConsoleTable() {
         ${langs.map(lang => {
           const langData = meta[lang] || { approvedText: "", definitive: false };
           return `
-            <td>
+            <td style="padding: 8px;">
               <input type="text" 
                      id="console-trans-${t.key.replace(/'/g, "&apos;")}-${lang}" 
                      value="${langData.approvedText || ''}" 
-                     placeholder="Translate..."
-                     style="margin-bottom:4px; font-size:0.8rem; padding:4px;">
-              <label style="font-size:0.7rem; display:flex; align-items:center; gap:3px;">
+                     placeholder="${t("ui.fields.translate")}"
+                     style="width: 100%; box-sizing: border-box; padding: 6px 8px; border-radius: var(--radius); border: 1px solid var(--border); background: var(--bg-input); color: white; margin-bottom: 4px; font-size: 0.8rem;">
+              <label style="font-size:0.7rem; display:flex; align-items:center; gap:4px; margin-top:2px;">
                 <input type="checkbox" 
                        id="console-def-${t.key.replace(/'/g, "&apos;")}-${lang}" 
                        ${langData.definitive ? 'checked' : ''} 
                        style="width:auto; margin:0;">
-                Definitive
+                ${t("ui.moderation.definitive")}
               </label>
             </td>
           `;
         }).join('')}
         <td>
           <button onclick="saveConsoleTranslation('${t.key.replace(/'/g, "\\'")}', '${t.type}')" 
-                  style="padding:6px 10px; font-size:0.75rem;">
-            Save
+                  style="padding:6px 12px; font-size:0.75rem; border-radius:var(--radius); width:100%; box-sizing:border-box;">
+            ${t("ui.moderation.save")}
           </button>
         </td>
       </tr>
