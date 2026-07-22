@@ -455,6 +455,7 @@ tr:hover { background-color: #2a2a2a; }
 
 /* Suggest Button microanimation */
 .suggest-btn {
+    font-style: normal;
     transition: transform 0.2s, opacity 0.2s;
 }
 .suggest-btn:hover {

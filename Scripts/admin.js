@@ -743,40 +743,57 @@ function renderTranslationConsoleTable() {
 
   termsList.sort((a, b) => a.key.localeCompare(b.key));
 
-  // EN is now editable; it's the first lang column after the key/type columns
-  const langs = ['en', 'pt', 'es', 'fr', 'zh'];
+  // PT/ES/FR/ZH are the translated columns; EN is the first (editable) column
+  const langs = ['pt', 'es', 'fr', 'zh'];
 
   tableBody.innerHTML = termsList.map(term => {
     const meta = onlineTranslationsMetadata[term.key] || {};
-    
+    const enData = meta['en'] || { approvedText: '', definitive: false };
+    const enPrefill = enData.approvedText || getLocalTranslation(term.key, term.type, 'en') || term.key;
+    const escapedKey = term.key.replace(/'/g, '&apos;');
+
     return `
       <tr>
-        <td style="padding: 10px; font-weight: 600;">${term.key}</td>
+        <td style="padding: 8px 12px; min-width: 180px; vertical-align: top;">
+          <div style="font-size:0.72rem; color:#777; margin-bottom:4px;">${term.key}</div>
+          <input type="text"
+                 id="console-trans-${escapedKey}-en"
+                 value="${enPrefill.replace(/"/g, '&quot;')}"
+                 placeholder="${term.key}"
+                 style="width:100%; box-sizing:border-box; padding:6px 10px; border-radius:var(--radius); border:1px solid var(--accent); background:var(--bg-input); color:white; margin-bottom:6px; font-size:0.8rem; display:block;">
+          <label style="font-size:0.7rem; display:flex; align-items:center; gap:5px; cursor:pointer; user-select:none; color:#aaa;">
+            <input type="checkbox"
+                   id="console-def-${escapedKey}-en"
+                   ${enData.definitive ? 'checked' : ''}
+                   style="width:auto; margin:0; cursor:pointer;">
+            ${t('ui.moderation.definitive')}
+          </label>
+        </td>
         <td style="padding: 10px;"><span class="badge">${typeof t === 'function' ? t('ui.moderation.' + term.type + 's') : term.type}</span></td>
         ${langs.map(lang => {
-          const langData = meta[lang] || { approvedText: "", definitive: false };
+          const langData = meta[lang] || { approvedText: '', definitive: false };
           const prefilledVal = langData.approvedText || getLocalTranslation(term.key, term.type, lang);
           return `
             <td style="padding: 8px 12px; min-width: 160px; vertical-align: top;">
-              <input type="text" 
-                     id="console-trans-${term.key.replace(/'/g, "&apos;")}-${lang}" 
-                     value="${prefilledVal || ''}" 
-                     placeholder="${t("ui.fields.translate")}"
-                     style="width: 100%; box-sizing: border-box; padding: 6px 10px; border-radius: var(--radius); border: 1px solid var(--border); background: var(--bg-input); color: white; margin-bottom: 6px; font-size: 0.8rem; display: block;">
-              <label style="font-size:0.7rem; display:flex; align-items:center; gap:5px; margin-top:2px; cursor: pointer; user-select: none; color: #aaa;">
-                <input type="checkbox" 
-                       id="console-def-${term.key.replace(/'/g, "&apos;")}-${lang}" 
-                       ${langData.definitive ? 'checked' : ''} 
-                       style="width:auto; margin:0; cursor: pointer;">
-                ${t("ui.moderation.definitive")}
+              <input type="text"
+                     id="console-trans-${escapedKey}-${lang}"
+                     value="${(prefilledVal || '').replace(/"/g, '&quot;')}"
+                     placeholder="${t('ui.fields.translate')}"
+                     style="width:100%; box-sizing:border-box; padding:6px 10px; border-radius:var(--radius); border:1px solid var(--border); background:var(--bg-input); color:white; margin-bottom:6px; font-size:0.8rem; display:block;">
+              <label style="font-size:0.7rem; display:flex; align-items:center; gap:5px; margin-top:2px; cursor:pointer; user-select:none; color:#aaa;">
+                <input type="checkbox"
+                       id="console-def-${escapedKey}-${lang}"
+                       ${langData.definitive ? 'checked' : ''}
+                       style="width:auto; margin:0; cursor:pointer;">
+                ${t('ui.moderation.definitive')}
               </label>
             </td>
           `;
         }).join('')}
         <td style="padding: 10px; text-align: center; vertical-align: middle;">
-          <button onclick="saveConsoleTranslation('${term.key.replace(/'/g, "\\'")}'\, '${term.type}')" 
-                  style="padding:8px 14px; font-size:0.75rem; border-radius:var(--radius); width:100%; box-sizing:border-box; font-weight:600; cursor: pointer;">
-            ${t("ui.moderation.save")}
+          <button onclick="saveConsoleTranslation('${term.key.replace(/'/g, "\\'")}'\, '${term.type}')"
+                  style="padding:8px 14px; font-size:0.75rem; border-radius:var(--radius); width:100%; box-sizing:border-box; font-weight:600; cursor:pointer;">
+            ${t('ui.moderation.save')}
           </button>
         </td>
       </tr>
@@ -989,9 +1006,9 @@ function renderUITermsTable() {
   };
 
   tbody.innerHTML = filtered.map(entry => {
-    const escapedKey = entry.key.replace(/'/g, "&apos;");
+    const escapedKey = entry.key.replace(/'/g, '&apos;');
 
-    // EN column: prefill from onlineTranslationsMetadata['en'] or entry.labelEn
+    // EN is the first (editable) column — "Termo Original" becomes an input
     const enMeta = (typeof onlineTranslationsMetadata !== 'undefined' &&
                     onlineTranslationsMetadata[entry.key] &&
                     onlineTranslationsMetadata[entry.key]['en'])
@@ -999,31 +1016,17 @@ function renderUITermsTable() {
     const enVal = (enMeta && enMeta.approvedText) ? enMeta.approvedText : entry.labelEn;
     const enDefChecked = (enMeta && enMeta.definitive) ? 'checked' : '';
 
-    const allLangs = ['en', 'pt', 'es', 'fr', 'zh'];
-    const langCells = allLangs.map(lang => {
-      if (lang === 'en') {
-        return `<td style="padding:4px;">
-          <input id="uit-trans-${escapedKey}-en" type="text" value="${enVal.replace(/"/g, '&quot;')}" placeholder="${entry.labelEn}" style="width:90%; font-size:0.8rem; padding:4px; background:var(--bg-input); border:1px solid var(--accent); color:white; border-radius:4px;">
-          <label style="font-size:0.7rem; color:#888; display:flex; align-items:center; gap:4px; margin-top:2px;">
-            <input type="checkbox" id="uit-def-${escapedKey}-en" ${enDefChecked}> ${typeof t === 'function' ? t('ui.moderation.definitive') : 'Definitive'}
-          </label>
-        </td>`;
-      }
-      // Get current value from onlineTranslationsMetadata or from localeData fallback
+    const langCells = ['pt', 'es', 'fr', 'zh'].map(lang => {
       let current = '';
       if (typeof onlineTranslationsMetadata !== 'undefined' &&
           onlineTranslationsMetadata[entry.key] &&
           onlineTranslationsMetadata[entry.key][lang]) {
         current = onlineTranslationsMetadata[entry.key][lang].approvedText || '';
       }
-      // Fallback to the locale file value
       if (!current && typeof allLocalesCached !== 'undefined' && allLocalesCached[lang]) {
         const parts = entry.path.split('.');
         let obj = allLocalesCached[lang];
-        for (const p of parts) {
-          obj = obj && obj[p];
-          if (!obj) break;
-        }
+        for (const p of parts) { obj = obj && obj[p]; if (!obj) break; }
         if (obj && typeof obj === 'string' && obj !== entry.labelEn) current = obj;
       }
       const defChecked = (typeof onlineTranslationsMetadata !== 'undefined' &&
@@ -1039,9 +1042,13 @@ function renderUITermsTable() {
     }).join('');
 
     return `<tr>
-      <td style="padding:6px 8px; font-size:0.82rem; color:#ddd; white-space:nowrap;">
-        <div style="font-weight:600; color:white;">${entry.labelEn}</div>
-        <div style="font-size:0.72rem; color:#777; margin-top:2px;">${entry.key}</div>
+      <td style="padding:6px 8px; vertical-align:top;">
+        <div style="font-size:0.72rem; color:#777; margin-bottom:4px;">${entry.key}</div>
+        <input id="uit-trans-${escapedKey}-en" type="text" value="${enVal.replace(/"/g, '&quot;')}" placeholder="${entry.labelEn}"
+               style="width:100%; box-sizing:border-box; font-size:0.82rem; padding:5px 8px; background:var(--bg-input); border:1px solid var(--accent); color:white; border-radius:4px; font-weight:600;">
+        <label style="font-size:0.7rem; color:#888; display:flex; align-items:center; gap:4px; margin-top:3px;">
+          <input type="checkbox" id="uit-def-${escapedKey}-en" ${enDefChecked}> ${typeof t === 'function' ? t('ui.moderation.definitive') : 'Definitive'}
+        </label>
       </td>
       <td style="padding:4px 8px;">
         <span class="badge" style="font-size:0.72rem;">${catLabel(entry.category)}</span>
@@ -1056,7 +1063,7 @@ function renderUITermsTable() {
   }).join('');
 
   if (filtered.length === 0) {
-    tbody.innerHTML = `<tr><td colspan="8" style="text-align:center; padding:20px; opacity:0.5;">${typeof t === 'function' ? t('ui.messages.noResults') : 'No results.'}</td></tr>`;
+    tbody.innerHTML = `<tr><td colspan="7" style="text-align:center; padding:20px; opacity:0.5;">${typeof t === 'function' ? t('ui.messages.noResults') : 'No results.'}</td></tr>`;
   }
 }
 
