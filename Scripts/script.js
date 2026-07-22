@@ -79,7 +79,7 @@ function toggleDisplay(id, shouldShow) {
 
 
 function safeTooltip(str) {
-    if (!str) return "No description";
+    if (!str) return typeof t === 'function' ? t("ui.messages.noDescription") : "No description";
     return str.replace(/\\/g, '\\\\').replace(/'/g, "\\'").replace(/"/g, "&quot;").replace(/\n/g, " ");
 }
 
@@ -239,7 +239,7 @@ function buildArenaShops() {
                         return `
                         <tr>
                             <td>${localItemName}</td>
-                            <td class="arena-type">${i.type}</td>
+                            <td class="arena-type">${typeof translateGameTerm === 'function' ? translateGameTerm(i.type === 'Skill Mutagen' ? 'skillMutagen' : i.type === 'Species Code' ? 'speciesCode' : i.type) : i.type}</td>
                             <td class="arena-cost" style="color:${costColor};">${displayCost}</td>
                         </tr>`;
                     }).join('')}
@@ -274,7 +274,8 @@ function updateComparison() {
     const nameA = document.getElementById('compareSelectA').value;
     const nameB = document.getElementById('compareSelectB').value;
     const resultArea = document.getElementById('compareResults');
-    if (nameA === "Select Deviation A" || nameB === "Select Deviation B") return;
+    if (nameA === t("ui.messages.selectDeviantA") || nameA === "Select Deviation A" ||
+        nameB === t("ui.messages.selectDeviantB") || nameB === "Select Deviation B") return;
     
     const devA = deviations.find(d => d.name === nameA);
     const devB = deviations.find(d => d.name === nameB);
@@ -288,14 +289,14 @@ function updateComparison() {
         const techData = typeof translateTechnique === 'function' ? translateTechnique(s) : { name: s, description: s };
         const desc = safeTooltip(techData.description);
         return `<div class="skill-item ${isShared?'skill-shared':''}" onmouseenter="showTooltip(event, '${desc}')" onmouseleave="hideTooltip()">${techData.name}</div>`;
-    }).join('') : '<div style="opacity:0.5; font-size:0.8rem; text-align:center;">None</div>';
+    }).join('') : `<div style="opacity:0.5; font-size:0.8rem; text-align:center;">${typeof t === 'function' ? t("ui.compare.none") : "None"}</div>`;
     
     const localA = typeof translateDeviationName === 'function' ? translateDeviationName(devA.name) : devA.name;
     const localB = typeof translateDeviationName === 'function' ? translateDeviationName(devB.name) : devB.name;
 
     resultArea.innerHTML = `
         <div class="compare-col"><div class="col-header">${localA}</div>${renderList(uniqueA, false)}</div>
-        <div class="compare-col" style="border-color:var(--accent)"><div class="col-header" style="color:var(--accent)">Shared</div>${renderList(shared, true)}</div>
+        <div class="compare-col" style="border-color:var(--accent)"><div class="col-header" style="color:var(--accent)">${typeof t === 'function' ? t("ui.compare.shared") : "Shared"}</div>${renderList(shared, true)}</div>
         <div class="compare-col"><div class="col-header">${localB}</div>${renderList(uniqueB, false)}</div>
     `;
 }
@@ -309,7 +310,8 @@ function auditData() {
         dev.techniques.forEach(tech => { 
             if (!techDefinitions.has(tech)) { 
                 missingTechCount++; 
-                html += `<div style="font-size:0.85rem; padding:4px 0; border-bottom:1px dotted #333;"><span style="color:var(--danger)">MISSING:</span> ${tech} (${dev.name})</div>`; 
+                const missingLabel = typeof t === 'function' ? t("ui.audit.missing") : "MISSING:";
+                html += `<div style="font-size:0.85rem; padding:4px 0; border-bottom:1px dotted #333;"><span style="color:var(--danger)">${missingLabel}</span> ${tech} (${dev.name})</div>`; 
             } 
         }); 
     }); 
@@ -327,20 +329,29 @@ function auditData() {
 
     const statusDiv = document.getElementById('dataSyncStatus');
     
+    const auditSynced = typeof t === 'function' ? t("ui.audit.synced") : "Core Data Synced Successfully!";
+    const auditIssues = typeof t === 'function' ? t("ui.audit.issuesFound") : " Issues Found";
+    const auditTotalDev = typeof t === 'function' ? t("ui.audit.totalDeviations") : "Total Deviations:";
+    const auditTotalTech = typeof t === 'function' ? t("ui.audit.totalTechniques") : "Total Techniques:";
+    const auditTotalTrait = typeof t === 'function' ? t("ui.audit.totalTraits") : "Total Traits:";
+    const auditPsiMissing = typeof t === 'function' ? t("ui.audit.psiMissing") : "PSI Data Missing:";
+    const auditPassMissing = typeof t === 'function' ? t("ui.audit.passiveMissing") : "Passive Data Missing:";
+    const auditStdMissing = typeof t === 'function' ? t("ui.audit.standardMissing") : "Standard Data Missing:";
+
     statusDiv.innerHTML = missingTechCount === 0 
-        ? `<h4 style="color:var(--success);">Core Data Synced Successfully!</h4>` 
-        : `<h4 style="color:var(--danger);">${missingTechCount} Issues Found</h4>${html}`; 
+        ? `<h4 style="color:var(--success);">${auditSynced}</h4>` 
+        : `<h4 style="color:var(--danger);">${missingTechCount}${auditIssues}</h4>${html}`; 
     
     // UPDATED: Added Standard Data Missing Stats
     statusDiv.innerHTML += `
     <div style="margin-top: 20px; border-top: 1px solid #444; padding-top: 10px; font-size: 0.85rem; color: #ccc;">
-        <div style="display:flex; justify-content: space-between; margin-bottom:4px;"><span>Total Deviations:</span> <strong>${deviations.length}</strong></div>
-        <div style="display:flex; justify-content: space-between; margin-bottom:4px;"><span>Total Techniques:</span> <strong>${techniquesData.length}</strong></div>
-        <div style="display:flex; justify-content: space-between; margin-bottom:10px;"><span>Total Traits:</span> <strong>${traits.length}</strong></div>
+        <div style="display:flex; justify-content: space-between; margin-bottom:4px;"><span>${auditTotalDev}</span> <strong>${deviations.length}</strong></div>
+        <div style="display:flex; justify-content: space-between; margin-bottom:4px;"><span>${auditTotalTech}</span> <strong>${techniquesData.length}</strong></div>
+        <div style="display:flex; justify-content: space-between; margin-bottom:10px;"><span>${auditTotalTrait}</span> <strong>${traits.length}</strong></div>
         <div style="border-top:1px dotted #444; margin-top:5px; padding-top:5px;">
-            <div style="display:flex; justify-content: space-between; color:#ffb74d;"><span>PSI Data Missing:</span> <strong>${missingPsi} / ${deviations.length}</strong></div>
-            <div style="display:flex; justify-content: space-between; color:#ffb74d;"><span>Passive Data Missing:</span> <strong>${missingPassive} / ${deviations.length}</strong></div>
-            <div style="display:flex; justify-content: space-between; color:#ffb74d;"><span>Standard Data Missing:</span> <strong>${missingStandard} / ${deviations.length}</strong></div>
+            <div style="display:flex; justify-content: space-between; color:#ffb74d;"><span>${auditPsiMissing}</span> <strong>${missingPsi} / ${deviations.length}</strong></div>
+            <div style="display:flex; justify-content: space-between; color:#ffb74d;"><span>${auditPassMissing}</span> <strong>${missingPassive} / ${deviations.length}</strong></div>
+            <div style="display:flex; justify-content: space-between; color:#ffb74d;"><span>${auditStdMissing}</span> <strong>${missingStandard} / ${deviations.length}</strong></div>
         </div>
     </div>`; 
 }
@@ -616,14 +627,18 @@ function renderDeviants() {
             if(dev.type === 'Territory') status = 'status-perfect';
             if(dev.type === 'Crafting') status = 'status-crafting'; 
             
-            let psiDesc = dev.psi || "Data needed";
+            const localDevType = typeof translateGameTerm === 'function' 
+                ? translateGameTerm(dev.type === 'Combat' ? 'combat' : dev.type === 'Territory' ? 'territory' : dev.type === 'Crafting' ? 'crafting' : dev.type)
+                : dev.type;
+            
+            let psiDesc = dev.psi || (typeof translateGameTerm === 'function' ? translateGameTerm('dataNeeded') : "Data needed");
             if(psiDesc.includes(':')) psiDesc = psiDesc.split(/:(.*)/s)[1].trim();
             
-            let passDesc = dev.passive || "Data needed";
+            let passDesc = dev.passive || (typeof translateGameTerm === 'function' ? translateGameTerm('dataNeeded') : "Data needed");
             if(passDesc.includes(':')) passDesc = passDesc.split(/:(.*)/s)[1].trim();
             
             // NEW: Standard Data Handling
-            let stdDesc = dev.standard || "Data needed";
+            let stdDesc = dev.standard || (typeof translateGameTerm === 'function' ? translateGameTerm('dataNeeded') : "Data needed");
             if(stdDesc.includes(':')) stdDesc = stdDesc.split(/:(.*)/s)[1].trim();
 
             const psiStr = (dev.psi && dev.psi !== "Data needed") ? dev.psi.split(':')[0] : "-";
@@ -642,7 +657,7 @@ function renderDeviants() {
                             ${localDevName}
                             <span class="suggest-btn" style="cursor:pointer; margin-left:8px; opacity:0.6; font-size:0.9rem;" title="Suggest translation" onclick="openSuggestTranslation('${dev.name}', 'deviation')">🌐</span>
                         </span>
-                        <span class="card-badge">${dev.type}</span>
+                        <span class="card-badge">${localDevType}</span>
                     </div>
                     <div class="tag-list">${dev.techniques.map(t => {
                         const techData = typeof translateTechnique === 'function' ? translateTechnique(t) : { name: t, description: t };
@@ -651,12 +666,12 @@ function renderDeviants() {
                     }).join('')}</div>
                     <div class="card-divider"></div>
                     <div class="card-body">
-                        <div style="margin-bottom:4px; cursor:help;" onmouseenter="showTooltip(event, '${safeTooltip(translatedPsi.description || psiDesc)}')" onmouseleave="hideTooltip()"><strong style="color:#aaa;">PSI:</strong> ${translatedPsi.name}</div>
-                        <div style="cursor:help;" onmouseenter="showTooltip(event, '${safeTooltip(translatedPass.description || passDesc)}')" onmouseleave="hideTooltip()"><strong style="color:#aaa;">Passive:</strong> ${translatedPass.name}</div>
+                        <div style="margin-bottom:4px; cursor:help;" onmouseenter="showTooltip(event, '${safeTooltip(translatedPsi.description || psiDesc)}')" onmouseleave="hideTooltip()"><strong style="color:#aaa;">${typeof translateGameTerm === 'function' ? translateGameTerm('psiLabel') : 'PSI'}:</strong> ${translatedPsi.name}</div>
+                        <div style="cursor:help;" onmouseenter="showTooltip(event, '${safeTooltip(translatedPass.description || passDesc)}')" onmouseleave="hideTooltip()"><strong style="color:#aaa;">${typeof translateGameTerm === 'function' ? translateGameTerm('passiveLabel') : 'Passive'}:</strong> ${translatedPass.name}</div>
                         
                         <div style="height:1px; background:#3e3e42; margin:6px 0; border-top:1px dashed #555;"></div>
                         
-                        <div style="cursor:help;" onmouseenter="showTooltip(event, '${safeTooltip(translatedStd.description || stdDesc)}')" onmouseleave="hideTooltip()"><strong style="color:#aaa;">Standard:</strong> ${translatedStd.name}</div>
+                        <div style="cursor:help;" onmouseenter="showTooltip(event, '${safeTooltip(translatedStd.description || stdDesc)}')" onmouseleave="hideTooltip()"><strong style="color:#aaa;">${typeof translateGameTerm === 'function' ? translateGameTerm('standardLabel') : 'Standard'}:</strong> ${translatedStd.name}</div>
                     </div>
                 </div>`;
         }
@@ -721,7 +736,7 @@ function searchByTechnique() {
     descContainer.innerHTML = trans.description; 
     descContainer.style.display = 'block'; 
     const results = deviations.filter(d => d.techniques.includes(technique)); 
-    if (results.length === 0) return area.innerHTML = "<p>No results.</p>"; 
+    if (results.length === 0) return area.innerHTML = `<p>${typeof t === 'function' ? t("ui.techSearch.noResults") : "No results."}</p>`; 
     results.forEach(d => {
         const localDevName = typeof translateDeviationName === 'function' ? translateDeviationName(d.name) : d.name;
         area.innerHTML += `<div class="uni-card status-neutral"><div class="card-header"><span class="card-title">${localDevName}</span></div></div>`;
@@ -843,14 +858,17 @@ function generatePlan() {
 
             const techData = typeof translateTechnique === 'function' ? translateTechnique(technique) : { name: technique, description: technique };
             const techTip = safeTooltip(techData.description);
+            const gtCalc = typeof translateGameTerm === 'function' ? translateGameTerm('calculating') : 'Calculating...';
+            const gtShop = typeof translateGameTerm === 'function' ? translateGameTerm('shop') : 'SHOP';
+            const foundInShop = typeof t === 'function' ? t('ui.planner.foundInShop') : 'Found in Shop';
 
             html += `
             <div class="uni-card gradient-card donor-card ${initClass}" id="technique-card-${index}">
                 <div class="card-header">
                     <span class="card-title" onmouseenter="showTooltip(event, '${techTip}')" onmouseleave="hideTooltip()">${techData.name}</span>
                     <div style="display:flex; align-items:center;">
-                        <span class="badge-shop" onmouseenter="showTooltip(event, 'Found in Shop')" onmouseleave="hideTooltip()">SHOP</span>
-                        <span class="card-badge badge-dynamic">Calculating...</span>
+                        <span class="badge-shop" onmouseenter="showTooltip(event, '${foundInShop}')" onmouseleave="hideTooltip()">${gtShop}</span>
+                        <span class="card-badge badge-dynamic">${gtCalc}</span>
                     </div>
                 </div>
                 <div class="card-risk dynamic-risk"></div>
@@ -858,7 +876,7 @@ function generatePlan() {
                 <div class="donor-select-container">
                     <select class="donor-select" onchange="updateDonorCard(this)" style="padding:6px; background:#1a1a1a; font-size:0.8rem;">
             `;
-            if(candidates.length === 0) html += `<option>No donors found</option>`;
+            if(candidates.length === 0) html += `<option>${typeof translateGameTerm === 'function' ? translateGameTerm('noDonorsFound') : 'No donors found'}</option>`;
             else {
                 candidates.forEach(c => {
                     let label = c.overlap === 0 ? "PERFECT" : (c.overlap === 1 ? "GOOD" : "RISKY");
@@ -869,7 +887,12 @@ function generatePlan() {
                     const isShop = shopDeviationNames.has(c.name);
                     const arenaName = shopDeviationArena[c.name] || "";
                     const localCandName = typeof translateDeviationName === 'function' ? translateDeviationName(c.name) : c.name;
-                    html += `<option value="${c.overlap}" data-label="${label}" data-junk="${junkStr}" data-shop="${isShop}" data-arena="${arenaName}">(${label}) ${localCandName} ${isShop ? '[SHOP]' : ''}</option>`;
+                    const gtPerfect = typeof translateGameTerm === 'function' ? translateGameTerm('perfect') : 'PERFECT';
+                    const gtGood = typeof translateGameTerm === 'function' ? translateGameTerm('good') : 'GOOD';
+                    const gtRisky = typeof translateGameTerm === 'function' ? translateGameTerm('risky') : 'RISKY';
+                    const shopSuffix = isShop ? ` [${typeof translateGameTerm === 'function' ? translateGameTerm('shop') : 'SHOP'}]` : '';
+                    const displayLabel = label === 'PERFECT' ? gtPerfect : label === 'GOOD' ? gtGood : gtRisky;
+                    html += `<option value="${c.overlap}" data-label="${label}" data-junk="${junkStr}" data-shop="${isShop}" data-arena="${arenaName}">(${displayLabel}) ${localCandName}${shopSuffix}</option>`;
                 });
             }
             html += `</select></div></div>`;
@@ -890,11 +913,13 @@ function generatePlan() {
             // DYNAMIC: Only show badge if enabled
             const slotBadge = (SHOW_SLOT_DATA && t.slot) ? `<span class="slot-badge">S${t.slot}</span>` : '';
             const trans = typeof translateTrait === 'function' ? translateTrait(t.name) : t;
+            const sourceLabel = typeof translateGameTerm === 'function' ? translateGameTerm('source') : 'Source';
             
             let warningBadge = '';
             // DYNAMIC: Only calculate warnings if enabled
             if (SHOW_SLOT_DATA && t.slot && slotCounts[t.slot] > 1) {
-                warningBadge = `<span class="warning-badge" onmouseenter="showTooltip(event, 'Warning: Duplicate Slot ${t.slot}')" onmouseleave="hideTooltip()">!</span>`;
+                const warnMsg = typeof window.t === 'function' ? window.t('ui.planner.warningDuplicate') : `Warning: Duplicate Slot ${t.slot}`;
+                warningBadge = `<span class="warning-badge" onmouseenter="showTooltip(event, '${warnMsg} ${t.slot}')" onmouseleave="hideTooltip()">!</span>`;
             }
 
             html += `
@@ -904,7 +929,7 @@ function generatePlan() {
                         ${warningBadge}
                         ${slotBadge}
                     </div>
-                    <div class="card-body">Source: <strong style="color:white">${t.source}</strong></div>
+                    <div class="card-body">${sourceLabel}: <strong style="color:white">${t.source}</strong></div>
                 </div>
             `;
         });
@@ -928,7 +953,9 @@ function updateDonorCard(select) {
     
     card.classList.remove('status-perfect', 'status-good', 'status-risky', 'status-neutral');
     
-    badge.textContent = label;
+    badge.textContent = label === 'PERFECT' ? (typeof translateGameTerm === 'function' ? translateGameTerm('perfect') : 'PERFECT')
+        : label === 'GOOD' ? (typeof translateGameTerm === 'function' ? translateGameTerm('good') : 'GOOD')
+        : (typeof translateGameTerm === 'function' ? translateGameTerm('risky') : 'RISKY');
     riskDiv.textContent = junk;
 
     if (label === "PERFECT") card.classList.add('status-perfect');
@@ -969,7 +996,7 @@ function loadShareCode() {
         const payload = JSON.parse(atob(code));
         if (Array.isArray(payload)) { document.getElementById('team-ui-area').classList.remove('hidden'); teamData = payload; if(typeof initTeamMode==="function"){initTeamMode(true);activeTeamSlot=0;renderTeamSlots();if(teamData[0])restoreBuildFromData(teamData[0]);} } 
         else { if (typeof isTeamMode !== 'undefined' && isTeamMode) restoreBuildFromData(payload); else restoreBuildFromData(payload); }
-        document.getElementById('shareStatus').textContent = "Loaded!";
+        document.getElementById('shareStatus').textContent = typeof t === 'function' ? t("ui.messages.loadedStatus") : "Loaded!";
     } catch(e) { showToast(t("ui.messages.invalidCode"), true); }
 }
 
@@ -986,7 +1013,7 @@ function generateShareCode() {
     const base64 = btoa(JSON.stringify(payload));
     navigator.clipboard.writeText(base64);
     document.getElementById('shareCodeInput').value = base64;
-    document.getElementById('shareStatus').textContent = "Copied!";
+    document.getElementById('shareStatus').textContent = typeof t === 'function' ? t("ui.messages.copiedStatus") : "Copied!";
 }
 
 function suggestCurrentTargetDeviant() {

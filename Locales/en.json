@@ -1165,7 +1165,14 @@
       "proposedTextPlaceholder": "Type your translation...",
       "searchPlaceholder": "Search term...",
       "shareCodePlaceholder": "Share Code...",
-      "translate": "Translate..."
+      "translate": "Translate...",
+      "loginEmailPlaceholder": "Enter your email...",
+      "loginPasswordPlaceholder": "Enter your password...",
+      "regUsernamePlaceholder": "Enter a username...",
+      "regEmailPlaceholder": "Enter your email...",
+      "regPasswordPlaceholder": "Enter a password...",
+      "regContactPlaceholder": "Enter phone contact (optional)...",
+      "recoverEmailPlaceholder": "Enter your registered email..."
     },
     "messages": {
       "copied": "Copied to clipboard!",
@@ -1200,7 +1207,17 @@
       "saveTranslationError": "Error saving translation: ",
       "invalidCode": "Invalid Code",
       "approved": "approved",
-      "declined": "declined"
+      "declined": "declined",
+      "registerError": "Register Error: ",
+      "loginError": "Login Error: ",
+      "passwordRecoveryError": "Password Recovery Error: ",
+      "noDescription": "No description",
+      "noResults": "No results.",
+      "loadedStatus": "Loaded!",
+      "copiedStatus": "Copied!",
+      "selectDeviantA": "Select Deviation A",
+      "selectDeviantB": "Select Deviation B",
+      "noPartnersFound": "No partners found."
     },
     "nav": {
       "title": "OH Tools",
@@ -1295,6 +1312,14 @@
       "submittedBy": "Submitted By",
       "proposalsTab": "Pending Proposals",
       "consoleTab": "Translation Console",
+      "uiTermsTab": "UI & Game Terms",
+      "uiTermsTitle": "UI & Game Terms Editor",
+      "uiTermsDesc": "Translate UI labels and game-specific terms shown in filters, badges, and cards.",
+      "uiTermsCategory": "Category",
+      "categoryGameTerm": "Game Term",
+      "categoryUiLabel": "UI Label",
+      "categoryStatus": "Status",
+      "categoryAudit": "Audit",
       "pt": "Portuguese (BR)",
       "es": "Spanish (ES)",
       "fr": "French (FR)",
@@ -1319,6 +1344,40 @@
       "description": "Description",
       "nameEn": "Name (EN)",
       "translatedName": "Translated Name"
+    },
+    "suggestModal": {
+      "termLabel": "Term (EN):"
+    },
+    "audit": {
+      "title": "Database Health Check",
+      "synced": "Core Data Synced Successfully!",
+      "issuesFound": " Issues Found",
+      "totalDeviations": "Total Deviations:",
+      "totalTechniques": "Total Techniques:",
+      "totalTraits": "Total Traits:",
+      "psiMissing": "PSI Data Missing:",
+      "passiveMissing": "Passive Data Missing:",
+      "standardMissing": "Standard Data Missing:",
+      "missing": "MISSING:"
+    },
+    "gameTerms": {
+      "skillMutagen": "Skill Mutagen",
+      "speciesCode": "Species Code",
+      "combat": "Combat",
+      "territory": "Territory",
+      "crafting": "Crafting",
+      "psiLabel": "PSI",
+      "passiveLabel": "Passive",
+      "standardLabel": "Standard",
+      "dataNeeded": "Data needed",
+      "perfect": "PERFECT",
+      "good": "GOOD",
+      "risky": "RISKY",
+      "shop": "SHOP",
+      "calculating": "Calculating...",
+      "noDonorsFound": "No donors found",
+      "inShop": "[SHOP]",
+      "source": "Source"
     }
   }
 }

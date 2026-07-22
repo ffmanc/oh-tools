@@ -122,7 +122,7 @@ async function handleRegister(username, email, password, contact) {
       closeAuthModal();
     }, 1500);
   } catch (err) {
-    showAuthMessage("Register Error: " + err.message, true);
+    showAuthMessage(t("ui.messages.registerError") + err.message, true);
   }
 }
 
@@ -139,7 +139,7 @@ async function handleLogin(email, password) {
       closeAuthModal();
     }, 1500);
   } catch (err) {
-    showAuthMessage("Login Error: " + err.message, true);
+    showAuthMessage(t("ui.messages.loginError") + err.message, true);
   }
 }
 
@@ -157,7 +157,7 @@ async function handlePasswordRecovery(email) {
       clearAuthMessage();
     }, 1500);
   } catch (err) {
-    showAuthMessage("Password Recovery Error: " + err.message, true);
+    showAuthMessage(t("ui.messages.passwordRecoveryError") + err.message, true);
   }
 }
 
@@ -206,7 +206,7 @@ async function loadPendingProposalsList() {
   if (!isAdmin) return;
   const listContainer = document.getElementById("adminProposalsList");
   if (!listContainer) return;
-  listContainer.innerHTML = "<div class='loading-spinner'>Loading...</div>";
+  listContainer.innerHTML = `<div class='loading-spinner'>${typeof t === 'function' ? t('ui.messages.loading') : 'Loading...'}</div>`;
 
   try {
     const snapshot = await db.collection("proposals")
@@ -221,7 +221,7 @@ async function loadPendingProposalsList() {
 
     renderAdminProposals();
   } catch (err) {
-    listContainer.innerHTML = "<div class='error-msg'>Error loading proposals: " + err.message + "</div>";
+    listContainer.innerHTML = `<div class='error-msg'>${typeof t === 'function' ? t('ui.messages.errorProposals') : 'Error loading proposals:'} ${err.message}</div>`;
   }
 }
 
@@ -383,6 +383,38 @@ function applyOnlineTranslations() {
     }
   });
 
+  // Apply uiTerm translations (UI & Game Terms tab)
+  // onlineTranslationsMetadata has the full records including type
+  if (typeof onlineTranslationsMetadata !== 'undefined') {
+    Object.keys(onlineTranslationsMetadata).forEach(key => {
+      const langMap = onlineTranslationsMetadata[key];
+      if (!langMap) return;
+      const record = langMap[currentLang];
+      if (!record || !record.approvedText) return;
+
+      // Check if this key belongs to gameTerms
+      if (localeData.ui && localeData.ui.gameTerms && localeData.ui.gameTerms[key] !== undefined) {
+        localeData.ui.gameTerms[key] = record.approvedText;
+      }
+      // Check if this key belongs to audit (strip 'audit' prefix for lookup)
+      if (localeData.ui && localeData.ui.audit) {
+        const auditKeyMap = {
+          auditTitle:       'title',
+          auditSynced:      'synced',
+          auditTotalDev:    'totalDeviations',
+          auditTotalTech:   'totalTechniques',
+          auditTotalTrait:  'totalTraits',
+          auditPsiMissing:  'psiMissing',
+          auditPassMissing: 'passiveMissing',
+          auditStdMissing:  'standardMissing',
+        };
+        if (auditKeyMap[key]) {
+          localeData.ui.audit[auditKeyMap[key]] = record.approvedText;
+        }
+      }
+    });
+  }
+
   applyi18n();
   // Trigger table redraws
   if (typeof buildTraitsTable === 'function') buildTraitsTable();
@@ -394,6 +426,7 @@ function applyOnlineTranslations() {
   if (typeof patchSelectOptions === 'function') patchSelectOptions();
   if (typeof renderDeviants === 'function') renderDeviants();
 }
+
 
 // Auth modal controller
 function openAuthModal() {
@@ -738,3 +771,169 @@ function showToast(message, isError = false) {
 }
 
 window.showToast = showToast;
+
+/* ============================================================
+   UI & GAME TERMS TAB
+   ============================================================ */
+
+// Registry of all translatable UI & Game Terms
+// Each entry: { key, labelEn, category }
+const UI_GAME_TERMS_REGISTRY = [
+  // Game Terms — items appearing in filters, badges, dropdowns
+  { key: 'skillMutagen',  labelEn: 'Skill Mutagen',  path: 'ui.gameTerms.skillMutagen',  category: 'gameTerm' },
+  { key: 'speciesCode',   labelEn: 'Species Code',   path: 'ui.gameTerms.speciesCode',   category: 'gameTerm' },
+  { key: 'combat',        labelEn: 'Combat',         path: 'ui.gameTerms.combat',        category: 'gameTerm' },
+  { key: 'territory',     labelEn: 'Territory',      path: 'ui.gameTerms.territory',     category: 'gameTerm' },
+  { key: 'crafting',      labelEn: 'Crafting',       path: 'ui.gameTerms.crafting',      category: 'gameTerm' },
+  { key: 'dataNeeded',    labelEn: 'Data needed',    path: 'ui.gameTerms.dataNeeded',    category: 'gameTerm' },
+  // Status terms — classification labels
+  { key: 'perfect',       labelEn: 'PERFECT',        path: 'ui.gameTerms.perfect',       category: 'status'   },
+  { key: 'good',          labelEn: 'GOOD',           path: 'ui.gameTerms.good',          category: 'status'   },
+  { key: 'risky',         labelEn: 'RISKY',          path: 'ui.gameTerms.risky',         category: 'status'   },
+  { key: 'shop',          labelEn: 'SHOP',           path: 'ui.gameTerms.shop',          category: 'status'   },
+  { key: 'calculating',   labelEn: 'Calculating...', path: 'ui.gameTerms.calculating',   category: 'status'   },
+  { key: 'noDonorsFound', labelEn: 'No donors found',path: 'ui.gameTerms.noDonorsFound', category: 'status'   },
+  // UI Labels — attribute and card labels
+  { key: 'psiLabel',      labelEn: 'PSI',            path: 'ui.gameTerms.psiLabel',      category: 'uiLabel'  },
+  { key: 'passiveLabel',  labelEn: 'Passive',        path: 'ui.gameTerms.passiveLabel',  category: 'uiLabel'  },
+  { key: 'standardLabel', labelEn: 'Standard',       path: 'ui.gameTerms.standardLabel', category: 'uiLabel'  },
+  { key: 'source',        labelEn: 'Source',         path: 'ui.gameTerms.source',        category: 'uiLabel'  },
+  // Audit labels — DB Health Check
+  { key: 'auditTitle',       labelEn: 'Database Health Check',         path: 'ui.audit.title',          category: 'audit' },
+  { key: 'auditSynced',      labelEn: 'Core Data Synced Successfully!', path: 'ui.audit.synced',         category: 'audit' },
+  { key: 'auditTotalDev',    labelEn: 'Total Deviations:',             path: 'ui.audit.totalDeviations', category: 'audit' },
+  { key: 'auditTotalTech',   labelEn: 'Total Techniques:',             path: 'ui.audit.totalTechniques', category: 'audit' },
+  { key: 'auditTotalTrait',  labelEn: 'Total Traits:',                 path: 'ui.audit.totalTraits',     category: 'audit' },
+  { key: 'auditPsiMissing',  labelEn: 'PSI Data Missing:',             path: 'ui.audit.psiMissing',      category: 'audit' },
+  { key: 'auditPassMissing', labelEn: 'Passive Data Missing:',         path: 'ui.audit.passiveMissing',  category: 'audit' },
+  { key: 'auditStdMissing',  labelEn: 'Standard Data Missing:',        path: 'ui.audit.standardMissing', category: 'audit' },
+];
+
+function renderUITermsTable() {
+  const tbody = document.getElementById('adminUITermsTableBody');
+  if (!tbody) return;
+
+  const searchEl = document.getElementById('adminUITermsSearch');
+  const catFilter = document.getElementById('adminUITermsCategoryFilter');
+  const searchQuery = (searchEl ? searchEl.value : '').toLowerCase();
+  const catValue = catFilter ? catFilter.value : 'All';
+
+  const langs = ['pt', 'es', 'fr', 'zh'];
+
+  const filtered = UI_GAME_TERMS_REGISTRY.filter(entry => {
+    const matchCat = catValue === 'All' || entry.category === catValue;
+    const matchSearch = !searchQuery ||
+      entry.labelEn.toLowerCase().includes(searchQuery) ||
+      entry.key.toLowerCase().includes(searchQuery);
+    return matchCat && matchSearch;
+  });
+
+  const catLabel = (cat) => {
+    const map = { gameTerm: 'Game Term', uiLabel: 'UI Label', status: 'Status', audit: 'Audit' };
+    return map[cat] || cat;
+  };
+
+  tbody.innerHTML = filtered.map(entry => {
+    const escapedKey = entry.key.replace(/'/g, "&apos;");
+
+    const langCells = langs.map(lang => {
+      // Get current value from onlineTranslationsMetadata or from localeData fallback
+      let current = '';
+      if (typeof onlineTranslationsMetadata !== 'undefined' &&
+          onlineTranslationsMetadata[entry.key] &&
+          onlineTranslationsMetadata[entry.key][lang]) {
+        current = onlineTranslationsMetadata[entry.key][lang].approvedText || '';
+      }
+      // Fallback to the locale file value
+      if (!current && typeof localeData !== 'undefined') {
+        const parts = entry.path.split('.');
+        let obj = localeData;
+        for (const p of parts) {
+          obj = obj && obj[p];
+          if (!obj) break;
+        }
+        if (obj && typeof obj === 'string' && obj !== entry.labelEn) current = obj;
+      }
+      const defChecked = (typeof onlineTranslationsMetadata !== 'undefined' &&
+          onlineTranslationsMetadata[entry.key] &&
+          onlineTranslationsMetadata[entry.key][lang] &&
+          onlineTranslationsMetadata[entry.key][lang].definitive) ? 'checked' : '';
+      return `<td style="padding:4px;">
+        <input id="uit-trans-${escapedKey}-${lang}" type="text" value="${current.replace(/"/g,'&quot;')}" placeholder="${entry.labelEn}" style="width:90%; font-size:0.8rem; padding:4px; background:var(--bg-input); border:1px solid var(--border); color:white; border-radius:4px;">
+        <label style="font-size:0.7rem; color:#888; display:flex; align-items:center; gap:4px; margin-top:2px;">
+          <input type="checkbox" id="uit-def-${escapedKey}-${lang}" ${defChecked}> ${typeof t === 'function' ? t('ui.moderation.definitive') : 'Definitive'}
+        </label>
+      </td>`;
+    }).join('');
+
+    return `<tr>
+      <td style="padding:6px 8px; font-size:0.82rem; color:#ddd; white-space:nowrap;">
+        <div style="font-weight:600; color:white;">${entry.labelEn}</div>
+        <div style="font-size:0.72rem; color:#777; margin-top:2px;">${entry.key}</div>
+      </td>
+      <td style="padding:4px 8px;">
+        <span class="badge" style="font-size:0.72rem;">${catLabel(entry.category)}</span>
+      </td>
+      ${langCells}
+      <td style="padding:4px 8px; text-align:center;">
+        <button onclick="saveConsoleUITermTranslation('${escapedKey}')" style="padding:6px 10px; font-size:0.75rem; border-radius:var(--radius); background:var(--accent); color:white; border:none; cursor:pointer; font-weight:600;">
+          ${typeof t === 'function' ? t('ui.moderation.save') : 'Save'}
+        </button>
+      </td>
+    </tr>`;
+  }).join('');
+
+  if (filtered.length === 0) {
+    tbody.innerHTML = `<tr><td colspan="7" style="text-align:center; padding:20px; opacity:0.5;">${typeof t === 'function' ? t('ui.messages.noResults') : 'No results.'}</td></tr>`;
+  }
+}
+
+async function saveConsoleUITermTranslation(termKey) {
+  if (!isAdmin) return;
+  const entry = UI_GAME_TERMS_REGISTRY.find(e => e.key === termKey);
+  if (!entry) return;
+
+  const langs = ['pt', 'es', 'fr', 'zh'];
+  const batch = db.batch();
+
+  try {
+    for (const lang of langs) {
+      const transId = `${termKey}_${lang}`;
+      const escapedKey = termKey.replace(/'/g, "&apos;");
+      const inputEl = document.getElementById(`uit-trans-${escapedKey}-${lang}`);
+      const defEl = document.getElementById(`uit-def-${escapedKey}-${lang}`);
+      if (!inputEl) continue;
+
+      const textVal = inputEl.value.trim();
+      const defChecked = defEl ? defEl.checked : false;
+      const transRef = db.collection("translations").doc(transId);
+
+      if (textVal) {
+        batch.set(transRef, {
+          termKey: termKey,
+          lang: lang,
+          type: 'uiTerm',
+          approvedText: textVal,
+          definitive: defChecked,
+          moderatedBy: currentUser.uid,
+          updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+        });
+        if (!onlineTranslationsMetadata[termKey]) onlineTranslationsMetadata[termKey] = {};
+        onlineTranslationsMetadata[termKey][lang] = { approvedText: textVal, definitive: defChecked };
+      } else {
+        batch.delete(transRef);
+        if (onlineTranslationsMetadata[termKey]) delete onlineTranslationsMetadata[termKey][lang];
+      }
+    }
+
+    await batch.commit();
+    showToast(typeof t === 'function' ? t('ui.messages.translationsSaved') : 'Translations saved successfully!');
+    // Live-update the in-memory localeData so the UI reflects changes immediately
+    if (typeof applyOnlineTranslations === 'function') applyOnlineTranslations();
+  } catch (err) {
+    showToast((typeof t === 'function' ? t('ui.messages.saveTranslationError') : 'Error saving translation: ') + err.message, true);
+  }
+}
+
+window.renderUITermsTable = renderUITermsTable;
+window.saveConsoleUITermTranslation = saveConsoleUITermTranslation;

@@ -34,7 +34,7 @@
 <div id="dataSyncModal" class="modal-overlay hidden">
     <div class="modal-content">
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
-            <h3 style="margin:0; color:white;">Database Health Check</h3>
+            <h3 style="margin:0; color:white;" data-i18n="ui.audit.title">Database Health Check</h3>
             <span class="close-modal" onclick="closeDataModal()">✕</span>
         </div>
         <div id="dataSyncStatus"></div>
@@ -93,11 +93,11 @@
         <div id="auth-login-view">
             <div class="form-group">
                 <label data-i18n="fields.email">Email</label>
-                <input type="email" id="loginEmail" placeholder="Enter your email...">
+                <input type="email" id="loginEmail" data-i18n-placeholder="ui.fields.loginEmailPlaceholder" placeholder="Enter your email...">
             </div>
             <div class="form-group" style="margin-top:10px;">
                 <label data-i18n="fields.password">Password</label>
-                <input type="password" id="loginPassword" placeholder="Enter your password...">
+                <input type="password" id="loginPassword" data-i18n-placeholder="ui.fields.loginPasswordPlaceholder" placeholder="Enter your password...">
             </div>
             <div style="margin-top:20px; display:flex; gap:10px; flex-direction:column;">
                 <button onclick="handleLogin(document.getElementById('loginEmail').value, document.getElementById('loginPassword').value)" data-i18n="buttons.submit">Submit</button>
@@ -112,19 +112,19 @@
         <div id="auth-register-view" style="display:none;">
             <div class="form-group">
                 <label data-i18n="fields.username">Username</label>
-                <input type="text" id="regUsername" placeholder="Enter a username...">
+                <input type="text" id="regUsername" data-i18n-placeholder="ui.fields.regUsernamePlaceholder" placeholder="Enter a username...">
             </div>
             <div class="form-group" style="margin-top:10px;">
                 <label data-i18n="fields.email">Email</label>
-                <input type="email" id="regEmail" placeholder="Enter your email...">
+                <input type="email" id="regEmail" data-i18n-placeholder="ui.fields.regEmailPlaceholder" placeholder="Enter your email...">
             </div>
             <div class="form-group" style="margin-top:10px;">
                 <label data-i18n="fields.password">Password</label>
-                <input type="password" id="regPassword" placeholder="Enter a password...">
+                <input type="password" id="regPassword" data-i18n-placeholder="ui.fields.regPasswordPlaceholder" placeholder="Enter a password...">
             </div>
             <div class="form-group" style="margin-top:10px;">
                 <label data-i18n="fields.contact">Contact (WhatsApp/Phone - optional)</label>
-                <input type="text" id="regContact" placeholder="Enter phone contact (optional)...">
+                <input type="text" id="regContact" data-i18n-placeholder="ui.fields.regContactPlaceholder" placeholder="Enter phone contact (optional)...">
             </div>
             <div style="margin-top:20px; display:flex; gap:10px; flex-direction:column;">
                 <button onclick="handleRegister(document.getElementById('regUsername').value, document.getElementById('regEmail').value, document.getElementById('regPassword').value, document.getElementById('regContact').value)" data-i18n="buttons.submit">Submit</button>
@@ -136,7 +136,7 @@
         <div id="auth-recover-view" style="display:none;">
             <div class="form-group">
                 <label data-i18n="fields.email">Email</label>
-                <input type="email" id="recoverEmail" placeholder="Enter your registered email...">
+                <input type="email" id="recoverEmail" data-i18n-placeholder="ui.fields.recoverEmailPlaceholder" placeholder="Enter your registered email...">
             </div>
             <div style="margin-top:20px; display:flex; gap:10px; flex-direction:column;">
                 <button onclick="handlePasswordRecovery(document.getElementById('recoverEmail').value)" data-i18n="buttons.submit">Submit</button>
@@ -168,7 +168,7 @@
             <span class="close-modal" onclick="closeTranslationModal()">✕</span>
         </div>
         <div>
-            <p style="margin:0 0 10px 0; color:#aaa; font-size:0.9rem;">Term (EN): <strong id="suggestTargetKey" style="color:white;"></strong></p>
+            <p style="margin:0 0 10px 0; color:#aaa; font-size:0.9rem;"><span data-i18n="ui.suggestModal.termLabel">Term (EN):</span> <strong id="suggestTargetKey" style="color:white;"></strong></p>
             <div class="form-group" style="margin-bottom:15px;">
                 <label data-i18n="fields.proposedText" style="display:block; margin-bottom:8px; font-weight:600;">Your Proposed Translation</label>
                 <input type="text" id="suggestProposedInput" placeholder="Type your translation..." data-i18n-placeholder="ui.fields.proposedTextPlaceholder" style="width:100%; box-sizing:border-box; padding:10px; border-radius:var(--radius); border:1px solid var(--border); background:var(--bg-input); color:white; font-size:0.9rem;">
@@ -266,6 +266,7 @@
                 <div class="tabs-header" style="display:flex; gap:10px; border-bottom:1px solid #333; padding-bottom:10px; margin-bottom:15px;">
                     <button class="tab-link active" onclick="switchAdminTab('tab-mod-proposals', this)" data-i18n="ui.moderation.proposalsTab">Proposals</button>
                     <button class="tab-link" onclick="switchAdminTab('tab-mod-console', this)" data-i18n="ui.moderation.consoleTab">Translation Console</button>
+                    <button class="tab-link" onclick="switchAdminTab('tab-mod-ui-terms', this)" data-i18n="ui.moderation.uiTermsTab">UI &amp; Game Terms</button>
                 </div>
 
             <!-- Proposals Tab Content -->
@@ -308,6 +309,42 @@
                             </tr>
                         </thead>
                         <tbody id="adminConsoleTableBody"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- UI & Game Terms Tab Content -->
+            <div id="tab-mod-ui-terms" class="admin-tab-content hidden">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; flex-wrap:wrap; gap:10px;">
+                    <div>
+                        <h3 style="margin:0 0 4px 0;" data-i18n="ui.moderation.uiTermsTitle">UI &amp; Game Terms Editor</h3>
+                        <p style="margin:0; font-size:0.8rem; color:#888;" data-i18n="ui.moderation.uiTermsDesc">Translate UI labels and game-specific terms shown in filters, badges, and cards.</p>
+                    </div>
+                    <div style="display:flex; gap:10px; align-items:center;">
+                        <input type="text" id="adminUITermsSearch" placeholder="Search keys..." data-i18n-placeholder="ui.fields.searchPlaceholder" onkeyup="renderUITermsTable()" style="max-width:250px; margin-bottom:0;">
+                        <select id="adminUITermsCategoryFilter" onchange="renderUITermsTable()" style="width:150px; padding:8px; background:var(--bg-input); border:1px solid var(--border); color:white; border-radius:var(--radius);">
+                            <option value="All" data-i18n="ui.moderation.allTypes">All</option>
+                            <option value="gameTerm" data-i18n="ui.moderation.categoryGameTerm">Game Term</option>
+                            <option value="uiLabel" data-i18n="ui.moderation.categoryUiLabel">UI Label</option>
+                            <option value="status" data-i18n="ui.moderation.categoryStatus">Status</option>
+                            <option value="audit" data-i18n="ui.moderation.categoryAudit">Audit</option>
+                        </select>
+                    </div>
+                </div>
+                <div style="overflow-x:auto; max-height: calc(100vh - 280px); border:1px solid var(--border);">
+                    <table class="admin-table" style="min-width: 900px;">
+                        <thead>
+                            <tr>
+                                <th width="22%" data-i18n="ui.moderation.keyEn">Key (EN)</th>
+                                <th width="10%" data-i18n="ui.moderation.uiTermsCategory">Category</th>
+                                <th width="15%" data-i18n="ui.moderation.pt">Portuguese (BR)</th>
+                                <th width="15%" data-i18n="ui.moderation.es">Spanish (ES)</th>
+                                <th width="15%" data-i18n="ui.moderation.fr">French (FR)</th>
+                                <th width="15%" data-i18n="ui.moderation.zh">Chinese (ZH)</th>
+                                <th width="8%" data-i18n="ui.moderation.actions">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="adminUITermsTableBody"></tbody>
                     </table>
                 </div>
             </div>
@@ -525,10 +562,10 @@
                     </div>
                     
                     <div id="deviant-filter-container" style="display:flex; gap:5px; margin-bottom:15px; flex-wrap:wrap;">
-                        <button class="filter-btn btn-all active" onclick="filterDeviants('All', this)">All</button>
-                        <button class="filter-btn btn-combat" onclick="filterDeviants('Combat', this)">Combat</button>
-                        <button class="filter-btn btn-crafting" onclick="filterDeviants('Crafting', this)">Crafting</button>
-                        <button class="filter-btn btn-territory" onclick="filterDeviants('Territory', this)">Territory</button>
+                        <button class="filter-btn btn-all active" onclick="filterDeviants('All', this)" data-i18n="ui.filters.all">All</button>
+                        <button class="filter-btn btn-combat" onclick="filterDeviants('Combat', this)" data-i18n="ui.gameTerms.combat">Combat</button>
+                        <button class="filter-btn btn-crafting" onclick="filterDeviants('Crafting', this)" data-i18n="ui.gameTerms.crafting">Crafting</button>
+                        <button class="filter-btn btn-territory" onclick="filterDeviants('Territory', this)" data-i18n="ui.gameTerms.territory">Territory</button>
                     </div>
 
                     <div id="compare-tool-area" class="hidden" style="background:#252526; padding:15px; border-radius:var(--radius); border:1px dashed var(--border); margin-bottom:15px;">
@@ -537,9 +574,9 @@
                             <span style="cursor:pointer;" onclick="closeCompareTool()">✕</span>
                         </div>
                         <div style="display:flex; gap:10px; justify-content:center; align-items:center; flex-wrap:wrap;">
-                            <select id="compareSelectA" onchange="updateComparison()"><option>Select A</option></select>
+                            <select id="compareSelectA" onchange="updateComparison()"><option data-i18n="ui.messages.selectDeviantA">Select Deviation A</option></select>
                             <span style="font-weight:bold; color:var(--accent);" data-i18n="ui.compare.vs">VS</span>
-                            <select id="compareSelectB" onchange="updateComparison()"><option>Select B</option></select>
+                            <select id="compareSelectB" onchange="updateComparison()"><option data-i18n="ui.messages.selectDeviantB">Select Deviation B</option></select>
                         </div>
                         <div id="compareResults" class="compare-grid" style="grid-template-columns:1fr; gap:10px; margin-top:10px;"></div>
                     </div>
@@ -632,6 +669,8 @@ function switchAdminTab(tabId, button) {
         loadAllOnlineTranslations();
     } else if (tabId === 'tab-mod-proposals') {
         loadPendingProposalsList();
+    } else if (tabId === 'tab-mod-ui-terms') {
+        if (typeof renderUITermsTable === 'function') renderUITermsTable();
     }
 }
 

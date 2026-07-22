@@ -1165,7 +1165,14 @@
       "proposedTextPlaceholder": "输入您的翻译...",
       "searchPlaceholder": "搜索词条...",
       "shareCodePlaceholder": "分享代码...",
-      "translate": "翻译..."
+      "translate": "翻译...",
+      "loginEmailPlaceholder": "请输入您的邮箱...",
+      "loginPasswordPlaceholder": "请输入您的密码...",
+      "regUsernamePlaceholder": "选择用户名...",
+      "regEmailPlaceholder": "请输入您的邮箱...",
+      "regPasswordPlaceholder": "创建密码...",
+      "regContactPlaceholder": "联系方式（可选）...",
+      "recoverEmailPlaceholder": "请输入注册邮箱..."
     },
     "messages": {
       "copied": "已复制到剪贴板！",
@@ -1200,7 +1207,17 @@
       "saveTranslationError": "保存翻译时出错: ",
       "invalidCode": "无效代码",
       "approved": "已批准",
-      "declined": "已拒绝"
+      "declined": "已拒绝",
+      "registerError": "注册错误: ",
+      "loginError": "登录错误: ",
+      "passwordRecoveryError": "密码恢复错误: ",
+      "noDescription": "暂无描述",
+      "noResults": "无结果。",
+      "loadedStatus": "已加载！",
+      "copiedStatus": "已复制！",
+      "selectDeviantA": "选择异常 A",
+      "selectDeviantB": "选择异常 B",
+      "noPartnersFound": "未找到伙伴。"
     },
     "nav": {
       "title": "OH Tools",
@@ -1295,6 +1312,14 @@
       "submittedBy": "提交者",
       "proposalsTab": "待处理提案",
       "consoleTab": "翻译控制台",
+      "uiTermsTab": "UI和游戏术语",
+      "uiTermsTitle": "UI和游戏术语编辑器",
+      "uiTermsDesc": "翻译界面标签和游戏专用术语。",
+      "uiTermsCategory": "类别",
+      "categoryGameTerm": "游戏术语",
+      "categoryUiLabel": "UI标签",
+      "categoryStatus": "状态",
+      "categoryAudit": "审计",
       "pt": "葡萄牙语 (BR)",
       "es": "西班牙语 (ES)",
       "fr": "法语 (FR)",
@@ -1319,6 +1344,40 @@
       "description": "描述",
       "nameEn": "英文名称",
       "translatedName": "翻译名称"
+    },
+    "suggestModal": {
+      "termLabel": "术语（EN）："
+    },
+    "audit": {
+      "title": "数据库健康检查",
+      "synced": "核心数据同步成功！",
+      "issuesFound": " 个问题",
+      "totalDeviations": "异常总数：",
+      "totalTechniques": "技能总数：",
+      "totalTraits": "特质总数：",
+      "psiMissing": "缺少PSI数据：",
+      "passiveMissing": "缺少被动数据：",
+      "standardMissing": "缺少标准数据：",
+      "missing": "缺失："
+    },
+    "gameTerms": {
+      "skillMutagen": "技能诱变剂",
+      "speciesCode": "物种代码",
+      "combat": "战斗",
+      "territory": "领地",
+      "crafting": "制造",
+      "psiLabel": "PSI",
+      "passiveLabel": "被动",
+      "standardLabel": "标准",
+      "dataNeeded": "需要数据",
+      "perfect": "完美",
+      "good": "良好",
+      "risky": "危险",
+      "shop": "商店",
+      "calculating": "计算中...",
+      "noDonorsFound": "未找到捐赠者",
+      "inShop": "[商店]",
+      "source": "来源"
     }
   }
 }

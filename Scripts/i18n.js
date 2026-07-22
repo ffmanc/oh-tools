@@ -76,6 +76,13 @@ function translateTechnique(name) {
   };
 }
 
+// Translate game-specific UI terms (filters, badges, labels)
+function translateGameTerm(key) {
+  const val = localeData.ui && localeData.ui.gameTerms && localeData.ui.gameTerms[key];
+  const fallback = defaultEnglishData.ui && defaultEnglishData.ui.gameTerms && defaultEnglishData.ui.gameTerms[key];
+  return val || fallback || key;
+}
+
 // Scans DOM and translates elements with data-i18n attributes
 function applyi18n() {
   document.querySelectorAll('[data-i18n]').forEach(el => {
@@ -113,6 +120,7 @@ async function changeLanguage(lang) {
   if (typeof generatePlan === 'function') generatePlan();
   if (typeof renderSelectedTraits === 'function') renderSelectedTraits();
   if (typeof auditData === 'function') auditData();
+  if (typeof renderUITermsTable === 'function') renderUITermsTable();
 }
 
 function getSuggestBtnHtml(key, type) {

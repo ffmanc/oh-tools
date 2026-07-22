@@ -1165,7 +1165,14 @@
       "proposedTextPlaceholder": "Escribe tu traducción...",
       "searchPlaceholder": "Buscar término...",
       "shareCodePlaceholder": "Código de Compartir...",
-      "translate": "Traducir..."
+      "translate": "Traducir...",
+      "loginEmailPlaceholder": "Introduce tu correo...",
+      "loginPasswordPlaceholder": "Introduce tu contraseña...",
+      "regUsernamePlaceholder": "Elige un nombre de usuario...",
+      "regEmailPlaceholder": "Introduce tu correo...",
+      "regPasswordPlaceholder": "Crea una contraseña...",
+      "regContactPlaceholder": "Contacto telefónico (opcional)...",
+      "recoverEmailPlaceholder": "Introduce tu correo registrado..."
     },
     "messages": {
       "copied": "¡Copiado al portapapeles!",
@@ -1200,7 +1207,17 @@
       "saveTranslationError": "Error al guardar la traducción: ",
       "invalidCode": "Código inválido",
       "approved": "aprobado",
-      "declined": "rechazado"
+      "declined": "rechazado",
+      "registerError": "Error de registro: ",
+      "loginError": "Error de inicio de sesión: ",
+      "passwordRecoveryError": "Error de recuperación: ",
+      "noDescription": "Sin descripción",
+      "noResults": "Sin resultados.",
+      "loadedStatus": "¡Cargado!",
+      "copiedStatus": "¡Copiado!",
+      "selectDeviantA": "Seleccionar Desviación A",
+      "selectDeviantB": "Seleccionar Desviación B",
+      "noPartnersFound": "Sin socios encontrados."
     },
     "nav": {
       "title": "OH Tools",
@@ -1295,6 +1312,14 @@
       "submittedBy": "Enviado Por",
       "proposalsTab": "Propuestas Pendientes",
       "consoleTab": "Consola de Traducción",
+      "uiTermsTab": "Términos de UI y Juego",
+      "uiTermsTitle": "Editor de Términos de UI y Juego",
+      "uiTermsDesc": "Traduce etiquetas de interfaz y términos específicos del juego.",
+      "uiTermsCategory": "Categoría",
+      "categoryGameTerm": "Término del Juego",
+      "categoryUiLabel": "Etiqueta de UI",
+      "categoryStatus": "Estado",
+      "categoryAudit": "Auditoría",
       "pt": "Portugués (BR)",
       "es": "Español (ES)",
       "fr": "Francés (FR)",
@@ -1319,6 +1344,40 @@
       "description": "Descripción",
       "nameEn": "Nombre (EN)",
       "translatedName": "Nombre Traducido"
+    },
+    "suggestModal": {
+      "termLabel": "Término (EN):"
+    },
+    "audit": {
+      "title": "Verificación de Base de Datos",
+      "synced": "¡Datos principales sincronizados!",
+      "issuesFound": " Problemas Encontrados",
+      "totalDeviations": "Total Desviaciones:",
+      "totalTechniques": "Total Técnicas:",
+      "totalTraits": "Total Rasgos:",
+      "psiMissing": "Datos PSI Faltantes:",
+      "passiveMissing": "Datos Pasivos Faltantes:",
+      "standardMissing": "Datos Estándar Faltantes:",
+      "missing": "FALTANTE:"
+    },
+    "gameTerms": {
+      "skillMutagen": "Mutagénico de Habilidad",
+      "speciesCode": "Código de Especie",
+      "combat": "Combate",
+      "territory": "Territorio",
+      "crafting": "Fabricación",
+      "psiLabel": "PSI",
+      "passiveLabel": "Pasivo",
+      "standardLabel": "Estándar",
+      "dataNeeded": "Datos necesarios",
+      "perfect": "PERFECTO",
+      "good": "BUENO",
+      "risky": "ARRIESGADO",
+      "shop": "TIENDA",
+      "calculating": "Calculando...",
+      "noDonorsFound": "Sin donantes encontrados",
+      "inShop": "[TIENDA]",
+      "source": "Origen"
     }
   }
 }
