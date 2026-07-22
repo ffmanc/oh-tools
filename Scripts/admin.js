@@ -317,39 +317,44 @@ async function handleBulkModeration(status) {
 }
 
 // Fetch approved online translations
-async function fetchOnlineTranslations() {
-  if (typeof db === 'undefined') return;
-  try {
-    const snapshot = await db.collection("translations").get();
-
-    onlineTranslations = {};
-    onlineTranslationsMetadata = {};
-    
-    snapshot.forEach(doc => {
-      const data = doc.data();
-      const termKey = data.termKey;
-      const lang = data.lang;
+function fetchOnlineTranslations() {
+  if (typeof db === 'undefined') return Promise.resolve();
+  
+  return new Promise((resolve) => {
+    let initialLoaded = false;
+    db.collection("translations").onSnapshot(snapshot => {
+      onlineTranslations = {};
+      onlineTranslationsMetadata = {};
       
-      if (!onlineTranslationsMetadata[termKey]) {
-        onlineTranslationsMetadata[termKey] = {};
-      }
-      onlineTranslationsMetadata[termKey][lang] = {
-        approvedText: data.approvedText,
-        definitive: !!data.definitive
-      };
+      snapshot.forEach(doc => {
+        const data = doc.data();
+        const termKey = data.termKey;
+        const lang = data.lang;
+        
+        if (!onlineTranslationsMetadata[termKey]) {
+          onlineTranslationsMetadata[termKey] = {};
+        }
+        onlineTranslationsMetadata[termKey][lang] = {
+          approvedText: data.approvedText,
+          definitive: !!data.definitive
+        };
 
-      if (lang === currentLang) {
-        onlineTranslations[termKey] = data.approvedText;
-      }
-    });
+        if (lang === currentLang) {
+          onlineTranslations[termKey] = data.approvedText;
+        }
+      });
 
-    // Merge online approved translations into active localeData
-    if (Object.keys(onlineTranslations).length > 0) {
       applyOnlineTranslations();
-    }
-  } catch (err) {
-    console.warn("Could not load online translations:", err);
-  }
+      
+      if (!initialLoaded) {
+        initialLoaded = true;
+        resolve();
+      }
+    }, err => {
+      console.warn("Could not load online translations in real-time:", err);
+      resolve();
+    });
+  });
 }
 
 function applyOnlineTranslations() {
