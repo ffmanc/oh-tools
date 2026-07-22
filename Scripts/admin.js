@@ -311,21 +311,28 @@ async function handleBulkModeration(status) {
     
     // Reload list
     loadPendingProposalsList();
-    
-    // Fetch and apply translations immediately
-    await fetchOnlineTranslations();
+    // Note: the active onSnapshot listener will pick up Firestore changes automatically
   } catch (err) {
     showToast(t("ui.messages.moderationError") + " " + err.message, true);
   }
 }
 
 // Fetch approved online translations
+// Singleton: only one listener is active at a time to prevent memory leaks.
+let _translationsUnsubscribe = null;
+
 function fetchOnlineTranslations() {
   if (typeof db === 'undefined') return Promise.resolve();
-  
+
+  // Cancel any existing listener before creating a new one
+  if (_translationsUnsubscribe) {
+    _translationsUnsubscribe();
+    _translationsUnsubscribe = null;
+  }
+
   return new Promise((resolve) => {
     let initialLoaded = false;
-    db.collection("translations").onSnapshot(snapshot => {
+    _translationsUnsubscribe = db.collection("translations").onSnapshot(snapshot => {
       onlineTranslations = {};
       onlineTranslationsMetadata = {};
       
@@ -382,7 +389,9 @@ function applyOnlineTranslations() {
   if (typeof buildArenaShops === 'function') buildArenaShops();
   if (typeof buildTechniquesTable === 'function') buildTechniquesTable();
   if (typeof buildDeviantsLibTable === 'function') buildDeviantsLibTable();
-  if (typeof populateUI === 'function') populateUI();
+  // Use patchSelectOptions instead of populateUI to update translated labels
+  // without resetting the builder's selected deviant, checked techniques, or other UI state.
+  if (typeof patchSelectOptions === 'function') patchSelectOptions();
   if (typeof renderDeviants === 'function') renderDeviants();
 }
 
@@ -693,7 +702,7 @@ async function saveConsoleTranslation(termKey, type) {
 
     await batch.commit();
     showToast(t("ui.messages.translationsSaved") || "Translations saved successfully!");
-    await fetchOnlineTranslations();
+    // Note: the active onSnapshot listener will pick up Firestore changes automatically
   } catch (err) {
     showToast(t("ui.messages.saveTranslationError") + err.message, true);
   }

@@ -402,6 +402,62 @@ function populateUI() {
     }
 }
 
+// Updates translated text labels in the deviation/technique selects and builder checkboxes
+// WITHOUT resetting selected values or checked states — preserving the user's ongoing simulation.
+// Called by applyOnlineTranslations() instead of populateUI().
+function patchSelectOptions() {
+    // 1. Update sourceSelect (Isolation Checker deviation dropdown)
+    Array.from(sourceSelect.options).forEach(opt => {
+        opt.textContent = typeof translateDeviationName === 'function'
+            ? translateDeviationName(opt.value)
+            : opt.value;
+    });
+
+    // 2. Update builderDevSelect — explicitly preserve the selected index
+    const savedBuilderIndex = builderDevSelect.selectedIndex;
+    Array.from(builderDevSelect.options).forEach(opt => {
+        opt.textContent = typeof translateDeviationName === 'function'
+            ? translateDeviationName(opt.value)
+            : opt.value;
+    });
+    builderDevSelect.selectedIndex = savedBuilderIndex;
+
+    // 3. Update searchTechniqueSelect (Technique Search dropdown)
+    Array.from(searchTechniqueSelect.options).forEach(opt => {
+        const trans = typeof translateTechnique === 'function'
+            ? translateTechnique(opt.value)
+            : { name: opt.value };
+        opt.textContent = trans.name;
+    });
+
+    // 4. Update techniqueSelect (Isolation Checker technique dropdown) — preserve selection
+    const savedTechValue = techniqueSelect.value;
+    Array.from(techniqueSelect.options).forEach(opt => {
+        const trans = typeof translateTechnique === 'function'
+            ? translateTechnique(opt.value)
+            : { name: opt.value };
+        opt.textContent = trans.name;
+    });
+    if (savedTechValue) techniqueSelect.value = savedTechValue;
+
+    // 5. Update builder technique checkboxes labels — preserve each checkbox's checked state
+    document.querySelectorAll('#builderCheckboxes input[type="checkbox"]').forEach(cb => {
+        const label = cb.nextElementSibling;
+        if (label && label.tagName === 'LABEL' && cb.value) {
+            const trans = typeof translateTechnique === 'function'
+                ? translateTechnique(cb.value)
+                : { name: cb.value };
+            label.textContent = trans.name;
+        }
+    });
+
+    // 6. Update the selected traits mini-cards in the builder (text only, preserves array state)
+    if (typeof renderSelectedTraits === 'function') renderSelectedTraits();
+
+    // 7. Refresh suggest buttons (definitive status may have changed)
+    if (typeof updateTargetDeviantSuggestBtn === 'function') updateTargetDeviantSuggestBtn();
+}
+
 function showTooltip(e, input) {
     if (window.innerWidth <= 768) return;
     let content = "";
