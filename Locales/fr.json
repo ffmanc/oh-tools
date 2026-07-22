@@ -1191,7 +1191,16 @@
       "buildEmpty": "Le plan est vide !",
       "planSaved": "Plan enregistré avec succès dans le cloud !",
       "confirmDeletePlan": "Voulez-vous vraiment supprimer ce plan ?",
-      "traitNotFound": "Trait introuvable dans la base de données."
+      "traitNotFound": "Trait introuvable dans la base de données.",
+      "translationsSaved": "Traductions enregistrées avec succès !",
+      "logoutError": "Erreur de déconnexion : ",
+      "submitTranslationError": "Erreur lors de la soumission de la traduction : ",
+      "savePlanError": "Erreur lors de l'enregistrement : ",
+      "deletePlanError": "Erreur lors de la suppression : ",
+      "saveTranslationError": "Erreur lors de l'enregistrement de la traduction : ",
+      "invalidCode": "Code invalide",
+      "approved": "approuvé",
+      "declined": "refusé"
     },
     "nav": {
       "title": "OH Tools",

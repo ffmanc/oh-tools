@@ -1191,7 +1191,16 @@
       "buildEmpty": "规划为空！",
       "planSaved": "规划已成功保存至云端！",
       "confirmDeletePlan": "您确定要删除此规划吗？",
-      "traitNotFound": "未在数据库中找到该特质。"
+      "traitNotFound": "未在数据库中找到该特质。",
+      "translationsSaved": "翻译已成功保存！",
+      "logoutError": "登出错误: ",
+      "submitTranslationError": "提交翻译时出错: ",
+      "savePlanError": "保存错误: ",
+      "deletePlanError": "删除错误: ",
+      "saveTranslationError": "保存翻译时出错: ",
+      "invalidCode": "无效代码",
+      "approved": "已批准",
+      "declined": "已拒绝"
     },
     "nav": {
       "title": "OH Tools",

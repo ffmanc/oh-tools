@@ -694,7 +694,7 @@ function addTrait() {
             return t.name === traitName || trans.name === traitName;
         });
     }
-    if (!traitInfo) { alert("Trait not found in database."); return; }
+    if (!traitInfo) { showToast(t("ui.messages.traitNotFound"), true); return; }
     const duplicate = userSelectedTraits.find(t => t.name === traitInfo.name && t.source === traitInfo.source);
     if(duplicate) { input.value = ""; return; }
     userSelectedTraits.push(traitInfo);
@@ -914,7 +914,7 @@ function loadShareCode() {
         if (Array.isArray(payload)) { document.getElementById('team-ui-area').classList.remove('hidden'); teamData = payload; if(typeof initTeamMode==="function"){initTeamMode(true);activeTeamSlot=0;renderTeamSlots();if(teamData[0])restoreBuildFromData(teamData[0]);} } 
         else { if (typeof isTeamMode !== 'undefined' && isTeamMode) restoreBuildFromData(payload); else restoreBuildFromData(payload); }
         document.getElementById('shareStatus').textContent = "Loaded!";
-    } catch(e) { alert("Invalid Code"); }
+    } catch(e) { showToast(t("ui.messages.invalidCode"), true); }
 }
 
 function generateShareCode() {

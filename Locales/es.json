@@ -1191,7 +1191,16 @@
       "buildEmpty": "¡El plan está vacío!",
       "planSaved": "¡Plan guardado con éxito en la nube!",
       "confirmDeletePlan": "¿Está seguro de que desea eliminar este plan?",
-      "traitNotFound": "Rasgo no encontrado en la base de datos."
+      "traitNotFound": "Rasgo no encontrado en la base de datos.",
+      "translationsSaved": "¡Traducciones guardadas con éxito!",
+      "logoutError": "Error al cerrar sesión: ",
+      "submitTranslationError": "Error al enviar la traducción: ",
+      "savePlanError": "Error al guardar: ",
+      "deletePlanError": "Error al eliminar: ",
+      "saveTranslationError": "Error al guardar la traducción: ",
+      "invalidCode": "Código inválido",
+      "approved": "aprobado",
+      "declined": "rechazado"
     },
     "nav": {
       "title": "OH Tools",

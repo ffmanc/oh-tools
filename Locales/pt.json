@@ -1191,7 +1191,16 @@
       "buildEmpty": "O planejamento está vazio!",
       "planSaved": "Plano salvo com sucesso na nuvem!",
       "confirmDeletePlan": "Tem certeza de que deseja excluir este plano?",
-      "traitNotFound": "Traço não encontrado no banco de dados."
+      "traitNotFound": "Traço não encontrado no banco de dados.",
+      "translationsSaved": "Traduções salvas com sucesso!",
+      "logoutError": "Erro ao sair: ",
+      "submitTranslationError": "Erro ao enviar tradução: ",
+      "savePlanError": "Erro ao salvar: ",
+      "deletePlanError": "Erro ao excluir: ",
+      "saveTranslationError": "Erro ao salvar tradução: ",
+      "invalidCode": "Código inválido",
+      "approved": "aprovado",
+      "declined": "rejeitado"
     },
     "nav": {
       "title": "OH Tools",

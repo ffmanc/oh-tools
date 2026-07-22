@@ -166,19 +166,19 @@ async function handleLogout() {
     await auth.signOut();
     location.reload();
   } catch (err) {
-    alert("Logout Error: " + err.message);
+    showToast(t("ui.messages.logoutError") + err.message, true);
   }
 }
 
 // Translation Submissions (Firestore Proposals)
 async function suggestTranslation(termKey, type, proposedText) {
   if (!currentUser) {
-    alert(t("messages.noAuth"));
+    showToast(t("ui.messages.noAuth"), true);
     openAuthModal();
     return;
   }
   if (!proposedText) {
-    alert("Please enter translation!");
+    showToast(t("ui.messages.enterTranslation"), true);
     return;
   }
 
@@ -194,10 +194,10 @@ async function suggestTranslation(termKey, type, proposedText) {
       submittedByName: currentUser.displayName || currentUser.email,
       submittedAt: firebase.firestore.FieldValue.serverTimestamp()
     });
-    alert(t("messages.translationSubmitted"));
+    showToast(t("ui.messages.translationSubmitted"), false);
     closeTranslationModal();
   } catch (err) {
-    alert("Error submitting translation: " + err.message);
+    showToast(t("ui.messages.submitTranslationError") + err.message, true);
   }
 }
 
@@ -269,12 +269,14 @@ async function handleBulkModeration(status) {
   if (!isAdmin) return;
   const checkedBoxes = document.querySelectorAll(".proposal-checkbox:checked");
   if (checkedBoxes.length === 0) {
-    alert("Please select at least one proposal!");
+    showToast(t("ui.messages.selectProposal"), true);
     return;
   }
 
   const ids = Array.from(checkedBoxes).map(chk => chk.value);
-  if (!confirm(`Are you sure you want to ${status === 'approved' ? 'APPROVE' : 'DECLINE'} ${ids.length} translations?`)) {
+  const actionText = status === 'approved' ? t('ui.buttons.approve').toUpperCase() : t('ui.buttons.decline').toUpperCase();
+  const confirmMsg = t('ui.messages.confirmModeration').replace('{status}', actionText).replace('{count}', ids.length);
+  if (!confirm(confirmMsg)) {
     return;
   }
 
@@ -304,7 +306,8 @@ async function handleBulkModeration(status) {
     }
 
     await batch.commit();
-    alert(`Successfully ${status === 'approved' ? 'approved' : 'declined'} selected items!`);
+    const statusText = status === 'approved' ? t('ui.messages.approved') : t('ui.messages.declined');
+    showToast(t("ui.messages.moderationSuccess").replace("{status}", statusText), false);
     
     // Reload list
     loadPendingProposalsList();
@@ -312,7 +315,7 @@ async function handleBulkModeration(status) {
     // Fetch and apply translations immediately
     await fetchOnlineTranslations();
   } catch (err) {
-    alert("Error moderating: " + err.message);
+    showToast(t("ui.messages.moderationError") + " " + err.message, true);
   }
 }
 
@@ -461,16 +464,16 @@ async function loadCloudPlans() {
 
 async function savePlanToCloud() {
   if (!currentUser) {
-    alert("Please log in to save plans to the cloud!");
+    showToast(t("ui.messages.loginToSave"), true);
     openAuthModal();
     return;
   }
-  const name = prompt("Enter a name for your plan:");
+  const name = prompt(t("ui.messages.enterPlanName"));
   if (!name) return;
 
   const build = serializeCurrentBuild(); // Serializer function from script.js
   if (!build) {
-    alert("Build is empty!");
+    showToast(t("ui.messages.buildEmpty"), true);
     return;
   }
 
@@ -480,12 +483,12 @@ async function savePlanToCloud() {
       code: build,
       createdAt: firebase.firestore.FieldValue.serverTimestamp()
     });
-    alert("Plan successfully saved to cloud!");
+    showToast(t("ui.messages.planSaved"), false);
     if (document.getElementById("profileModal").classList.contains("hidden") === false) {
       loadCloudPlans();
     }
   } catch (err) {
-    alert("Error saving: " + err.message);
+    showToast(t("ui.messages.savePlanError") + err.message, true);
   }
 }
 
@@ -499,12 +502,12 @@ function loadCloudPlanCode(code) {
 }
 
 async function deleteCloudPlan(planId) {
-  if (!confirm("Are you sure you want to delete this plan?")) return;
+  if (!confirm(t("ui.messages.confirmDeletePlan"))) return;
   try {
     await db.collection("users").doc(currentUser.uid).collection("plans").doc(planId).delete();
     loadCloudPlans();
   } catch (err) {
-    alert("Error deleting: " + err.message);
+    showToast(t("ui.messages.deletePlanError") + err.message, true);
   }
 }
 
@@ -689,9 +692,40 @@ async function saveConsoleTranslation(termKey, type) {
     }
 
     await batch.commit();
-    alert("Translations updated successfully!");
+    showToast(t("ui.messages.translationsSaved") || "Translations saved successfully!");
     await fetchOnlineTranslations();
   } catch (err) {
-    alert("Error saving translation: " + err.message);
+    showToast(t("ui.messages.saveTranslationError") + err.message, true);
   }
 }
+
+let toastTimeout;
+let toastHiddenTimeout;
+
+function showToast(message, isError = false) {
+  const toast = document.getElementById("toastNotification");
+  if (!toast) return;
+
+  if (toastTimeout) clearTimeout(toastTimeout);
+  if (toastHiddenTimeout) clearTimeout(toastHiddenTimeout);
+
+  toast.textContent = message;
+  if (isError) {
+    toast.classList.add("error");
+  } else {
+    toast.classList.remove("error");
+  }
+  toast.classList.remove("hidden");
+  // Force reflow
+  toast.offsetHeight;
+  toast.classList.add("show");
+
+  toastTimeout = setTimeout(() => {
+    toast.classList.remove("show");
+    toastHiddenTimeout = setTimeout(() => {
+      toast.classList.add("hidden");
+    }, 300);
+  }, 3000);
+}
+
+window.showToast = showToast;
