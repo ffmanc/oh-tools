@@ -91,9 +91,11 @@ async function init() {
             if (typeof fetchOnlineTranslations === 'function') {
                 await fetchOnlineTranslations();
             }
-            if (typeof trackUniqueVisit === 'function') {
-                trackUniqueVisit();
-            }
+        }
+
+        // Fire visitor tracking independently — non-blocking, has its own timeout
+        if (typeof trackUniqueVisit === 'function') {
+            trackUniqueVisit();
         }
 
         let devRes;

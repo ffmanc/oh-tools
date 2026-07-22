@@ -621,13 +621,20 @@ function toggleAdminPanel() {
 async function loadVisitorCount() {
     const counterEl = document.getElementById("adminVisitorCounter");
     if (!counterEl) return;
+
+    const readPromise = db.collection("stats").doc("visits").get();
+    const timeoutPromise = new Promise((_, reject) =>
+        setTimeout(() => reject(new Error("timeout")), 5000)
+    );
+
     try {
-        const doc = await db.collection("stats").doc("visits").get();
+        const doc = await Promise.race([readPromise, timeoutPromise]);
         const count = doc.exists ? (doc.data().count || 0) : 0;
         counterEl.textContent = `${t("ui.moderation.uniqueVisitors")}: ${count}`;
     } catch(err) {
-        console.warn("Could not load stats:", err);
-        counterEl.textContent = `${t("ui.moderation.uniqueVisitors")}: (${t("ui.moderation.noAccess")})`;
+        console.warn("[Visitor] Could not load stats:", err.message);
+        const label = err.message === "timeout" ? "⏱ timeout" : t("ui.moderation.noAccess");
+        counterEl.textContent = `${t("ui.moderation.uniqueVisitors")}: (${label})`;
     }
 }
 

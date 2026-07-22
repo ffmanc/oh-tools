@@ -80,18 +80,47 @@ function clearAuthMessage() {
   }
 }
 
-async function trackUniqueVisit() {
+// ============================================================
+// VISITOR TRACKING — fire-and-forget, never blocks app init
+// ============================================================
+// Uses a 24-hour session window: the same user is counted again
+// after 24h, balancing accuracy and privacy.
+// A 4-second Firestore timeout prevents any slowness from
+// affecting the app's startup time.
+// ============================================================
+
+const VISIT_STORAGE_KEY = "oh_tools_last_visit";
+const VISIT_WINDOW_MS   = 24 * 60 * 60 * 1000; // 24 hours
+
+function trackUniqueVisit() {
+  // Guard: silently skip if Firestore is unavailable
   if (typeof db === 'undefined') return;
-  if (!localStorage.getItem("oh_tools_visited")) {
-    try {
-      await db.collection("stats").doc("visits").set({
-        count: firebase.firestore.FieldValue.increment(1)
-      }, { merge: true });
-      localStorage.setItem("oh_tools_visited", "true");
-    } catch(err) {
-      console.warn("Error tracking visit:", err);
-    }
-  }
+
+  // Check 24-hour session window
+  const lastVisit = parseInt(localStorage.getItem(VISIT_STORAGE_KEY) || "0", 10);
+  const now = Date.now();
+  if (now - lastVisit < VISIT_WINDOW_MS) return; // Already counted within window
+
+  // Race Firestore write against a 4-second timeout
+  const writePromise = db.collection("stats").doc("visits").set(
+    { count: firebase.firestore.FieldValue.increment(1) },
+    { merge: true }
+  );
+
+  const timeoutPromise = new Promise((_, reject) =>
+    setTimeout(() => reject(new Error("Visit tracking timeout")), 4000)
+  );
+
+  Promise.race([writePromise, timeoutPromise])
+    .then(() => {
+      // Only stamp the time after a confirmed write
+      localStorage.setItem(VISIT_STORAGE_KEY, String(now));
+    })
+    .catch(err => {
+      // Never throw — tracking failure is non-critical
+      console.warn("[Visitor] Tracking skipped:", err.message);
+    });
+  // NOTE: intentionally NOT awaited — caller continues immediately
 }
 
 // Authentications Flows
