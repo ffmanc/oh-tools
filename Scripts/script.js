@@ -751,7 +751,7 @@ function generatePlan() {
     const selected = Array.from(document.querySelectorAll('#builderCheckboxes input:checked')).map(cb => cb.value);
     const results = document.getElementById('builderResults');
     
-    if (selected.length === 0 && userSelectedTraits.length === 0) return results.innerHTML = "<p style='color:var(--warning)'>" + (typeof t === "function" ? t("ui.planner.noSelectionWarning") : "Please select at least one technique or trait.") + "</p>";
+    if (selected.length === 0 && userSelectedTraits.length === 0) return results.innerHTML = "<p style='color:var(--warning); grid-column: 1 / -1; width: 100%; text-align: center; margin: 15px 0; font-weight: 600;'>" + (typeof t === "function" ? t("ui.planner.noSelectionWarning") : "Please select at least one technique or trait.") + "</p>";
     
     let html = ``;
     

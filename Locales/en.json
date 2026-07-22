@@ -1286,7 +1286,7 @@
       "submittedBy": "Submitted By",
       "proposalsTab": "Pending Proposals",
       "consoleTab": "Translation Console",
-      "pt": "Portuguese (PT)",
+      "pt": "Portuguese (BR)",
       "es": "Spanish (ES)",
       "fr": "French (FR)",
       "zh": "Chinese (ZH)",
@@ -1297,7 +1297,8 @@
       "traits": "Traits",
       "save": "Save",
       "definitive": "Definitive",
-      "proposedTranslation": "Proposed Translation"
+      "proposedTranslation": "Proposed Translation",
+      "consoleTitle": "Translation Database Editor"
     },
     "headers": {
       "name": "Name",

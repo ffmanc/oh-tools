@@ -1286,7 +1286,7 @@
       "submittedBy": "Enviado Por",
       "proposalsTab": "Propuestas Pendientes",
       "consoleTab": "Consola de Traducción",
-      "pt": "Portugués (PT)",
+      "pt": "Portugués (BR)",
       "es": "Español (ES)",
       "fr": "Francés (FR)",
       "zh": "Chino (ZH)",
@@ -1297,7 +1297,8 @@
       "traits": "Rasgos",
       "save": "Guardar",
       "definitive": "Definitivo",
-      "proposedTranslation": "Traducción Propuesta"
+      "proposedTranslation": "Traducción Propuesta",
+      "consoleTitle": "Editor de la Base de Datos de Traducción"
     },
     "headers": {
       "name": "Nombre",

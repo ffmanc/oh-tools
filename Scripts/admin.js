@@ -523,12 +523,44 @@ function closeTranslationModal() {
 // Metadata map for translation states
 let onlineTranslationsMetadata = {};
 
+let allLocalesCached = {};
+
+async function cacheAllLocales() {
+  const langs = ['pt', 'es', 'fr', 'zh', 'en'];
+  for (const lang of langs) {
+    if (!allLocalesCached[lang]) {
+      try {
+        const res = await fetch(`Locales/${lang}.json`);
+        if (res.ok) {
+          allLocalesCached[lang] = await res.json();
+        }
+      } catch (err) {
+        console.warn(`Error caching locale ${lang}:`, err);
+      }
+    }
+  }
+}
+
+function getLocalTranslation(key, type, lang) {
+  const data = allLocalesCached[lang];
+  if (!data) return "";
+  if (type === 'deviation') {
+    return (data.deviations && data.deviations[key]) || "";
+  } else if (type === 'technique') {
+    return (data.techniques && data.techniques[key] && data.techniques[key].name) || "";
+  } else if (type === 'trait') {
+    return (data.traits && data.traits[key] && data.traits[key].name) || "";
+  }
+  return "";
+}
+
 async function loadAllOnlineTranslations() {
   if (!isAdmin) return;
   const tableBody = document.getElementById("adminConsoleTableBody");
   if (tableBody) tableBody.innerHTML = `<tr><td colspan="7" class="loading-spinner">Loading...</td></tr>`;
 
   try {
+    await cacheAllLocales();
     const snapshot = await db.collection("translations").get();
     onlineTranslationsMetadata = {};
     snapshot.forEach(doc => {
@@ -584,30 +616,31 @@ function renderTranslationConsoleTable() {
     
     return `
       <tr>
-        <td><strong>${t.key}</strong></td>
-        <td><span class="badge">${t.type}</span></td>
+        <td style="padding: 10px; font-weight: 600;">${t.key}</td>
+        <td style="padding: 10px;"><span class="badge">${t.type}</span></td>
         ${langs.map(lang => {
           const langData = meta[lang] || { approvedText: "", definitive: false };
+          const prefilledVal = langData.approvedText || getLocalTranslation(t.key, t.type, lang);
           return `
-            <td style="padding: 8px;">
+            <td style="padding: 8px 12px; min-width: 160px; vertical-align: top;">
               <input type="text" 
                      id="console-trans-${t.key.replace(/'/g, "&apos;")}-${lang}" 
-                     value="${langData.approvedText || ''}" 
+                     value="${prefilledVal || ''}" 
                      placeholder="${t("ui.fields.translate")}"
-                     style="width: 100%; box-sizing: border-box; padding: 6px 8px; border-radius: var(--radius); border: 1px solid var(--border); background: var(--bg-input); color: white; margin-bottom: 4px; font-size: 0.8rem;">
-              <label style="font-size:0.7rem; display:flex; align-items:center; gap:4px; margin-top:2px;">
+                     style="width: 100%; box-sizing: border-box; padding: 6px 10px; border-radius: var(--radius); border: 1px solid var(--border); background: var(--bg-input); color: white; margin-bottom: 6px; font-size: 0.8rem; display: block;">
+              <label style="font-size:0.7rem; display:flex; align-items:center; gap:5px; margin-top:2px; cursor: pointer; user-select: none; color: #aaa;">
                 <input type="checkbox" 
                        id="console-def-${t.key.replace(/'/g, "&apos;")}-${lang}" 
                        ${langData.definitive ? 'checked' : ''} 
-                       style="width:auto; margin:0;">
+                       style="width:auto; margin:0; cursor: pointer;">
                 ${t("ui.moderation.definitive")}
               </label>
             </td>
           `;
         }).join('')}
-        <td>
+        <td style="padding: 10px; text-align: center; vertical-align: middle;">
           <button onclick="saveConsoleTranslation('${t.key.replace(/'/g, "\\'")}', '${t.type}')" 
-                  style="padding:6px 12px; font-size:0.75rem; border-radius:var(--radius); width:100%; box-sizing:border-box;">
+                  style="padding:8px 14px; font-size:0.75rem; border-radius:var(--radius); width:100%; box-sizing:border-box; font-weight:600; cursor: pointer;">
             ${t("ui.moderation.save")}
           </button>
         </td>
@@ -624,8 +657,9 @@ async function saveConsoleTranslation(termKey, type) {
   try {
     for (const lang of langs) {
       const transId = `${termKey}_${lang}`;
-      const textVal = document.getElementById(`console-trans-${termKey}-${lang}`).value.trim();
-      const defChecked = document.getElementById(`console-def-${termKey}-${lang}`).checked;
+      const escapedKey = termKey.replace(/'/g, "&apos;");
+      const textVal = document.getElementById(`console-trans-${escapedKey}-${lang}`).value.trim();
+      const defChecked = document.getElementById(`console-def-${escapedKey}-${lang}`).checked;
       const transRef = db.collection("translations").doc(transId);
 
       if (textVal) {

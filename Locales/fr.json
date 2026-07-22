@@ -1286,7 +1286,7 @@
       "submittedBy": "Soumis Par",
       "proposalsTab": "Propositions en Attente",
       "consoleTab": "Console de Traduction",
-      "pt": "Portugais (PT)",
+      "pt": "Portugais (BR)",
       "es": "Espagnol (ES)",
       "fr": "Français (FR)",
       "zh": "Chinois (ZH)",
@@ -1297,7 +1297,8 @@
       "traits": "Traits",
       "save": "Sauvegarder",
       "definitive": "Définitif",
-      "proposedTranslation": "Traduction Proposée"
+      "proposedTranslation": "Traduction Proposée",
+      "consoleTitle": "Éditeur de Base de Données de Traduction"
     },
     "headers": {
       "name": "Nom",

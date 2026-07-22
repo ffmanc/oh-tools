@@ -1286,18 +1286,19 @@
       "submittedBy": "Enviado Por",
       "proposalsTab": "Propostas Pendentes",
       "consoleTab": "Console de Tradução",
-      "pt": "Português (PT)",
+      "pt": "Português (BR)",
       "es": "Espanhol (ES)",
       "fr": "Francês (FR)",
       "zh": "Chinês (ZH)",
       "actions": "Ações",
       "allTypes": "Todos os Tipos",
-      "deviations": "Desvios",
+      "deviations": "Desviantes",
       "techniques": "Habilidades",
       "traits": "Traços",
       "save": "Salvar",
       "definitive": "Definitivo",
-      "proposedTranslation": "Tradução Proposta"
+      "proposedTranslation": "Tradução Proposta",
+      "consoleTitle": "Editor da Base de Traduções"
     },
     "headers": {
       "name": "Nome",

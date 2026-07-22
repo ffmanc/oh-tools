@@ -1280,13 +1280,13 @@
       "all": "全部"
     },
     "moderation": {
-      "keyEn": "原始词条 (EN)",
+      "keyEn": "原词 (EN)",
       "type": "类型",
       "proposed": "建议的翻译",
       "submittedBy": "提交者",
       "proposalsTab": "待处理提案",
       "consoleTab": "翻译控制台",
-      "pt": "葡萄牙语 (PT)",
+      "pt": "葡萄牙语 (BR)",
       "es": "西班牙语 (ES)",
       "fr": "法语 (FR)",
       "zh": "中文 (ZH)",
@@ -1297,7 +1297,8 @@
       "traits": "特质",
       "save": "保存",
       "definitive": "确定性",
-      "proposedTranslation": "提议的翻译"
+      "proposedTranslation": "提议的翻译",
+      "consoleTitle": "翻译数据库编辑器"
     },
     "headers": {
       "name": "名称",
