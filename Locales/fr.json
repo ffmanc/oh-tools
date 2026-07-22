@@ -1291,7 +1291,8 @@
       "loggedAs": "Connecté en tant que :",
       "noPlans": "Aucun plan enregistré dans le cloud pour le moment.",
       "cloudPlans": "Plans dans le Cloud",
-      "loadingPlans": "Chargement des plans..."
+      "loadingPlans": "Chargement des plans...",
+      "defaultUser": "Utilisateur"
     },
     "filters": {
       "speciesCode": "Code d'Espèce",
@@ -1303,7 +1304,8 @@
       "animal": "Animal",
       "furniture": "Meuble",
       "variations": "Variations",
-      "all": "Tous"
+      "all": "Tous",
+      "slots": "Emplacements"
     },
     "moderation": {
       "keyEn": "Clé (EN)",
@@ -1378,6 +1380,10 @@
       "noDonorsFound": "Aucun donneur trouvé",
       "inShop": "[BOUTIQUE]",
       "source": "Source"
+    },
+    "footer": {
+      "credits": "OH Tools © 2026. Fait avec ❤️ pour la communauté Once Human.",
+      "originalCode": "Code original du simulateur par OTTOREIKU."
     }
   }
 }

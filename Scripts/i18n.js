@@ -14,8 +14,12 @@ async function loadLocale(lang) {
     console.error(`Error loading locale for ${lang}:`, err);
   }
 
-  // Always load English as fallback reference
-  if (lang !== 'en' && Object.keys(defaultEnglishData).length === 0) {
+  // Always ensure English fallback data is loaded.
+  // When lang === 'en', use localeData itself as the fallback (already correct).
+  // When lang !== 'en', load English separately if not already cached.
+  if (lang === 'en') {
+    defaultEnglishData = localeData;
+  } else if (Object.keys(defaultEnglishData).length === 0) {
     try {
       const res = await fetch('Locales/en.json');
       if (res.ok) {

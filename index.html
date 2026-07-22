@@ -393,7 +393,7 @@
                                     <input type="text" id="traitInput" data-i18n-placeholder="ui.planner.searchTraits" placeholder="Search traits (e.g. Moonlight)..." onkeyup="filterTraitDropdown()" onfocus="filterTraitDropdown()">
                                     <div id="traitDropdown" class="trait-dropdown"></div>
                                 </div>
-                                <button onclick="addTrait()" class="secondary" style="height:42px;">Add</button>
+                                <button onclick="addTrait()" class="secondary" style="height:42px;" data-i18n="ui.buttons.add">Add</button>
                             </div>
                             <div id="selectedTraits" style="margin-top:10px;"></div>
                         </div>
@@ -486,7 +486,7 @@
                             
                             <span id="slotFilterSep" style="color:#555; font-size:1.2rem; margin:0 5px; user-select:none; font-weight:300;">|</span>
 
-                            <button class="filter-btn slot-btn active" onclick="applySlotFilter('All', this)" data-i18n="ui.filters.all">Slots</button>
+                            <button class="filter-btn slot-btn active" onclick="applySlotFilter('All', this)" data-i18n="ui.filters.slots">Slots</button>
                             <button class="filter-btn slot-btn" onclick="applySlotFilter(1, this)">1</button>
                             <button class="filter-btn slot-btn" onclick="applySlotFilter(2, this)">2</button>
                             <button class="filter-btn slot-btn" onclick="applySlotFilter(3, this)">3</button>
@@ -588,8 +588,8 @@
 
             <!-- Footer & Credits -->
             <footer style="text-align:center; margin-top: 50px; padding: 20px 0; border-top: 1px solid var(--border); color: #858585; font-size: 0.8rem; line-height: 1.6;">
-                <span>OH Tools &copy; 2026. Made with ❤️ for the Once Human community.</span><br>
-                <span>Original simulator code by <a href="https://github.com/OTTOREIKU" target="_blank" style="color:var(--accent); text-decoration:none; font-weight:600;">OTTOREIKU</a>.</span>
+                <span data-i18n="ui.footer.credits">OH Tools © 2026. Made with ❤️ for the Once Human community.</span><br>
+                <span data-i18n="ui.footer.originalCode">Original simulator code by <a href="https://github.com/OTTOREIKU" target="_blank" style="color:var(--accent); text-decoration:none; font-weight:600;">OTTOREIKU</a>.</span>
             </footer>
 
         </div>

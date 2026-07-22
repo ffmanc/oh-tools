@@ -488,7 +488,7 @@ async function openProfileModal() {
     container.innerHTML = `
       <div style="margin-bottom:15px;">
         <label style="color:#aaa; font-size:0.8rem;">${labelLogged}</label>
-        <div style="color:white; font-size:1.1rem; font-weight:bold;">${currentUser.displayName || 'User'}</div>
+        <div style="color:white; font-size:1.1rem; font-weight:bold;">${currentUser.displayName || (typeof t === 'function' ? t('profile.defaultUser') : 'User')}</div>
         <div style="color:#888; font-size:0.9rem;">${currentUser.email}</div>
       </div>
       <div id="profileSavedPlans">${labelLoading}</div>
@@ -529,7 +529,8 @@ async function loadCloudPlans() {
       </div>
     `;
   } catch (err) {
-    plansContainer.innerHTML = "<div style='color:var(--danger);'>Error: " + err.message + "</div>";
+    const errPrefix = typeof t === 'function' ? t('ui.messages.savePlanError') : 'Error: ';
+    plansContainer.innerHTML = `<div style='color:var(--danger);'>${errPrefix}${err.message}</div>`;
   }
 }
 
@@ -636,7 +637,7 @@ function getLocalTranslation(key, type, lang) {
 async function loadAllOnlineTranslations() {
   if (!isAdmin) return;
   const tableBody = document.getElementById("adminConsoleTableBody");
-  if (tableBody) tableBody.innerHTML = `<tr><td colspan="7" class="loading-spinner">Loading...</td></tr>`;
+  if (tableBody) tableBody.innerHTML = `<tr><td colspan="7" class="loading-spinner">${typeof t === 'function' ? t('ui.messages.loading') : 'Loading...'}</td></tr>`;
 
   try {
     await cacheAllLocales();
@@ -657,7 +658,8 @@ async function loadAllOnlineTranslations() {
 
     renderTranslationConsoleTable();
   } catch (err) {
-    if (tableBody) tableBody.innerHTML = `<tr><td colspan="7" class="error-msg">Error: ${err.message}</td></tr>`;
+    const errPrefix = typeof t === 'function' ? t('ui.messages.savePlanError') : 'Error: ';
+    if (tableBody) tableBody.innerHTML = `<tr><td colspan="7" class="error-msg">${errPrefix}${err.message}</td></tr>`;
   }
 }
 
@@ -696,7 +698,7 @@ function renderTranslationConsoleTable() {
     return `
       <tr>
         <td style="padding: 10px; font-weight: 600;">${term.key}</td>
-        <td style="padding: 10px;"><span class="badge">${term.type}</span></td>
+        <td style="padding: 10px;"><span class="badge">${typeof t === 'function' ? t('ui.moderation.' + term.type + 's') : term.type}</span></td>
         ${langs.map(lang => {
           const langData = meta[lang] || { approvedText: "", definitive: false };
           const prefilledVal = langData.approvedText || getLocalTranslation(term.key, term.type, lang);
@@ -808,26 +810,69 @@ window.showToast = showToast;
 // Registry of all translatable UI & Game Terms
 // Each entry: { key, labelEn, category }
 const UI_GAME_TERMS_REGISTRY = [
-  // Game Terms — items appearing in filters, badges, dropdowns
+  // ── Game Terms — filters, badges, dropdowns ──────────────────────────────
   { key: 'skillMutagen',  labelEn: 'Skill Mutagen',  path: 'ui.gameTerms.skillMutagen',  category: 'gameTerm' },
   { key: 'speciesCode',   labelEn: 'Species Code',   path: 'ui.gameTerms.speciesCode',   category: 'gameTerm' },
   { key: 'combat',        labelEn: 'Combat',         path: 'ui.gameTerms.combat',        category: 'gameTerm' },
   { key: 'territory',     labelEn: 'Territory',      path: 'ui.gameTerms.territory',     category: 'gameTerm' },
   { key: 'crafting',      labelEn: 'Crafting',       path: 'ui.gameTerms.crafting',      category: 'gameTerm' },
   { key: 'dataNeeded',    labelEn: 'Data needed',    path: 'ui.gameTerms.dataNeeded',    category: 'gameTerm' },
-  // Status terms — classification labels
+  // ── Status terms — classification labels ─────────────────────────────────
   { key: 'perfect',       labelEn: 'PERFECT',        path: 'ui.gameTerms.perfect',       category: 'status'   },
   { key: 'good',          labelEn: 'GOOD',           path: 'ui.gameTerms.good',          category: 'status'   },
   { key: 'risky',         labelEn: 'RISKY',          path: 'ui.gameTerms.risky',         category: 'status'   },
   { key: 'shop',          labelEn: 'SHOP',           path: 'ui.gameTerms.shop',          category: 'status'   },
   { key: 'calculating',   labelEn: 'Calculating...', path: 'ui.gameTerms.calculating',   category: 'status'   },
   { key: 'noDonorsFound', labelEn: 'No donors found',path: 'ui.gameTerms.noDonorsFound', category: 'status'   },
-  // UI Labels — attribute and card labels
+  // ── UI Labels — attribute and card labels ────────────────────────────────
   { key: 'psiLabel',      labelEn: 'PSI',            path: 'ui.gameTerms.psiLabel',      category: 'uiLabel'  },
   { key: 'passiveLabel',  labelEn: 'Passive',        path: 'ui.gameTerms.passiveLabel',  category: 'uiLabel'  },
   { key: 'standardLabel', labelEn: 'Standard',       path: 'ui.gameTerms.standardLabel', category: 'uiLabel'  },
   { key: 'source',        labelEn: 'Source',         path: 'ui.gameTerms.source',        category: 'uiLabel'  },
-  // Audit labels — DB Health Check
+  // ── Navigation labels ────────────────────────────────────────────────────
+  { key: 'navTitle',         labelEn: 'OH Tools',                   path: 'ui.nav.title',              category: 'uiLabel' },
+  { key: 'navSimulator',     labelEn: 'Deviant Fusion Simulator',   path: 'ui.nav.simulator',          category: 'uiLabel' },
+  { key: 'navBuildPlanner',  labelEn: 'Build Planner',              path: 'ui.nav.buildPlanner',       category: 'uiLabel' },
+  { key: 'navMap',           labelEn: 'Resources Map',              path: 'ui.nav.map',                category: 'uiLabel' },
+  { key: 'navCalibrations',  labelEn: 'Calibrations & Mods',        path: 'ui.nav.calibrations',       category: 'uiLabel' },
+  { key: 'navConstruction',  labelEn: 'Under Construction',         path: 'ui.nav.underConstruction',  category: 'uiLabel' },
+  // ── Tab labels ───────────────────────────────────────────────────────────
+  { key: 'tabLogin',      labelEn: 'Login',          path: 'ui.tabs.login',      category: 'uiLabel' },
+  { key: 'tabRegister',   labelEn: 'Register',       path: 'ui.tabs.register',   category: 'uiLabel' },
+  { key: 'tabProfile',    labelEn: 'Profile',        path: 'ui.tabs.profile',    category: 'uiLabel' },
+  { key: 'tabLogout',     labelEn: 'Logout',         path: 'ui.tabs.logout',     category: 'uiLabel' },
+  { key: 'tabModeration', labelEn: 'Administration', path: 'ui.tabs.moderation', category: 'uiLabel' },
+  { key: 'tabPlanner',    labelEn: 'Planner',        path: 'ui.tabs.planner',    category: 'uiLabel' },
+  { key: 'tabTechniques', labelEn: 'Skills',         path: 'ui.tabs.techniques', category: 'uiLabel' },
+  { key: 'tabTraits',     labelEn: 'Traits',         path: 'ui.tabs.traits',     category: 'uiLabel' },
+  { key: 'tabDeviants',   labelEn: 'Deviants List',  path: 'ui.tabs.deviants',   category: 'uiLabel' },
+  // ── Button labels ────────────────────────────────────────────────────────
+  { key: 'btnSubmit',     labelEn: 'Submit',          path: 'ui.buttons.submit',          category: 'uiLabel' },
+  { key: 'btnCancel',     labelEn: 'Cancel',          path: 'ui.buttons.cancel',          category: 'uiLabel' },
+  { key: 'btnSave',       labelEn: 'Save',            path: 'ui.buttons.save',            category: 'uiLabel' },
+  { key: 'btnDelete',     labelEn: 'Delete',          path: 'ui.buttons.delete',          category: 'uiLabel' },
+  { key: 'btnAdd',        labelEn: 'Add',             path: 'ui.buttons.add',             category: 'uiLabel' },
+  { key: 'btnApprove',    labelEn: 'Approve',         path: 'ui.buttons.approve',         category: 'uiLabel' },
+  { key: 'btnDecline',    labelEn: 'Decline',         path: 'ui.buttons.decline',         category: 'uiLabel' },
+  { key: 'btnApproveBulk',labelEn: 'Approve Selected',path: 'ui.buttons.approveBulk',    category: 'uiLabel' },
+  { key: 'btnDeclineBulk',labelEn: 'Decline Selected',path: 'ui.buttons.declineBulk',    category: 'uiLabel' },
+  { key: 'btnSaveCloud',  labelEn: 'Save to Cloud',   path: 'ui.buttons.saveCloud',       category: 'uiLabel' },
+  { key: 'btnArenaShops', labelEn: 'Arena Shops',     path: 'ui.buttons.btnArenaShops',   category: 'uiLabel' },
+  { key: 'btnRecoverPass',labelEn: 'Recover Password',path: 'ui.buttons.recoverPass',     category: 'uiLabel' },
+  { key: 'btnSuggestTranslation', labelEn: 'Suggest Translation', path: 'ui.buttons.submitTranslation', category: 'uiLabel' },
+  // ── Settings labels ──────────────────────────────────────────────────────
+  { key: 'settingsTitle',       labelEn: 'View Settings',             path: 'ui.settings.title',       category: 'uiLabel' },
+  { key: 'settingsShowSlots',   labelEn: 'Show Slot Data',            path: 'ui.settings.showSlots',   category: 'uiLabel' },
+  { key: 'settingsShowBuilder', labelEn: 'Show Custom Build Planner', path: 'ui.settings.showBuilder', category: 'uiLabel' },
+  { key: 'settingsShowIso',     labelEn: 'Show Isolation Checker',    path: 'ui.settings.showIsolation',  category: 'uiLabel' },
+  { key: 'settingsShowTech',    labelEn: 'Show Technique Search',     path: 'ui.settings.showTechSearch', category: 'uiLabel' },
+  { key: 'settingsShowDev',     labelEn: 'Show Deviation Search',     path: 'ui.settings.showDevSearch',  category: 'uiLabel' },
+  // ── Planner extra ────────────────────────────────────────────────────────
+  { key: 'plannerRisk',   labelEn: 'Risk:',          path: 'ui.planner.risk',            category: 'uiLabel' },
+  // ── Footer ───────────────────────────────────────────────────────────────
+  { key: 'footerCredits',     labelEn: 'OH Tools © 2026. Made with ❤️ for the Once Human community.', path: 'ui.footer.credits',      category: 'uiLabel' },
+  { key: 'footerOriginalCode',labelEn: 'Original simulator code by OTTOREIKU.',                       path: 'ui.footer.originalCode', category: 'uiLabel' },
+  // ── Audit labels — DB Health Check ──────────────────────────────────────
   { key: 'auditTitle',       labelEn: 'Database Health Check',         path: 'ui.audit.title',          category: 'audit' },
   { key: 'auditSynced',      labelEn: 'Core Data Synced Successfully!', path: 'ui.audit.synced',         category: 'audit' },
   { key: 'auditTotalDev',    labelEn: 'Total Deviations:',             path: 'ui.audit.totalDeviations', category: 'audit' },
@@ -837,6 +882,7 @@ const UI_GAME_TERMS_REGISTRY = [
   { key: 'auditPassMissing', labelEn: 'Passive Data Missing:',         path: 'ui.audit.passiveMissing',  category: 'audit' },
   { key: 'auditStdMissing',  labelEn: 'Standard Data Missing:',        path: 'ui.audit.standardMissing', category: 'audit' },
 ];
+
 
 function renderUITermsTable() {
   const tbody = document.getElementById('adminUITermsTableBody');
@@ -858,7 +904,12 @@ function renderUITermsTable() {
   });
 
   const catLabel = (cat) => {
-    const map = { gameTerm: 'Game Term', uiLabel: 'UI Label', status: 'Status', audit: 'Audit' };
+    const map = {
+      gameTerm: typeof t === 'function' ? t('ui.moderation.categoryGameTerm') : 'Game Term',
+      uiLabel:  typeof t === 'function' ? t('ui.moderation.categoryUiLabel')  : 'UI Label',
+      status:   typeof t === 'function' ? t('ui.moderation.categoryStatus')   : 'Status',
+      audit:    typeof t === 'function' ? t('ui.moderation.categoryAudit')    : 'Audit'
+    };
     return map[cat] || cat;
   };
 

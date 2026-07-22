@@ -1291,7 +1291,8 @@
       "loggedAs": "已登录为：",
       "noPlans": "目前没有云端保存的规划。",
       "cloudPlans": "云端规划",
-      "loadingPlans": "正在加载云端规划..."
+      "loadingPlans": "正在加载云端规划...",
+      "defaultUser": "用户"
     },
     "filters": {
       "speciesCode": "物种编码",
@@ -1303,7 +1304,8 @@
       "animal": "动物",
       "furniture": "家具",
       "variations": "变体",
-      "all": "全部"
+      "all": "全部",
+      "slots": "槽位"
     },
     "moderation": {
       "keyEn": "原词 (EN)",
@@ -1378,6 +1380,10 @@
       "noDonorsFound": "未找到捐赠者",
       "inShop": "[商店]",
       "source": "来源"
+    },
+    "footer": {
+      "credits": "OH Tools © 2026. 为Once Human社区用❤️制作。",
+      "originalCode": "原始模拟器代码由OTTOREIKU提供。"
     }
   }
 }

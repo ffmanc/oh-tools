@@ -1291,7 +1291,8 @@
       "loggedAs": "Logged as:",
       "noPlans": "No cloud saved plans yet.",
       "cloudPlans": "Cloud Plans",
-      "loadingPlans": "Loading cloud plans..."
+      "loadingPlans": "Loading cloud plans...",
+      "defaultUser": "User"
     },
     "filters": {
       "speciesCode": "Species Code",
@@ -1303,7 +1304,8 @@
       "animal": "Animal",
       "furniture": "Furniture",
       "variations": "Variations",
-      "all": "All"
+      "all": "All",
+      "slots": "Slots"
     },
     "moderation": {
       "keyEn": "Key (EN)",
@@ -1378,6 +1380,10 @@
       "noDonorsFound": "No donors found",
       "inShop": "[SHOP]",
       "source": "Source"
+    },
+    "footer": {
+      "credits": "OH Tools © 2026. Made with ❤️ for the Once Human community.",
+      "originalCode": "Original simulator code by OTTOREIKU."
     }
   }
 }

@@ -557,7 +557,7 @@ function buildTraitsTable() {
                 </div>
             </td>
             <td style="vertical-align:middle; padding:12px;">${t.source || '-'}</td>
-            <td style="vertical-align:middle; padding:12px;">${t.category}</td>
+            <td style="vertical-align:middle; padding:12px;">${typeof translateGameTerm === 'function' ? translateGameTerm(t.category.toLowerCase()) || t.category : t.category}</td>
             <td style="color:#aaa; vertical-align:middle; padding:12px;">
                 <div style="display:flex; justify-content:space-between; align-items:center; gap:8px;">
                     <span>${trans.description}</span>
@@ -720,7 +720,7 @@ function findPartners() {
             <div class="uni-card gradient-card ${status}">
                 <div class="card-header">
                     <span class="card-title">${localCandName}</span>
-                    <span class="card-badge">${label}</span>
+                    <span class="card-badge">${label === 'PERFECT' ? (typeof translateGameTerm === 'function' ? translateGameTerm('perfect') : label) : label === 'GOOD' ? (typeof translateGameTerm === 'function' ? translateGameTerm('good') : label) : (typeof translateGameTerm === 'function' ? translateGameTerm('risky') : label)}</span>
                 </div>
                 <div class="card-body">${labelOverlap} <strong style="color:white">${c.overlap}</strong></div>
                 ${c.overlap > 0 ? `<div class="card-risk">${labelRisk} ${localOverlaps}</div>` : ''}
@@ -882,7 +882,8 @@ function generatePlan() {
             else {
                 candidates.forEach(c => {
                     let label = c.overlap === 0 ? "PERFECT" : (c.overlap === 1 ? "GOOD" : "RISKY");
-                    const junkStr = c.overlap > 0 ? `Risk: ${c.overlapTechniques.map(t => {
+                    const riskPrefix = typeof t === 'function' ? t('ui.planner.risk') : 'Risk:';
+                    const junkStr = c.overlap > 0 ? `${riskPrefix} ${c.overlapTechniques.map(t => {
                         const trans = typeof translateTechnique === 'function' ? translateTechnique(t) : { name: t };
                         return trans.name;
                     }).join(', ')}` : "";
