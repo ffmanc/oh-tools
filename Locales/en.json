@@ -1337,7 +1337,8 @@
       "consoleTitle": "Translation Database Editor",
       "uniqueVisitors": "Unique Visitors",
       "uniqueVisitorsLoading": "Unique Visitors: Loading...",
-      "noAccess": "No Access"
+      "noAccess": "No Access",
+      "en": "English (EN)"
     },
     "headers": {
       "name": "Name",

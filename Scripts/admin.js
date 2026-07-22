@@ -211,6 +211,30 @@ async function suggestTranslation(termKey, type, proposedText) {
     return;
   }
 
+  // Admin: save directly to the approved translations collection (bypass proposals)
+  if (isAdmin) {
+    const transId = `${termKey}_${currentLang}`;
+    try {
+      await db.collection("translations").doc(transId).set({
+        termKey: termKey,
+        lang: currentLang,
+        type: type,
+        approvedText: proposedText,
+        definitive: false,
+        moderatedBy: currentUser.uid,
+        updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+      });
+      if (!onlineTranslationsMetadata[termKey]) onlineTranslationsMetadata[termKey] = {};
+      onlineTranslationsMetadata[termKey][currentLang] = { approvedText: proposedText, definitive: false };
+      showToast(t("ui.messages.translationsSaved"), false);
+      closeTranslationModal();
+    } catch (err) {
+      showToast(t("ui.messages.saveTranslationError") + err.message, true);
+    }
+    return;
+  }
+
+  // Regular user: submit to proposals for admin review
   const proposalId = `${termKey}_${currentLang}`;
   try {
     await db.collection("proposals").doc(proposalId).set({
@@ -418,6 +442,35 @@ function applyOnlineTranslations() {
     Object.keys(onlineTranslationsMetadata).forEach(key => {
       const langMap = onlineTranslationsMetadata[key];
       if (!langMap) return;
+
+      // ── Apply EN override when definitive (affects all EN users) ──────────
+      const enRecord = langMap['en'];
+      if (enRecord && enRecord.approvedText && enRecord.definitive) {
+        // Apply to defaultEnglishData for fallback
+        if (defaultEnglishData) {
+          if (defaultEnglishData.deviations && defaultEnglishData.deviations[key] !== undefined)
+            defaultEnglishData.deviations[key] = enRecord.approvedText;
+          else if (defaultEnglishData.traits && defaultEnglishData.traits[key])
+            defaultEnglishData.traits[key].name = enRecord.approvedText;
+          else if (defaultEnglishData.techniques && defaultEnglishData.techniques[key])
+            defaultEnglishData.techniques[key].name = enRecord.approvedText;
+          else if (defaultEnglishData.ui && defaultEnglishData.ui.gameTerms && defaultEnglishData.ui.gameTerms[key] !== undefined)
+            defaultEnglishData.ui.gameTerms[key] = enRecord.approvedText;
+        }
+        // If user is currently in EN, also apply to live localeData
+        if (currentLang === 'en' && localeData) {
+          if (localeData.deviations && localeData.deviations[key] !== undefined)
+            localeData.deviations[key] = enRecord.approvedText;
+          else if (localeData.traits && localeData.traits[key])
+            localeData.traits[key].name = enRecord.approvedText;
+          else if (localeData.techniques && localeData.techniques[key])
+            localeData.techniques[key].name = enRecord.approvedText;
+          else if (localeData.ui && localeData.ui.gameTerms && localeData.ui.gameTerms[key] !== undefined)
+            localeData.ui.gameTerms[key] = enRecord.approvedText;
+        }
+      }
+
+      // ── Apply current-language override ───────────────────────────────────
       const record = langMap[currentLang];
       if (!record || !record.approvedText) return;
 
@@ -659,7 +712,7 @@ async function loadAllOnlineTranslations() {
     renderTranslationConsoleTable();
   } catch (err) {
     const errPrefix = typeof t === 'function' ? t('ui.messages.savePlanError') : 'Error: ';
-    if (tableBody) tableBody.innerHTML = `<tr><td colspan="7" class="error-msg">${errPrefix}${err.message}</td></tr>`;
+    if (tableBody) tableBody.innerHTML = `<tr><td colspan="8" class="error-msg">${errPrefix}${err.message}</td></tr>`;
   }
 }
 
@@ -690,7 +743,8 @@ function renderTranslationConsoleTable() {
 
   termsList.sort((a, b) => a.key.localeCompare(b.key));
 
-  const langs = ['pt', 'es', 'fr', 'zh'];
+  // EN is now editable; it's the first lang column after the key/type columns
+  const langs = ['en', 'pt', 'es', 'fr', 'zh'];
 
   tableBody.innerHTML = termsList.map(term => {
     const meta = onlineTranslationsMetadata[term.key] || {};
@@ -720,7 +774,7 @@ function renderTranslationConsoleTable() {
           `;
         }).join('')}
         <td style="padding: 10px; text-align: center; vertical-align: middle;">
-          <button onclick="saveConsoleTranslation('${term.key.replace(/'/g, "\\'")}', '${term.type}')" 
+          <button onclick="saveConsoleTranslation('${term.key.replace(/'/g, "\\'")}'\, '${term.type}')" 
                   style="padding:8px 14px; font-size:0.75rem; border-radius:var(--radius); width:100%; box-sizing:border-box; font-weight:600; cursor: pointer;">
             ${t("ui.moderation.save")}
           </button>
@@ -732,7 +786,8 @@ function renderTranslationConsoleTable() {
 
 async function saveConsoleTranslation(termKey, type) {
   if (!isAdmin) return;
-  const langs = ['pt', 'es', 'fr', 'zh'];
+  // EN is now editable — include it in the save loop
+  const langs = ['en', 'pt', 'es', 'fr', 'zh'];
   const batch = db.batch();
 
   try {
@@ -756,6 +811,26 @@ async function saveConsoleTranslation(termKey, type) {
 
         if (!onlineTranslationsMetadata[termKey]) onlineTranslationsMetadata[termKey] = {};
         onlineTranslationsMetadata[termKey][lang] = { approvedText: textVal, definitive: defChecked };
+
+        // When EN is saved as definitive, immediately update the in-memory English data
+        if (lang === 'en' && defChecked) {
+          if (defaultEnglishData) {
+            if (type === 'deviation' && defaultEnglishData.deviations)
+              defaultEnglishData.deviations[termKey] = textVal;
+            else if (type === 'technique' && defaultEnglishData.techniques && defaultEnglishData.techniques[termKey])
+              defaultEnglishData.techniques[termKey].name = textVal;
+            else if (type === 'trait' && defaultEnglishData.traits && defaultEnglishData.traits[termKey])
+              defaultEnglishData.traits[termKey].name = textVal;
+          }
+          if (currentLang === 'en' && localeData) {
+            if (type === 'deviation' && localeData.deviations)
+              localeData.deviations[termKey] = textVal;
+            else if (type === 'technique' && localeData.techniques && localeData.techniques[termKey])
+              localeData.techniques[termKey].name = textVal;
+            else if (type === 'trait' && localeData.traits && localeData.traits[termKey])
+              localeData.traits[termKey].name = textVal;
+          }
+        }
       } else {
         batch.delete(transRef);
         if (onlineTranslationsMetadata[termKey]) {
@@ -916,7 +991,24 @@ function renderUITermsTable() {
   tbody.innerHTML = filtered.map(entry => {
     const escapedKey = entry.key.replace(/'/g, "&apos;");
 
-    const langCells = langs.map(lang => {
+    // EN column: prefill from onlineTranslationsMetadata['en'] or entry.labelEn
+    const enMeta = (typeof onlineTranslationsMetadata !== 'undefined' &&
+                    onlineTranslationsMetadata[entry.key] &&
+                    onlineTranslationsMetadata[entry.key]['en'])
+                   ? onlineTranslationsMetadata[entry.key]['en'] : null;
+    const enVal = (enMeta && enMeta.approvedText) ? enMeta.approvedText : entry.labelEn;
+    const enDefChecked = (enMeta && enMeta.definitive) ? 'checked' : '';
+
+    const allLangs = ['en', 'pt', 'es', 'fr', 'zh'];
+    const langCells = allLangs.map(lang => {
+      if (lang === 'en') {
+        return `<td style="padding:4px;">
+          <input id="uit-trans-${escapedKey}-en" type="text" value="${enVal.replace(/"/g, '&quot;')}" placeholder="${entry.labelEn}" style="width:90%; font-size:0.8rem; padding:4px; background:var(--bg-input); border:1px solid var(--accent); color:white; border-radius:4px;">
+          <label style="font-size:0.7rem; color:#888; display:flex; align-items:center; gap:4px; margin-top:2px;">
+            <input type="checkbox" id="uit-def-${escapedKey}-en" ${enDefChecked}> ${typeof t === 'function' ? t('ui.moderation.definitive') : 'Definitive'}
+          </label>
+        </td>`;
+      }
       // Get current value from onlineTranslationsMetadata or from localeData fallback
       let current = '';
       if (typeof onlineTranslationsMetadata !== 'undefined' &&
@@ -925,9 +1017,9 @@ function renderUITermsTable() {
         current = onlineTranslationsMetadata[entry.key][lang].approvedText || '';
       }
       // Fallback to the locale file value
-      if (!current && typeof localeData !== 'undefined') {
+      if (!current && typeof allLocalesCached !== 'undefined' && allLocalesCached[lang]) {
         const parts = entry.path.split('.');
-        let obj = localeData;
+        let obj = allLocalesCached[lang];
         for (const p of parts) {
           obj = obj && obj[p];
           if (!obj) break;
@@ -939,7 +1031,7 @@ function renderUITermsTable() {
           onlineTranslationsMetadata[entry.key][lang] &&
           onlineTranslationsMetadata[entry.key][lang].definitive) ? 'checked' : '';
       return `<td style="padding:4px;">
-        <input id="uit-trans-${escapedKey}-${lang}" type="text" value="${current.replace(/"/g,'&quot;')}" placeholder="${entry.labelEn}" style="width:90%; font-size:0.8rem; padding:4px; background:var(--bg-input); border:1px solid var(--border); color:white; border-radius:4px;">
+        <input id="uit-trans-${escapedKey}-${lang}" type="text" value="${current.replace(/"/g, '&quot;')}" placeholder="${entry.labelEn}" style="width:90%; font-size:0.8rem; padding:4px; background:var(--bg-input); border:1px solid var(--border); color:white; border-radius:4px;">
         <label style="font-size:0.7rem; color:#888; display:flex; align-items:center; gap:4px; margin-top:2px;">
           <input type="checkbox" id="uit-def-${escapedKey}-${lang}" ${defChecked}> ${typeof t === 'function' ? t('ui.moderation.definitive') : 'Definitive'}
         </label>
@@ -964,7 +1056,7 @@ function renderUITermsTable() {
   }).join('');
 
   if (filtered.length === 0) {
-    tbody.innerHTML = `<tr><td colspan="7" style="text-align:center; padding:20px; opacity:0.5;">${typeof t === 'function' ? t('ui.messages.noResults') : 'No results.'}</td></tr>`;
+    tbody.innerHTML = `<tr><td colspan="8" style="text-align:center; padding:20px; opacity:0.5;">${typeof t === 'function' ? t('ui.messages.noResults') : 'No results.'}</td></tr>`;
   }
 }
 
@@ -973,7 +1065,8 @@ async function saveConsoleUITermTranslation(termKey) {
   const entry = UI_GAME_TERMS_REGISTRY.find(e => e.key === termKey);
   if (!entry) return;
 
-  const langs = ['pt', 'es', 'fr', 'zh'];
+  // EN is now editable — include it in the save loop
+  const langs = ['en', 'pt', 'es', 'fr', 'zh'];
   const batch = db.batch();
 
   try {
@@ -1000,6 +1093,22 @@ async function saveConsoleUITermTranslation(termKey) {
         });
         if (!onlineTranslationsMetadata[termKey]) onlineTranslationsMetadata[termKey] = {};
         onlineTranslationsMetadata[termKey][lang] = { approvedText: textVal, definitive: defChecked };
+
+        // Apply EN change immediately to defaultEnglishData and localeData (if in EN)
+        if (lang === 'en') {
+          const pathParts = entry.path.split('.');
+          // Navigate to parent object and set the leaf key
+          const setNested = (obj, parts, val) => {
+            let cur = obj;
+            for (let i = 0; i < parts.length - 1; i++) {
+              if (!cur[parts[i]]) return;
+              cur = cur[parts[i]];
+            }
+            cur[parts[parts.length - 1]] = val;
+          };
+          if (defaultEnglishData) setNested(defaultEnglishData, pathParts, textVal);
+          if (currentLang === 'en' && localeData) setNested(localeData, pathParts, textVal);
+        }
       } else {
         batch.delete(transRef);
         if (onlineTranslationsMetadata[termKey]) delete onlineTranslationsMetadata[termKey][lang];
@@ -1015,5 +1124,18 @@ async function saveConsoleUITermTranslation(termKey) {
   }
 }
 
+// ─── Admin Direct Translation Modal ─────────────────────────────────────────
+// When an admin clicks the ✏️ button on an item, they get the same suggest modal
+// but the submission bypasses proposals and saves directly to translations/.
+function openDirectAdminTranslation(key, type) {
+  if (typeof openSuggestTranslation === 'function') {
+    openSuggestTranslation(key, type);
+    // Update modal title to reflect direct-save mode for admins
+    const titleEl = document.querySelector('#suggestTranslationModal h3');
+    if (titleEl) titleEl.textContent = '✏️ ' + (typeof t === 'function' ? t('ui.buttons.submitTranslation') : 'Direct Translate');
+  }
+}
+
 window.renderUITermsTable = renderUITermsTable;
 window.saveConsoleUITermTranslation = saveConsoleUITermTranslation;
+window.openDirectAdminTranslation = openDirectAdminTranslation;

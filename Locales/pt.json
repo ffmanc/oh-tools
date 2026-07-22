@@ -1337,7 +1337,8 @@
       "consoleTitle": "Editor da Base de Traduções",
       "uniqueVisitors": "Visitantes Únicos",
       "uniqueVisitorsLoading": "Visitantes Únicos: Carregando...",
-      "noAccess": "Sem Acesso"
+      "noAccess": "Sem Acesso",
+      "en": "Inglês (EN)"
     },
     "headers": {
       "name": "Nome",

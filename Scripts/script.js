@@ -160,8 +160,11 @@ function filterTraitDropdown() {
     }
 
     const matches = traits.filter(t => {
-        const trans = typeof translateTrait === 'function' ? translateTrait(t.name) : t;
-        return t.name.toUpperCase().includes(filter) || trans.name.toUpperCase().includes(filter);
+        // Multilingual search: check EN original + all available translations
+        const index = typeof buildSearchIndex === 'function'
+            ? buildSearchIndex(t.name, 'trait')
+            : (() => { const tr = typeof translateTrait === 'function' ? translateTrait(t.name) : t; return t.name.toUpperCase() + '|' + tr.name.toUpperCase(); })();
+        return index.toUpperCase().includes(filter);
     });
     
     if (matches.length > 0) {
@@ -211,16 +214,26 @@ function applyShopFilter(filter, btn) {
     buildArenaShops();
 }
 
-function buildArenaShops() { 
+function buildArenaShops() {
+    // Reset deduplication Set for this render pass
+    if (typeof clearSuggestKeys === 'function') clearSuggestKeys();
+
     const searchText = document.getElementById('searchArenaShop').value.toUpperCase();
     
     document.getElementById('arenaShopsContainer').innerHTML = shopsData.map(shop => {
         const filteredItems = shop.items.filter(i => {
-            const localName = i.type === "Species Code" 
-                ? (typeof translateDeviationName === 'function' ? translateDeviationName(i.name) : i.name)
-                : (typeof translateTechnique === 'function' ? translateTechnique(i.name).name : i.name);
+            // Multilingual search: check EN original + all known translations
+            const itemType = i.type === 'Species Code' ? 'deviation' : 'technique';
+            const searchIndex = typeof buildSearchIndex === 'function'
+                ? buildSearchIndex(i.name, itemType)
+                : (() => {
+                    const localN = i.type === 'Species Code'
+                        ? (typeof translateDeviationName === 'function' ? translateDeviationName(i.name) : i.name)
+                        : (typeof translateTechnique === 'function' ? translateTechnique(i.name).name : i.name);
+                    return i.name.toUpperCase() + '|' + localN.toUpperCase();
+                  })();
             const matchesType = (currentShopFilter === 'All') || (i.type === currentShopFilter);
-            const matchesSearch = i.name.toUpperCase().includes(searchText) || localName.toUpperCase().includes(searchText);
+            const matchesSearch = !searchText || searchIndex.toUpperCase().includes(searchText);
             return matchesType && matchesSearch;
         });
 
@@ -235,20 +248,41 @@ function buildArenaShops() {
                         const isChaos = i.name.includes("Chaos");
                         const costColor = isChaos ? "var(--chaos-cost)" : "#ffd700";
                         const displayCost = i.cost !== undefined ? i.cost : '0';
+                        const itemType = i.type === 'Species Code' ? 'deviation' : 'technique';
                         const localItemName = i.type === "Species Code" 
                             ? (typeof translateDeviationName === 'function' ? translateDeviationName(i.name) : i.name)
                             : (typeof translateTechnique === 'function' ? translateTechnique(i.name).name : i.name);
+                        const translatedType = typeof translateGameTerm === 'function'
+                            ? translateGameTerm(i.type === 'Skill Mutagen' ? 'skillMutagen' : i.type === 'Species Code' ? 'speciesCode' : i.type)
+                            : i.type;
+                        // Suggest button for item name (deduplicated per unique name)
+                        const nameSuggestBtn = typeof getSuggestBtnHtml === 'function'
+                            ? getSuggestBtnHtml(i.name, itemType) : '';
+                        // Suggest button for item type term (deduplicated — shows only once for 'skillMutagen' etc.)
+                        const typeTermKey = i.type === 'Skill Mutagen' ? 'skillMutagen' : i.type === 'Species Code' ? 'speciesCode' : i.type;
+                        const typeSuggestBtn = typeof getSuggestBtnHtml === 'function'
+                            ? getSuggestBtnHtml(typeTermKey, 'uiTerm') : '';
                         return `
                         <tr>
-                            <td>${localItemName}</td>
-                            <td class="arena-type">${typeof translateGameTerm === 'function' ? translateGameTerm(i.type === 'Skill Mutagen' ? 'skillMutagen' : i.type === 'Species Code' ? 'speciesCode' : i.type) : i.type}</td>
+                            <td>
+                                <div style="display:flex; justify-content:space-between; align-items:center; gap:6px;">
+                                    <span>${localItemName}</span>
+                                    ${nameSuggestBtn}
+                                </div>
+                            </td>
+                            <td class="arena-type">
+                                <div style="display:flex; align-items:center; gap:4px;">
+                                    ${translatedType}
+                                    ${typeSuggestBtn}
+                                </div>
+                            </td>
                             <td class="arena-cost" style="color:${costColor};">${displayCost}</td>
                         </tr>`;
                     }).join('')}
                 </table>
             </div>
         </div>
-    `}).join(''); 
+    `}).join('');
 }
 
 function toggleCompareTool() {
@@ -482,10 +516,14 @@ function hideTooltip() { tooltip.style.display = 'none'; }
 function moveTooltip(e) { tooltip.style.left = (e.pageX + 15) + 'px'; tooltip.style.top = (e.pageY + 15) + 'px'; }
 document.addEventListener('mousemove', (e) => { if (tooltip.style.display === 'block') moveTooltip(e); });
 
-function buildTechniquesTable() { 
+function buildTechniquesTable() {
+    // Reset deduplication Set for this render pass
+    if (typeof clearSuggestKeys === 'function') clearSuggestKeys();
+
     document.getElementById('techniquesBody').innerHTML = allUniqueTechniques.map(t => { 
         const trans = typeof translateTechnique === 'function' ? translateTechnique(t) : { name: t, description: 'Data needed' };
-        return `<tr>
+        const searchIndex = typeof buildSearchIndex === 'function' ? buildSearchIndex(t, 'technique') : t.toUpperCase();
+        return `<tr data-search-index="${searchIndex}">
             <td style="font-weight:bold; color:#e0e0e0; vertical-align:middle; padding:12px;">
                 <div style="display:flex; justify-content:space-between; align-items:center; gap:8px;">
                     <span>${trans.name}</span>
@@ -499,11 +537,20 @@ function buildTechniquesTable() {
                 </div>
             </td>
         </tr>`; 
-    }).join(''); 
+    }).join('');
 }
-function filterTechniquesLib() { const val = document.getElementById('searchTechniquesLib').value.toUpperCase(); document.querySelectorAll('#techniquesBody tr').forEach(row => { row.style.display = row.innerText.toUpperCase().includes(val) ? "" : "none"; }); }
+function filterTechniquesLib() {
+    const val = document.getElementById('searchTechniquesLib').value.toUpperCase();
+    document.querySelectorAll('#techniquesBody tr').forEach(row => {
+        const searchIndex = row.getAttribute('data-search-index') || row.innerText.toUpperCase();
+        row.style.display = !val || searchIndex.toUpperCase().includes(val) ? "" : "none";
+    });
+}
 
 function buildDeviantsLibTable() {
+    // Reset deduplication Set for this render pass
+    if (typeof clearSuggestKeys === 'function') clearSuggestKeys();
+
     const tbody = document.getElementById('deviantsLibBody');
     if (!tbody) return;
     const sortedDevs = [...deviations].sort((a, b) => {
@@ -515,7 +562,9 @@ function buildDeviantsLibTable() {
     tbody.innerHTML = sortedDevs.map(d => {
         const localName = typeof translateDeviationName === 'function' ? translateDeviationName(d.name) : d.name;
         const suggestBtn = typeof getSuggestBtnHtml === 'function' ? getSuggestBtnHtml(d.name, 'deviation') : '';
-        return `<tr>
+        // Multilingual search index — all known names for this deviation
+        const searchIndex = typeof buildSearchIndex === 'function' ? buildSearchIndex(d.name, 'deviation') : (d.name.toUpperCase() + '|' + localName.toUpperCase());
+        return `<tr data-search-index="${searchIndex}">
             <td style="font-weight:bold; color:#e0e0e0; vertical-align:middle; padding:12px;">
                 <div style="display:flex; justify-content:space-between; align-items:center; gap:8px;">
                     <span>${d.name}</span>
@@ -529,11 +578,16 @@ function buildDeviantsLibTable() {
 function filterDeviantsLib() {
     const val = document.getElementById('searchDeviantsLibInput').value.toUpperCase();
     document.querySelectorAll('#deviantsLibBody tr').forEach(row => {
-        row.style.display = row.innerText.toUpperCase().includes(val) ? "" : "none";
+        // Use data-search-index for multilingual match; fall back to innerText
+        const searchIndex = row.getAttribute('data-search-index') || row.innerText.toUpperCase();
+        row.style.display = !val || searchIndex.toUpperCase().includes(val) ? "" : "none";
     });
 }
  
-function buildTraitsTable() { 
+function buildTraitsTable() {
+    // Reset deduplication Set for this render pass
+    if (typeof clearSuggestKeys === 'function') clearSuggestKeys();
+
     const tbody = document.getElementById('traitsBody');
     const sortedTraits = [...traits].sort((a, b) => {
         const transA = typeof translateTrait === 'function' ? translateTrait(a.name) : a;
@@ -544,9 +598,11 @@ function buildTraitsTable() {
     tbody.innerHTML = sortedTraits.map(t => {
         const trans = typeof translateTrait === 'function' ? translateTrait(t.name) : t;
         let slotBadge = (SHOW_SLOT_DATA && t.slot) ? `<span class="slot-badge float-right">S${t.slot}</span>` : '';
+        // Multilingual search index — all known names for this trait
+        const searchIndex = typeof buildSearchIndex === 'function' ? buildSearchIndex(t.name, 'trait') : (t.name.toUpperCase() + '|' + trans.name.toUpperCase());
 
         return `
-        <tr data-category="${t.category}" data-slot="${t.slot || 'none'}">
+        <tr data-category="${t.category}" data-slot="${t.slot || 'none'}" data-search-index="${searchIndex}">
             <td style="font-weight:600; color:#e0e0e0; vertical-align:middle; padding:12px;">
                 <div style="display:flex; justify-content:space-between; align-items:center; gap:8px;">
                     <span>${trans.name}</span>
@@ -587,13 +643,14 @@ function filterTraits() {
     const val = document.getElementById('searchTraits').value.toUpperCase(); 
     
     document.querySelectorAll('#traitsBody tr').forEach(row => { 
-        const text = row.innerText.toUpperCase(); 
+        // Prefer data-search-index for multilingual match; fall back to innerText
+        const searchIndex = row.getAttribute('data-search-index') || row.innerText.toUpperCase();
         const cat = row.getAttribute('data-category'); 
         const slot = row.getAttribute('data-slot'); 
         
         const matchCat = (currentCategoryFilter === 'All') || (cat === currentCategoryFilter); 
         const matchSlot = (currentSlotFilter === 'All') || (String(slot) === currentSlotFilter);
-        const matchText = text.includes(val);
+        const matchText = !val || searchIndex.toUpperCase().includes(val);
 
         if (matchText && matchCat && matchSlot) {
             row.style.display = "";
@@ -616,6 +673,9 @@ function filterDeviants(typeFilter, btn) {
 function resetDeviantSearch() { document.getElementById('deviantSearchInput').value = ""; currentDeviantTypeFilter = 'All'; document.querySelectorAll('#deviant-filter-container .filter-btn').forEach(b => b.classList.remove('active')); document.querySelector('.btn-all').classList.add('active'); document.getElementById('deviant-results-area').classList.add('hidden'); isListExpanded = false; renderDeviants(); }
 
 function renderDeviants() {
+    // Reset deduplication Set for this render pass
+    if (typeof clearSuggestKeys === 'function') clearSuggestKeys();
+
     const query = document.getElementById('deviantSearchInput').value.toUpperCase();
     const container = document.getElementById('deviant-results-area');
     container.innerHTML = "";
