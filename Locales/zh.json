@@ -1298,7 +1298,10 @@
       "save": "保存",
       "definitive": "确定性",
       "proposedTranslation": "提议的翻译",
-      "consoleTitle": "翻译数据库编辑器"
+      "consoleTitle": "翻译数据库编辑器",
+      "uniqueVisitors": "独特访问者",
+      "uniqueVisitorsLoading": "独特访问者: 加载中...",
+      "noAccess": "无权访问"
     },
     "headers": {
       "name": "名称",

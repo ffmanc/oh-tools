@@ -1298,7 +1298,10 @@
       "save": "Save",
       "definitive": "Definitive",
       "proposedTranslation": "Proposed Translation",
-      "consoleTitle": "Translation Database Editor"
+      "consoleTitle": "Translation Database Editor",
+      "uniqueVisitors": "Unique Visitors",
+      "uniqueVisitorsLoading": "Unique Visitors: Loading...",
+      "noAccess": "No Access"
     },
     "headers": {
       "name": "Name",

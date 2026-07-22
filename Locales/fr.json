@@ -1298,7 +1298,10 @@
       "save": "Sauvegarder",
       "definitive": "Définitif",
       "proposedTranslation": "Traduction Proposée",
-      "consoleTitle": "Éditeur de Base de Données de Traduction"
+      "consoleTitle": "Éditeur de Base de Données de Traduction",
+      "uniqueVisitors": "Visiteurs Uniques",
+      "uniqueVisitorsLoading": "Visiteurs Uniques: Chargement...",
+      "noAccess": "Pas d'Accès"
     },
     "headers": {
       "name": "Nom",

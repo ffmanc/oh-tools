@@ -251,12 +251,12 @@
     <main class="main-content">
         
         <!-- Admin Moderation Panel (Global alert position) in Modal Box -->
-        <div id="adminModal" class="modal-overlay hidden">
-            <div id="adminPanel" class="modal-content" style="max-width: 950px; width:95%; max-height:90vh; overflow-y:auto; border-top: 3px solid var(--danger); padding:20px; position:relative;">
+        <div id="adminModal">
+            <div id="adminPanel" class="modal-content">
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px; border-bottom:1px solid #333; padding-bottom:10px;">
                     <div style="display:flex; align-items:center; gap:15px;">
                         <h3 id="adminModalTitle" style="margin:0; color:white;" data-i18n="tabs.moderation">Administration</h3>
-                        <span id="adminVisitorCounter" style="font-size:0.8rem; color:var(--accent); font-weight:600; background:rgba(0,212,241,0.1); padding:2px 8px; border-radius:4px;">Unique Visitors: Loading...</span>
+                        <span id="adminVisitorCounter" style="font-size:0.8rem; color:var(--accent); font-weight:600; background:rgba(0,212,241,0.1); padding:2px 8px; border-radius:4px;" data-i18n="ui.moderation.uniqueVisitorsLoading">Unique Visitors: Loading...</span>
                     </div>
                     <span class="close-modal" onclick="toggleAdminPanel()">✕</span>
                 </div>
@@ -569,8 +569,8 @@ document.addEventListener('click', function(e) {
 function toggleAdminPanel() {
     const adminModal = document.getElementById("adminModal");
     if (adminModal) {
-        adminModal.classList.toggle("hidden");
-        if (!adminModal.classList.contains("hidden")) {
+        adminModal.classList.toggle("show-modal");
+        if (adminModal.classList.contains("show-modal")) {
             if (typeof loadPendingProposalsList === 'function') loadPendingProposalsList();
             if (typeof loadAllOnlineTranslations === 'function') loadAllOnlineTranslations();
             loadVisitorCount();
@@ -583,11 +583,11 @@ async function loadVisitorCount() {
     if (!counterEl) return;
     try {
         const doc = await db.collection("stats").doc("visits").get();
-        if (doc.exists) {
-            counterEl.textContent = `Unique Visitors: ${doc.data().count || 0}`;
-        }
+        const count = doc.exists ? (doc.data().count || 0) : 0;
+        counterEl.textContent = `${t("ui.moderation.uniqueVisitors")}: ${count}`;
     } catch(err) {
         console.warn("Could not load stats:", err);
+        counterEl.textContent = `${t("ui.moderation.uniqueVisitors")}: (${t("ui.moderation.noAccess")})`;
     }
 }
 
